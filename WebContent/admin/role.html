@@ -1,0 +1,188 @@
+<script src="Controller/cRole.js"> </script>
+ <link href="css/role.css" rel="stylesheet">
+
+            
+<div class="row">
+               
+	            <div class="col-lg-12">
+	                <div class="ibox float-e-margins">
+	                    <div class="ibox-title">
+	                        <h5>Role Management</h5>
+	                       
+	                        <div class="ibox-tools">
+	                       
+							
+	                        </div>
+	                        
+	                    </div>	
+	                    <div class="ibox-content">
+							<!-- <table id="userTable" class="display" cellspacing="0" width="100%"> -->
+							<div class="row searchArea">
+								<div class="col-lg-6">
+									<div class='searchInput'>
+									<input type="text" name="search" id="searchInput"  >
+									</div>
+									<div class='searchBtn'>
+									<button class="btnSearch" id="btnSearch">Search</button>
+									</div>
+								</div>
+								
+								<div class="col-lg-4 col-lg-offset-2 addUserBtn textAlignRight">
+								
+									 <div class='btnManagement '>
+									 	<button id="manageRole" data-target="#roleModal" data-toggle="modal" class="btnCustom" type="button">
+	 												Add Role
+									 	</button>
+									 </div>
+									 
+									 
+									
+								</div>
+							</div>
+	                        <table id="roleTable" class="table table-striped" style="width:100%"> 
+	                        
+	                          <colgroup>
+				                    <col style="width:5%" />
+				                    <col style="width:70%" />
+				                    <col style="width:20%" />
+				                   
+				                    <!-- 
+				                    <col style="width:130px" />
+				                     -->
+				                </colgroup>
+	                            <thead>
+	                            <tr>
+	                                <th data-field="field1"><b>#</b></th>
+	                                <th data-field="field2" ><b>Role name</b></th>
+	                                <th data-field="field3" ><b>Action</b></th>
+	                            </tr>
+	                            </thead>
+	                            <tbody id="roleDataArea">
+	                            <tr>
+	                                <td>1</td>
+	                                <td>Admin </td>
+	                                
+	                                <td ><button data-target="#asignLink" data-toggle="modal"  class="btn btn-primary btn-xs" type="button">Assign link</button> <button class="btn btn-warning btn-xs" type="button">Edit</button> <button class="btn btn-danger btn-xs" type="button">Del</button></td>
+	                            </tr>
+	                            
+	                            <tr>
+	                                <td>2</td>
+	                                <td>Super user</td>
+	                              
+	                                <td ><button data-target="#asignLink" data-toggle="modal"  class="btn btn-primary btn-xs" type="button">Assign link</button> <button class="btn btn-warning btn-xs" type="button">Edit</button> <button class="btn btn-danger btn-xs" type="button">Del</button></td>
+	                            </tr>
+	                            
+	                            <tr>
+	                                <td>3</td>
+	                                <td>user </td>
+	                               
+	                                <td ><button data-target="#asignLink" data-toggle="modal"  class="btn btn-primary btn-xs" type="button">Assign link</button> <button class="btn btn-warning btn-xs" type="button">Edit</button> <button class="btn btn-danger btn-xs" type="button">Del</button></td>
+	                            </tr>
+	                            
+	                            
+	                            
+	                          
+	                            
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                </div>
+	            </div>
+            </div>
+            
+            
+ <!-- modal add role start -->
+
+ <div aria-hidden="true" role="dialog" tabindex="-1" id="roleModal" class="modal inmodal fade" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Add Role</h4>
+            </div>
+            <div class="modal-body">
+                <!-- content start -->
+                <div class=" text-center loginscreen   animated fadeInDown">
+					        <div>
+					            
+					           
+					            <!-- <p>Create account to see it in action.</p> -->
+					            <form class="form-horizontal" role="form" action="#">
+					                <div class="form-group">
+					                	<label class="col-lg-4 control-label">Role name</label>
+					                    <div class="col-lg-8">
+					                    	<input type="text" id="role_name" class=" form-control" placeholder="role name" required="">
+					                    </div>
+					                </div>
+					             
+					            </form>
+					            
+					        </div>
+					    </div>
+                <!-- content end -->
+                
+                
+            </div>
+            <div class="modal-footer">
+                 <button data-dismiss="modal" id="btnClose" class="btn btn-white" type="button">Close</button>
+                <input type="hidden" id="role_id" name="role_id" value="">
+                <input type="hidden" id="action" name="action" value="add">
+                <button class="btn btn-primary" id="btnSubmit"  type="button">Save </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <!-- modal add role end -->
+ 
+ <!-- modal assign link start -->
+ 
+ <div aria-hidden="true" role="dialog" tabindex="-1" id="asignLink" class="modal inmodal fade" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Assign Link</h4>
+            </div>
+            <div class="modal-body" id="assignDataArea">
+                <!-- content start -->
+                <table id="assignLinkTable" class="table table-striped"> 
+                        <thead>
+                        <tr>
+                            <th >#</th>
+                            <th style="widht:70%;">Category link name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Cate link 1 </td>
+                        </tr>                    
+                        <tr>
+                            <td>2</td>
+                            <td>Cate link 2 </td>
+                        </tr>
+                         <tr>
+                         	<td>3</td>
+                            <td>Cate link 3</td>
+                        </tr>
+                        
+                        
+                      
+                        
+                        </tbody>
+	              </table>
+                <!-- content end -->
+                
+                
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" id="btnAssignClose" class="btn btn-white" type="button">Close</button>
+                <button class="btn btn-primary" id="btnAssignSubmit" type="button">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+  <!-- modal assign link end -->

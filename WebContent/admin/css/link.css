@@ -1,0 +1,12 @@
+.note-editor .note-editable{
+	height: 200px;
+    outline: 0 none;
+    overflow: auto;
+    padding: 0;
+}
+.objectRight{
+	text-align:right;
+}
+.objectLeft{
+	text-align:left;
+}

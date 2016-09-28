@@ -1,0 +1,277 @@
+<script src="Controller/funcitonGolbal.js"></script>
+<script src="Controller/cUser.js"> </script>
+
+<link href="css/user.css" rel="stylesheet">
+
+
+
+            
+<div class="row">
+               
+	            <div class="col-lg-12">
+	                <div class="ibox float-e-margins">
+	                    <div class="ibox-title">
+	                        <h5>User Management</h5>
+	                       
+	                        <div class="ibox-tools">
+	                        <!-- search -->
+	                           <div class="row">
+								
+									
+								</div>
+							<!-- search -->
+							
+	                        </div>
+	                        
+	                    </div>	
+	                    <div class="ibox-content">
+	                    
+	                    
+	                    <div class="row searchArea">
+							<div class="col-lg-6">
+								<div class='searchInput'>
+								<input type="text" name="search" id="searchInput" >
+								</div>
+								<div class='searchBtn'>
+								<button class="btnSearch" id="btnSearch">Search</button>
+								</div>
+							</div>
+							
+							<div class="col-lg-2 col-lg-offset-4 addUserBtn">
+								 <button id="manageUser" data-target="#userModal" data-toggle="modal" class="btnCustom  " type="button">
+ 												Add user
+									</button>
+							</div>
+						</div>
+							<!-- <table id="userTable" class="display" cellspacing="0" width="100%"> -->
+	                        <table id="userTable" class="table table-striped" style="width:100%"> 
+	                        
+	                        	  <colgroup>
+				                    <col style="width:2%"/>
+				                    <col style="width:10%"/>
+				                    <col style="width:10%"/>
+				                    <col style="width:5%"/>
+				                    <col style="width:5%"/>
+				                    <col  style="width:5%"/>
+				                    <col style="width:5%"/>
+				                    <!-- 
+				                    <col style="width:130px" />
+				                     -->
+				                </colgroup>
+				                
+	                            <thead>
+	                            <tr>
+	                                <th data-field="field1"><b>#</b></th>
+	                                <th data-field="field2"><b>Fist name</b></th>
+	                                <th data-field="field3"><b>Last name</b></th>
+	                                <th data-field="field4"><b>Status</b></th>
+	                                <th data-field="field5"><b>Role</b></th>
+	                                <th data-field="field6"><b>Province</b></th>
+	                                <th data-field="field7"><b>Action</b></th>
+	                            </tr>
+	                            </thead>
+	                            <tbody id="userDataContent">
+	                            <tr>
+	                                <td>1</td>
+	                                <td>Kosit </td>
+	                                <td>Aromsva</td>
+	                                <td><img src="img/button-turn-off.jpg" width="20"></td>
+	                                <td>User</td>
+	                                <td>Bangkok</td>
+	                                <td > <button class="btn btn-warning btn-xs" type="button">Edit</button> <button class="btn btn-danger btn-xs" type="button">Del</button></td>
+	                            </tr>
+	                            
+	                            <tr>
+	                                <td>1</td>
+	                                <td>Kosit</td>
+	                                <td>Bangkok</td>
+	                                <td><img src="img/button-turn-off.jpg" width="20"></td>
+	                                <td>User</td>
+	                                <td>Bangkok</td>
+	                                <td > <button class="btn btn-warning btn-xs" type="button">Edit</button> <button class="btn btn-danger btn-xs" type="button">Del</button></td>
+	                            </tr>
+	                            
+	                            <tr>
+	                                <td>2</td>
+	                                <td>Kosit </td>
+	                                <td>Bangkok</td>
+	                                <td><img src="img/button-turn-on.jpg" width="20"></td>
+	                                <td>Supper user</td>
+	                                <td>Bangkok</td>
+	                                <td > <button class="btn btn-warning btn-xs" type="button">Edit</button> <button class="btn btn-danger btn-xs" type="button">Del</button></td>
+	                            </tr>
+	                            
+	                            <tr>
+	                                <td>3</td>
+	                                <td>Kosit </td>
+	                                <td>Bangkok</td>
+	                                <td><img src="img/button-turn-on.jpg" width="20"></td>
+	                                <td>Supper user</td>
+	                                <td>Bangkok</td>
+	                                <td > <button class="btn btn-warning btn-xs" type="button">Edit</button> <button class="btn btn-danger btn-xs" type="button">Del</button></td>
+	                            </tr>
+	                            
+	                            <tr>
+	                                <td>4</td>
+	                                <td>Kosit </td>
+	                                <td>Bangkok</td>
+	                                <td><img src="img/button-turn-on.jpg" width="20"></td>
+	                                <td>User</td>
+	                                <td>Bangkok</td>
+	                                <td > <button class="btn btn-warning btn-xs" type="button">Edit</button> <button class="btn btn-danger btn-xs" type="button">Del</button></td>
+	                            </tr>
+	                            
+	                            <tr>
+	                                <td>5</td>
+	                                <td>Kosit </td>
+	                                <td>Bangkok</td>
+	                                <td><img src="img/button-turn-on.jpg" width="20"></td>
+	                                <td>User</td>
+	                                <td>Bangkok</td>
+	                                <td > <button class="btn btn-warning btn-xs" type="button">Edit</button> <button class="btn btn-danger btn-xs" type="button">Del</button></td>
+	                            </tr>
+	                            
+	                          
+	                            
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                </div>
+	            </div>
+            </div>
+            
+            
+ <!-- modal start -->
+
+ <div aria-hidden="true" role="dialog" tabindex="-1" id="userModal" class="modal inmodal fade" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">สร้างบัญชีผู้ใช้งาน</h4>
+            </div>
+            <div class="modal-body">
+                <!-- content start -->
+                <div class=" text-center loginscreen   animated fadeInDown">
+					        <div>
+					            
+
+					 
+					            <!-- <p>Create account to see it in action.</p> -->
+					            <form class="form-horizontal" role="form" action="#">
+					                <div class="form-group">
+					                	<label class="col-lg-4 control-label">ชื่อผู้ใช้งาน<span style="color:red">*</span></label>
+					                    <div class="col-lg-8">
+					                    	<input type="text" id="user_name" class=" form-control" placeholder="ชื่อผู้ใช้งาน" >
+					                    </div>
+					                </div>
+					                <div class="form-group">
+					                	<label class="col-lg-4 control-label">รหัสผ่าน<span style="color:red">*</span></label>
+					                    <div class="col-lg-8">
+					                    <input type="password" id="password" class="form-control" placeholder="รหัสผ่าน" >
+					                    </div>
+					                </div>
+					                <div class="form-group">
+					                	<label class="col-lg-4 control-label">ยืนยันรหัสผ่าน<span style="color:red">*</span></label>
+					                    <div class="col-lg-8">
+					                    <input type="password" id="confirm_password" class="form-control" placeholder="ยืนยันรหัสผ่าน" >
+					                    </div>
+					                </div>
+					               
+					               <hr>
+					               
+					               <div class="form-group">
+					               
+					               	<label class="col-lg-4 control-label">คำนำหน้า</label>
+					                    <div class="col-lg-8" id="prefixArea">
+					                    <select id="prefix" class="form-control" >
+					                    	<option>นาย</option>
+					                    	<option>นาง</option>
+					                    	<option>นางสาว</option>
+					                    	
+					                    </select>
+					                    </div>
+					                </div>
+					                
+					                <div class="form-group">
+						                <label class="col-lg-4 control-label">ชื่อ<span style="color:red">*</span></label>
+						                <div class="col-lg-8">
+					                    <input id=first_name type="text" class="form-control" placeholder="ชื่อ" >
+					                    </div>
+					                </div>
+					                <div class="form-group">
+					                	<label class="col-lg-4 control-label">นามสกุล</label>
+					                    <div class="col-lg-8">
+					                    <input id="last_name" type="text" class="form-control" placeholder="นามสกุล" >
+					                    </div>
+					                </div>
+					                <div class="form-group">
+					               		 <label class="col-lg-4 control-label">อีเมลล์<span style="color:red">*</span></label>
+					                    <div class="col-lg-8">
+					                    <input id="email" type="text" class="form-control" placeholder="อีเมลล์" >
+					                    </div>
+					                </div>
+					                
+					                <div class="form-group">
+					                	<label class="col-lg-4 control-label">จังหวัด</label>
+					                    <div class="col-lg-8" id="provinceArea">
+					                    <select id="province" class="form-control" >
+					                    	<option>จังหวัด</option>
+					                    	<option>001</option>
+					                    	<option>002</option>
+					                    </select>
+					                    </div>
+					                </div>
+					                
+					                <div class="form-group">
+					                	<label class="col-lg-4 control-label">หน่วยงานที่สังกัด</label>
+					                    <div class="col-lg-8">
+					                    <input id="organization" type="text" class="form-control" placeholder="หน่วยงานที่สังกัด" >
+					                    </div>
+					                </div>
+					                
+					                <div class="form-group">
+					                	<label class="col-lg-4 control-label">ตำแหน่ง</label>
+					                    <div class="col-lg-8">
+					                    <input id="position" type="text" class="form-control" placeholder="ตำแหน่ง" >
+					                    </div>
+					                </div>
+					                
+					                <div class="form-group">
+					                	<label class="col-lg-4 control-label">Role</label>
+					                    <div class="col-lg-8" id="roleArea">
+					                   
+					                    </div>
+					                </div>
+					                
+					                
+					                  <div class="form-group">
+					                	<label class="col-lg-4 control-label">สถานะ</label>
+					                    <div class="col-lg-8" id="statusArea">
+					                   		<input class ="status"  name="status" type="radio" checked="checked" value="Y">เปิดใช้งาน
+					                   		<input class ="status" name="status" type="radio" value="N">ปิดใช้งาน
+					                    </div>
+					                </div>
+					                
+					               
+					                
+					                
+					             
+					            </form>
+					            
+					        </div>
+					    </div>
+                <!-- content end -->
+                
+                
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-white" id="btnClose" type="button">Close</button>
+                <input type="hidden" id="userName" name="userName" value="">
+                <input type="hidden" id="action" name="action" value="add">
+                <button id="btnSubmit" class="btn btn-primary" type="button">Save </button>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- modal end -->

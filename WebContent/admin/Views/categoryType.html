@@ -1,0 +1,231 @@
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<table>
+	<tr>
+		<td>
+			category search:
+		</td>
+		<td>
+			<input type='text' id='cate_type_search' name='cate_type_search'>
+		</td>
+		<td>
+			<button id='btnSearch'>Search</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			category type:
+		</td>
+		<td>
+			<input type='text' id='cate_type_name' name='cate_type_name'>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type='hidden' value='add' id='action' name='action'>
+			<input type='hidden' value='' id=cate_type_id name='cate_type_id'>
+			<button id='btnSubmit'>Submit</button>
+			<button id='btnCancel'>Cancel</button>
+		</td>
+		
+	</tr>
+</table>
+
+
+<table border="1">
+	<tr>
+		<td>
+		<b>ID</b>
+		</td>
+		<td>
+		<b>Category Type Name</b>
+		</td>
+		<td>
+		<b>Create Date</b>
+		</td>
+		<td>
+		<b>Update Date</b>
+		</td>
+		
+		<td>
+		<b>Action</b>
+		</td>
+
+	</tr>
+	
+	<tbody id='dataList'>
+	
+	
+	</tbody>
+</table>
+
+
+<script>
+	$(document).ready(function(){
+		
+		var createTableCateTypeList = function(data){
+			var trData="";
+			
+			$.each(data,function(index,indexEntry){
+				trData+="<tr>";
+					trData+="<td>"+indexEntry[0]+"</td>";
+					trData+="<td>"+indexEntry[1]+"</td>";
+					trData+="<td>"+indexEntry[2]+"</td>";
+					trData+="<td>"+indexEntry[3]+"</td>";
+					trData+="<td><a href=\"#\" id=\"edit-"+indexEntry[0]+"\" class=\"editCateType\">Edit</a>,<a id='id-"+indexEntry[0]+"' class='delCateType' href=\"#\">Del</a></td>";
+				trData+="</tr>";
+			});
+			
+			$("#dataList").html(trData);
+			
+			//Del Start
+			$(".delCateType").click(function(){
+				var id=this.id;
+				id=id.split("-");
+				id=id[1];
+				//alert(id);
+				
+				$.ajax({
+					url:"http://192.168.1.49:8082/niems/Model/category_type/delete.jsp",
+					type:"post",
+					dataType:"jsonp",
+					data:{"callback":"?","cate_type_id":id},
+					success:function(data){
+						console.log(data);
+						
+						if(data=="success"){
+							alert("delete data is successfully.");
+							selecAlltCateType();
+						}
+					}
+				});
+			});
+			//Del End
+			
+			//Edit Start
+			$(".editCateType").click(function(){
+				var id=this.id;
+				id=id.split("-");
+				id=id[1];
+				//alert(id);
+				
+				$.ajax({
+					url:"http://192.168.1.49:8082/niems/Model/category_type/edit.jsp",
+					type:"post",
+					dataType:"jsonp",
+					data:{"callback":"?","cate_type_id":id},
+					success:function(data){
+						console.log(data);
+						
+						$("#cate_type_name").val(data[0][1]);
+						$("#btnSubmit").html("Edit");
+						$("#action").val("edit");
+						$("#cate_type_id").val(id);
+						
+					}
+				});
+			});
+			
+			//Edit End
+		};
+		var selecAlltCateType = function(){
+			$.ajax({
+				url:"http://192.168.1.49:8082/niems/Model/category_type/selectAll.jsp",
+				type:"post",
+				dataType:"jsonp",
+				data:{"callback":"?"},
+				success:function(data){
+					console.log(data);
+					
+					
+					createTableCateTypeList(data);
+					
+					
+					
+				}
+			});
+		}
+		selecAlltCateType();
+		
+		
+		$("#btnCancel").click(function(){
+			$("#btnSubmit").html("Submit");
+			$("#action").val("add");
+		});
+		
+		$("#btnSubmit").click(function(){
+			
+			var cateTypeName=$("#cate_type_name").val();
+			
+			if($("#action").val()=="add"){
+			
+			//alert(cateTypeName);
+			$.ajax({
+				url:"http://192.168.1.49:8082/niems/Model/category_type/insert.jsp",
+				type:"post",
+				dataType:"jsonp",
+				data:{"callback":"?","cate_type_name":cateTypeName},
+				success:function(data){
+					console.log(data);
+					
+					if(data=="success"){
+						alert("insert data is successfully.");
+						selecAlltCateType();
+					}
+					
+					
+				}
+			});
+			
+			}else{
+				
+				$.ajax({
+					url:"http://192.168.1.49:8082/niems/Model/category_type/update.jsp",
+					type:"post",
+					dataType:"jsonp",
+					data:{"callback":"?","cate_type_name":cateTypeName,"cate_type_id":$("#cate_type_id").val()},
+					success:function(data){
+						console.log(data);
+							
+						if(data=="success"){
+							alert("update data is successfully.");
+							selecAlltCateType();
+						}
+						
+						
+					}
+				});	
+				
+				
+			}
+			
+			
+			
+			
+		});
+		
+		//search
+		
+		$("#btnSearch").click(function(){
+			
+			//cate_type_search
+			$.ajax({
+				url:"http://192.168.1.49:8082/niems/Model/category_type/search.jsp",
+				type:"post",
+				dataType:"jsonp",
+				data:{"callback":"?","keyword":$("#cate_type_search").val()},
+				success:function(data){
+					//console.log(data);
+					createTableCateTypeList(data);
+					
+					
+					
+				}
+			});	
+		
+		});
+		
+		
+		
+		
+	});
+</script>

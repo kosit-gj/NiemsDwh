@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NIEMS | Register</title>
+
+    <link href="admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="admin/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="admin/css/animate.css" rel="stylesheet">
+    <link href="admin/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+
+                            
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+				<!-- 
+                <h1 class="logo-name">IN+</h1>
+                 -->
+
+            </div>
+            <h3>สร้างบัญชีผู้ใช้งาน</h3>
+            <!-- <p>Create account to see it in action.</p> -->
+            <form class="form-horizontal" role="form" action="#">
+                <div class="form-group">
+                	<label class="col-lg-4 control-label">ชื่อผู้ใช้งาน<span style="color:red">*</span></label>
+                    <div class="col-lg-8">
+                    	<input type="text" id="user_name" class=" form-control" placeholder="ชื่อผู้ใช้งาน" >
+                    </div>
+                </div>
+                <div class="form-group">
+                	<label class="col-lg-4 control-label">รหัสผ่าน<span style="color:red">*</span></label>
+                    <div class="col-lg-8">
+                    <input type="password" id="password" class="form-control" placeholder="รหัสผ่าน" >
+                    </div>
+                </div>
+                <div class="form-group">
+                	<label class="col-lg-4 control-label">ยืนยันรหัสผ่าน<span style="color:red">*</span></label>
+                    <div class="col-lg-8">
+                    <input type="password" id="confirm_password" class="form-control" placeholder="ยืนยันรหัสผ่าน" >
+                    </div>
+                </div>
+               
+               <hr>
+               
+               <div class="form-group">
+               
+               	<label class="col-lg-4 control-label">คำนำหน้า</label>
+                    <div class="col-lg-8">
+                    <select id="prefix" class="form-control" >
+                    	<option>นาย</option>
+                    	<option>นาง</option>
+                    	<option>นางสาว</option>
+                    	
+                    </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+	                <label class="col-lg-4 control-label">ชื่อ<span style="color:red">*</span></label>
+	                <div class="col-lg-8">
+                    <input  id="first_name" type="text" class="form-control" placeholder="ชื่อ" >
+                    </div>
+                </div>
+                <div class="form-group">
+                	<label class="col-lg-4 control-label">นามสกุล</label>
+                    <div class="col-lg-8">
+                    <input id="last_name" type="text" class="form-control" placeholder="นามสกุล" >
+                    </div>
+                </div>
+                <div class="form-group">
+               		 <label class="col-lg-4 control-label">อีเมลล์<span style="color:red">*</span></label>
+                    <div class="col-lg-8">
+                    <input type="text" id="email" class="form-control" placeholder="อีเมลล์" >
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                	<label class="col-lg-4 control-label">จังหวัด</label>
+                    <div class="col-lg-8" id="provinceArea">
+                    
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                	<label class="col-lg-4 control-label">หน่วยงานที่สังกัด</label>
+                    <div class="col-lg-8">
+                    <input id="organization" type="text" class="form-control" placeholder="หน่วยงานที่สังกัด" >
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                	<label class="col-lg-4 control-label">ตำแหน่ง</label>
+                    <div class="col-lg-8">
+                    <input id="position" type="text" class="form-control" placeholder="ตำแหน่ง" >
+                    </div>
+                </div>
+               
+                
+                
+               <hr>
+                <button id="submit" class="btn btn-primary block full-width m-b">สร้างบัญชีผู้ใช้งาน</button>
+
+                <p class="text-muted text-center"><small>มีบัญชัผู้ใช้งานแล้ว?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="login.html">ลงซื่อเข้าใช้งาน</a>
+            </form>
+            
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="admin/js/jquery-2.1.1.js"></script>
+    <script src="admin/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="admin/Controller/funcitonGolbal.js"></script>
+    <script src="admin/Controller/cRegister.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+body{
+	background:	white;
+}
+.ibox-title{
+	background:	#d7e9f0;
+	border-radius: 5px 5px 0 0;
+	padding:25px;
+	font-size:18px;
+}
+.ibox-content {
+    border-bottom: 1px solid #d7e9f0;
+    border-left: 1px solid #d7e9f0;
+    border-right: 1px solid #d7e9f0;
+    clear: both;
+}
+.headerContent{
+	padding-top:5px;
+}
+.titleIcon{
+	color:#1157ad;
+	font-size:25px;
+}
+.titleIcon1{
+	color:#1157ad;
+	font-size:25px;
+}
+.titleIcon2{
+	color:#1157ad;
+	font-size:25px;
+}
+.titleIcon3{
+	color:#1157ad;
+	font-size:25px;
+}
+.titleIcon4{
+	color:#1157ad;
+	font-size:25px;
+}
+.titleIcon5{
+	color:#1157ad;
+	font-size:25px;
+}
+.titleIconGreen{
+	color:green;
+}
+.btn-admin{
+	padding:25px;
+	font-size:18px;
+	background:	#1157ad;
+	text-align:left;
+	color:white;
+	border-radius: 7px;
+	
+}
+.folder-list li i{
+	color: green;
+}
+.ibox-tools a{
+	color: #1157ad;
+}
+.collapse-link{
+	color:#1157ad;
+}
+.iconHeader{
+	font-size:45px;
+}
+.panelCustom > .ibox-content{
+	display:none;
+}

@@ -1,0 +1,42 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Login System</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="../Controller/login.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="top-content row" id="top-cont">
+			Login
+		</div>
+		<form>
+		  <div class="form-group">
+		    <label for="user_name">รหัสบัตรประชาชน</label>
+		    <input type="cityzen" class="form-control" id="user_name" aria-describedby="emailHelp" placeholder="กรอกรหัสบัตรประชาชน">
+		    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>  -->
+		  </div>
+		  <div class="form-group">
+		    <label for="password">รหัสผ่าน</label>
+		    <input type="password" class="form-control" id="password" placeholder="กรอกรหัสผ่าน">
+		  </div>
+		  <div class="form-group">
+		    <label for="reason">เหตุผลที่ใช้งาน</label>
+		    <textarea class="form-control" id="reason" rows="5"></textarea>
+		  </div>
+		  
+		  <button type="Ok" id='btn_submit' class="btn btn-default">OK</button>
+		  <button type="Cancel" id='btn_cancel' class="btn btn-primary">Cancel</button>
+		  
+		</form>	
+	</div>
+	
+	<a href="register.html" id="register">Register</a>
+</body>
+</html>
+
+
+
