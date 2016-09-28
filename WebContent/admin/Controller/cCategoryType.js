@@ -7,7 +7,7 @@ var insertCateTypeFn= function(){
 		
 		//check user  unique start
 			$.ajax({
-				url:"http://192.168.1.49:8082/niems/Model/category_type/check_unique.jsp",
+				url:golbalURL+"/niems/Model/category_type/check_unique.jsp",
 				type:"post",
 				dataType:"json",
 				data:{
@@ -23,7 +23,7 @@ var insertCateTypeFn= function(){
 						
 						//insert start 
 						$.ajax({
-							url:"http://192.168.1.49:8082/niems/Model/category_type/insert.jsp",
+							url:golbalURL+"/niems/Model/category_type/insert.jsp",
 							type:"post",
 							dataType:"json",
 							//"callback":"?",
@@ -57,10 +57,10 @@ var listDataAll = function(keyword){
 	//http://192.168.1.49:8082/niems/Model/user/selectAll.jsp?callback=?
 	var urlParam="";
 	if(keyword==undefined){
-		urlParam="http://192.168.1.49:8082/niems/Model/category_type/selectAll.jsp";
+		urlParam=golbalURL+"/niems/Model/category_type/selectAll.jsp";
 	}else{
 	
-		urlParam="http://192.168.1.49:8082/niems/Model/category_type/search.jsp";
+		urlParam=golbalURL+"/niems/Model/category_type/search.jsp";
 	}
 	
 	$.ajax({
@@ -152,7 +152,7 @@ var deleteData = function(id){
 	//http://192.168.1.49:8082/niems/Model/user/delete.jsp?user_name=1234567891234
 	
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/category_type/delete.jsp",
+		url:golbalURL+"/niems/Model/category_type/delete.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -170,7 +170,7 @@ var deleteData = function(id){
 var findData = function(id){
 	
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/category_type/edit.jsp",
+		url:golbalURL+"/niems/Model/category_type/edit.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -201,7 +201,7 @@ var updateData = function(){
 		
 		
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/category_type/update.jsp",
+			url:golbalURL+"/niems/Model/category_type/update.jsp",
 			type:"post",
 			dataType:"json",
 			data:{

@@ -63,7 +63,37 @@ body{
 }
 .iconHeader{
 	font-size:45px;
+	padding-top: 5px;
 }
 .panelCustom > .ibox-content{
+	display:none;
+}
+.fontIcon{
+	font-size:24px;
+}
+.btn-circle {
+    border-radius: 100%;
+    font-size: 12px;
+    height: 40px;
+    line-height: 1.42857;
+    padding: 6px 0;
+    text-align: center;
+    width: 40px;
+}
+.btn-circle.btn-lg{
+	border-radius: 100%;
+    font-size: 18px;
+    height: 80px;
+    line-height: 1.33;
+    padding: 10px 16px;
+    width: 80px;
+}
+.ibox-title h5{
+	font-size: 16px;
+}
+.text-right{
+	text-align:right;
+}
+.display{
 	display:none;
 }

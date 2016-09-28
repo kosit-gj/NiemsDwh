@@ -35,6 +35,7 @@ $(document).ready(function () {
     });
     */
     // Collapse ibox function
+    /*
     $('.ibox-title ').css({"cursor":"pointer"});
     $('.ibox-title ').click(function () {
         var ibox = $(this).closest('div.ibox');
@@ -48,7 +49,7 @@ $(document).ready(function () {
             ibox.find('[id^=map-]').resize();
         }, 50);
     });
-    
+    */
     //$('.collapse-link').click();
     
 

@@ -75,7 +75,7 @@ $(document).ready(function(){
 			
 //check user  unique start
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/user/edit.jsp",
+		url:golbalURL+"/niems/Model/user/edit.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -91,7 +91,7 @@ $(document).ready(function(){
 				
 				//insert start 
 				$.ajax({
-					url:"http://192.168.1.49:8082/niems/Model/user/insert.jsp",
+					url:golbalURL+"/niems/Model/user/insert.jsp",
 					type:"post",
 					dataType:"json",
 					data:{

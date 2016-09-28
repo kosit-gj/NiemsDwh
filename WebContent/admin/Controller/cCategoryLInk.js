@@ -20,7 +20,7 @@ var insertcateLinkFn = function(){
 		*/
 		//check user  unique start
 			$.ajax({
-				url:"http://192.168.1.49:8082/niems/Model/category_link/check_unique.jsp",
+				url:golbalURL+"/niems/Model/category_link/check_unique.jsp",
 				type:"post",
 				dataType:"json",
 				data:{
@@ -37,7 +37,7 @@ var insertcateLinkFn = function(){
 						
 						//insert start 
 						$.ajax({
-							url:"http://192.168.1.49:8082/niems/Model/category_link/insert.jsp",
+							url:golbalURL+"/niems/Model/category_link/insert.jsp",
 							type:"post",
 							dataType:"json",
 							//"callback":"?",
@@ -145,7 +145,7 @@ var listDataAll = function(){
 		
 	
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/category_link/selectAll.jsp",
+			url:golbalURL+"/niems/Model/category_link/selectAll.jsp",
 			type:"post",
 			dataType:"json",
 			success:function(data){
@@ -157,7 +157,7 @@ var listDataAll = function(){
 };
 var searchDataFn= function(keyword){
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/category_link/search.jsp",
+		url:golbalURL+"/niems/Model/category_link/search.jsp",
 		type:"post",
 		dataType:"json",
 		data:{"keyword":keyword},
@@ -193,7 +193,7 @@ var deleteData = function(id){
 	//http://192.168.1.49:8082/niems/Model/category_link/delete.jsp?callback=?&cate_link_id=1
 	var cate_type_id= $("#embedCateTypeId").val();
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/category_link/delete.jsp",
+		url:golbalURL+"/niems/Model/category_link/delete.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -239,7 +239,7 @@ var ineligibleFn = function(status){
 var findData = function(id){
 	
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/category_link/edit.jsp",
+		url:golbalURL+"/niems/Model/category_link/edit.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -282,7 +282,7 @@ var updateData = function(){
 		*/
 		
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/category_link/update.jsp",
+			url:golbalURL+"/niems/Model/category_link/update.jsp",
 			type:"post",
 			dataType:"json",
 			data:{
@@ -311,7 +311,7 @@ var updateData = function(){
 var listCateLinkByCateType = function(cate_type_id){
 	//http://192.168.1.49:8082/niems/Model/portal_link/select_cate_link_by_cate_tpe.jsp?callback=?&cate_type_id=1
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/portal_link/select_cate_link_by_cate_tpe.jsp",
+		url:golbalURL+"/niems/Model/portal_link/select_cate_link_by_cate_tpe.jsp",
 		type:"post",
 		dataType:"json",
 		data:{"cate_type_id":cate_type_id},
@@ -324,12 +324,12 @@ var listCateLinkByCateType = function(cate_type_id){
 }
 var listCateType = function(){
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/category_type/selectAll.jsp",
+		url:golbalURL+"/niems/Model/category_type/selectAll.jsp",
 		type:"post",
 		dataType:"json",
 		success:function(data){
 			var selectHTML="";
-			selectHTML+="<select id=\"listCateLink\" class=\"btnCustom\">";
+			selectHTML+="<select style='width:200px;' id=\"listCateLink\" class=\"btnCustom\">";
 		
 				
 				$.each(data,function(index,indexEntry){

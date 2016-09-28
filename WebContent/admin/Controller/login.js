@@ -1,11 +1,43 @@
-$(document).ready(function(){
-	function checkID(id)
+function checkID(id)
 	{
 		if(id.length != 13) return false;
 		for(i=0, sum=0; i < 12; i++)
 		sum += parseFloat(id.charAt(i))*(13-i); if((11-sum%11)%10!=parseFloat(id.charAt(12)))
 		return false; return true;
 	}
+var vaidationLogin = function(){
+	var txtArert="";
+	
+	
+	if(checkID($("#user_name").val())==false){
+		txtArert+="รหัสบัตรประชาชนไม่ถูกต้อง\n";
+	}
+	
+	if($("#user_name").val()==""){
+		txtArert+=" user_name ห้ามเป็นค่าว่าง\n";
+	}
+	if($("#password").val()==""){
+		txtArert+=" password ห้ามเป็นค่าว่าง\n";
+	}
+	if($("#reason").val()==""){
+		txtArert+=" reason ห้ามเป็นค่าว่าง\n";
+	}
+	
+	
+	
+	if(txtArert!=""){
+		alert(txtArert);
+		return false
+	}else{
+		return true;
+	}
+	
+	
+}
+
+
+$(document).ready(function(){
+	
 	
 	function updateUserItemInDWH(rsData,user_name,password){
 		/*
@@ -35,7 +67,7 @@ $(document).ready(function(){
 		var role_id="2";
 		
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/user/update.jsp",
+			url:golbalURL+"/niems/Model/user/update.jsp",
 			type:"get",
 			dataType:"json",
 			async:false,
@@ -113,7 +145,7 @@ $(document).ready(function(){
 		var role_id="2";
 		
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/user/insert.jsp",
+			url:golbalURL+"/niems/Model/user/insert.jsp",
 			type:"get",
 			dataType:"json",
 			async:false,
@@ -140,7 +172,7 @@ $(document).ready(function(){
 	function findUserItemsInDWH(user_name){
 		
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/user/edit.jsp",
+			url:golbalURL+"/niems/Model/user/edit.jsp",
 			type:"get",
 			dataType:"json",
 			async:false,
@@ -168,7 +200,7 @@ $(document).ready(function(){
 	function authenByIITEMS(user_name,password,appid,key){
 		//http://192.168.1.49:8082/niems/Model/login/authen_items.jsp
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/login/authen_items.jsp",
+			url:golbalURL+"/niems/Model/login/authen_items.jsp",
 			type:"get",
 			dataType:"json",
 			async:false,
@@ -214,7 +246,7 @@ $(document).ready(function(){
 					
 
 					$.ajax({
-						url:"http://192.168.1.49:8082/niems/Model/user/edit.jsp",
+						url:golbalURL+"/niems/Model/user/edit.jsp",
 						type:"get",
 						dataType:"json",
 						async:false,
@@ -270,7 +302,7 @@ $(document).ready(function(){
 		//alert("authenByUser"+user_name);
 		//alert("authenByUser"+password);
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/login/authen.jsp",
+			url:golbalURL+"/niems/Model/login/authen.jsp",
 			type:"get",
 			dataType:"json",
 			async:false,
@@ -282,7 +314,7 @@ $(document).ready(function(){
 					//$( location ).attr("href", "login.html");
 				}else{
 				
-					
+					console.log(rsData);
 					var user_name=rsData[0][0];
 					var prefix= rsData[0][1];
 					var first_name= rsData[0][2];
@@ -294,14 +326,34 @@ $(document).ready(function(){
 					var organization= rsData[0][8]
 					var user_items=rsData[0][9];
 					var role_id=rsData[0][10];
-					
+					var role_name=rsData[0][13];
+					/*
 					console.log(user_name);
 					console.log(prefix);
-					
+					*/
 					//alert(prefix);
+					//DefineSession Start
+					localStorage.setItem('user_name',user_name);
+					localStorage.setItem('prefix',prefix);
+					localStorage.setItem('first_name',first_name);
+					localStorage.setItem('last_name',last_name);
+					localStorage.setItem('email',email);
+					localStorage.setItem('province',province);
+					localStorage.setItem('status',status);
+					localStorage.setItem('position',position);
+					localStorage.setItem('organization',organization);
+					localStorage.setItem('user_items',user_items);		
+					localStorage.setItem('role_id',role_id);
+					localStorage.setItem('role_name',role_name);
 					
+					//DefineSession End
+
+					$( location ).attr("href", "./portal_link.html");
+					
+					
+					/*
 					$.ajax({
-						url:"http://192.168.1.49:8082/niems/Model/login/authoriize.jsp",
+						url:golbalURL+"/niems/Model/login/authoriize.jsp",
 						type:"post",
 						dataType:"json",
 						data:{
@@ -313,20 +365,22 @@ $(document).ready(function(){
 							"user_items":user_items,"role_id":role_id},
 						success:function(data){
 							console.log(data);
+							console.log(getSessionFn());
 							if(data=="success"){
+								localStorage.setItem('lastname','Smith');
+								alert(localStorage.getItem('lastname'));
 								//alert("Loin by user general.");
-								
+								//console.log(getSessionFn());
+								$( location ).attr("href", "./portal_link.html");
 								if(role_id==1){
 									$( location ).attr("href", "admin/index.html");
 								}else{
 									$( location ).attr("href", "./portal_link.html");
 								}
-								
 							}
 						}
 					});
-					
-					
+					*/
 					
 				}
 			}
@@ -345,8 +399,8 @@ $(document).ready(function(){
 		//console.log(checkID(user_name));
 		//console.log(checkID(password));
 		
-		if(checkID(user_name)){
-			
+		if(vaidationLogin()){
+			//vaidationLogin
 			var appid="dwh";
 			var key="dwh12345";
 			console.log("step 1.1");
@@ -357,8 +411,6 @@ $(document).ready(function(){
 			
 			
 		
-		}else{
-			alert("รหัสบัตรประชาชนไม่ถูกต้อง");	
 		}
 		
 		return false;

@@ -3,7 +3,7 @@
 var listCateLink = function(cateLinkId){
 	
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/category_link/selectAll.jsp",
+		url:golbalURL+"/niems/Model/category_link/selectAll.jsp",
 		type:"post",
 		dataType:"json",
 		success:function(data){
@@ -65,7 +65,7 @@ var updateData = function(){
 		*/
 		
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/link/update.jsp",
+			url:golbalURL+"/niems/Model/link/update.jsp",
 			type:"post",
 			dataType:"json",
 			data:{
@@ -114,7 +114,7 @@ var insertLinkFn = function(){
 		//check user  unique start
 		/*
 			$.ajax({
-				url:"http://192.168.1.49:8082/niems/Model/category_link/check_unique.jsp",
+				url:golbalURL+"/niems/Model/category_link/check_unique.jsp",
 				type:"post",
 				dataType:"json",
 				data:{
@@ -131,7 +131,7 @@ var insertLinkFn = function(){
 		
 						//insert start 
 						$.ajax({
-							url:"http://192.168.1.49:8082/niems/Model/link/insert.jsp",
+							url:golbalURL+"/niems/Model/link/insert.jsp",
 							type:"post",
 							dataType:"json",
 							//"callback":"?",
@@ -189,7 +189,7 @@ var listDataAll = function(){
 		
 	
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/link/selectAll.jsp",
+			url:golbalURL+"/niems/Model/link/selectAll.jsp",
 			type:"post",
 			dataType:"json",
 			success:function(data){
@@ -216,7 +216,7 @@ var listData = function(data){
 				
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
-					htmlDataContent+="<td>"+indexEntry[1]+" </td>";
+					htmlDataContent+="<td>"+indexEntry[8]+" </td>";
 					htmlDataContent+="<td>"+indexEntry[2]+" </td>";
 					
 					
@@ -272,7 +272,7 @@ var deleteData = function(id){
 	
 
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/link/delete.jsp",
+		url:golbalURL+"/niems/Model/link/delete.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -291,7 +291,7 @@ var deleteData = function(id){
 }
 var searchDataFn= function(keyword){
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/link/search.jsp",
+		url:golbalURL+"/niems/Model/link/search.jsp",
 		type:"post",
 		dataType:"json",
 		data:{"keyword":keyword},
@@ -304,7 +304,7 @@ var searchDataFn= function(keyword){
 var findData = function(id){
 	
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/link/edit.jsp",
+		url:golbalURL+"/niems/Model/link/edit.jsp",
 		type:"post",
 		dataType:"json",
 		data:{

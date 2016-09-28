@@ -83,7 +83,7 @@ var objdataAssignLink=eval("("+dataAssignLink+")");
 var listCateLink = function(){
 	var objdataAssignLink="";
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/category_link/selectAll.jsp",
+		url:golbalURL+"/niems/Model/category_link/selectAll.jsp",
 		type:"post",
 		dataType:"json",
 		async:false,
@@ -132,7 +132,7 @@ var listLinkByCateId = function(cate_link_id){
 	var linkObject="";
 	//http://192.168.1.49:8082/niems/Model/portal_link/select_link_by_cate_link.jsp?callback=?&cate_link_id=1
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/portal_link/select_link_by_cate_link.jsp",
+		url:golbalURL+"/niems/Model/portal_link/select_link_by_cate_link.jsp",
 		type:"post",
 		dataType:"json",
 		async:false,
@@ -184,7 +184,7 @@ var insertRoleFn = function(){
 		
 		//check user  unique start
 			$.ajax({
-				url:"http://192.168.1.49:8082/niems/Model/role/check_unique.jsp",
+				url:golbalURL+"/niems/Model/role/check_unique.jsp",
 				type:"post",
 				dataType:"json",
 				data:{
@@ -200,7 +200,7 @@ var insertRoleFn = function(){
 						
 						//insert start 
 						$.ajax({
-							url:"http://192.168.1.49:8082/niems/Model/role/insert.jsp",
+							url:golbalURL+"/niems/Model/role/insert.jsp",
 							type:"post",
 							dataType:"json",
 							//"callback":"?",
@@ -250,7 +250,7 @@ var deleteData = function(id){
 	
 
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/role/delete.jsp",
+		url:golbalURL+"/niems/Model/role/delete.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -269,7 +269,7 @@ var deleteData = function(id){
 }
 var searchDataFn= function(keyword){
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/role/search.jsp",
+		url:golbalURL+"/niems/Model/role/search.jsp",
 		type:"post",
 		dataType:"json",
 		data:{"keyword":keyword},
@@ -460,7 +460,7 @@ var updateData = function(){
 		*/
 		
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/role/update.jsp",
+			url:golbalURL+"/niems/Model/role/update.jsp",
 			type:"post",
 			dataType:"json",
 			data:{
@@ -486,7 +486,7 @@ var updateData = function(){
 var findData = function(id){
 	
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/role/edit.jsp",
+		url:golbalURL+"/niems/Model/role/edit.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -515,7 +515,7 @@ var listDataAll = function(){
 		
 	
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/role/selectAll.jsp",
+			url:golbalURL+"/niems/Model/role/selectAll.jsp",
 			type:"post",
 			dataType:"json",
 			success:function(data){

@@ -1,7 +1,48 @@
+var getSessionFn = function(){
+	var session;
+	$.ajax({
+			url:golbalURL+"/niems/Model/user/session.jsp",
+			type:"get",
+			dataType:"json",
+			async:false,
+			//data:{"callback":"?"},
+			success:function(data){
+				session=data;
+			}
+	});
+	return session;
+}
+var logoutFn = function(){
+	
+	localStorage.setItem('user_name',"");
+	localStorage.setItem('prefix',"");
+	localStorage.setItem('first_name',"");
+	localStorage.setItem('last_name',"");
+	localStorage.setItem('email',"");
+	localStorage.setItem('province',"");
+	localStorage.setItem('status',"");
+	localStorage.setItem('position',"");
+	localStorage.setItem('organization',"");
+	localStorage.setItem('user_items',"");		
+	localStorage.setItem('role_id',"");	
+	
+	$.ajax({
+		url:golbalURL+"/niems/Model/user/destroySession.jsp",
+		type:"get",
+		dataType:"json",
+		async:false,
+		success:function(data){
+			if(data=="success"){
+				alert("logout is success.");
+				$( location ).attr("href", "index.html");
+			}
+		}
+	});
+};
 var listProvince = function(provinceName){
 	//Province http://192.168.1.49:8082/niems/Model/user/select_province.jsp?callback=?
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/user/select_province.jsp",
+		url:golbalURL+"/niems/Model/user/select_province.jsp",
 		type:"post",
 		dataType:"json",
 		//data:{"callback":"?"},
@@ -56,7 +97,7 @@ var listPrefix = function(prefixName){
 var listRole = function(id){
 	//Province http://192.168.1.49:8082/niems/Model/user/select_province.jsp?callback=?
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/role/selectAll.jsp",
+		url:golbalURL+"/niems/Model/role/selectAll.jsp",
 		type:"post",
 		dataType:"json",
 		//data:{"callback":"?"},

@@ -54,7 +54,7 @@
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><span class='roleName'>Administrator</span></strong>
-                             </span> <span class="text-muted text-xs block">Back Office  </span> </span> </a>
+                             </span> <span class="text-muted text-xs block">Back Office Management </span> </span> </a>
                            
                         </div>
                         <div class="logo-element">
@@ -99,7 +99,7 @@
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Welcome to  <span class='roleName'>Administrator</span></span>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to  <b><span class='roleName'></span></b></span>
                 </li>
                 
                 
@@ -107,8 +107,14 @@
 
 
                 <li>
+                	
+                   	 <a href="#" id="back_to_portal_link">
+                    	<i class="fa fa fa-exchange" ></i>Back |
+                    </a>
+                </li>
+                <li>
                     <a href="#" id="logout">
-                        <i class="fa fa-sign-out"></i> Log out
+                        <i class="fa fa-sign-out" ></i>Log out             
                     </a>
                 </li>
                
@@ -579,7 +585,8 @@
     <script src="js/ChartLib_KendoUI/js/kendo.all.js"></script> 
   
     <script src="js/dataTable.js"> </script>
-   
+    <script src="Controller/cConfig.js"></script>
+    <script src="Controller/funcitonGolbal.js"></script>
     <script src="Controller/backOffice.js"></script>
 
 

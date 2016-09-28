@@ -3,10 +3,10 @@ var listDataAll = function(keyword){
 	var urlParam="";
 	if(keyword==undefined){
 	
-		urlParam="http://192.168.1.49:8082/niems/Model/user/selectAll.jsp";
+		urlParam=golbalURL+"/niems/Model/user/selectAll.jsp";
 	}else{
 	
-		urlParam="http://192.168.1.49:8082/niems/Model/user/search.jsp";
+		urlParam=golbalURL+"/niems/Model/user/search.jsp";
 	}
 	
 	$.ajax({
@@ -91,7 +91,7 @@ var deleteData = function(id){
 	//http://192.168.1.49:8082/niems/Model/user/delete.jsp?user_name=1234567891234
 	
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/user/delete.jsp",
+		url:golbalURL+"/niems/Model/user/delete.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -110,7 +110,7 @@ var findData = function(id){
 	//alert(id);
 	//http://192.168.1.49:8082/niems/Model/user/edit.jsp?callback=?&user_name=444
 	$.ajax({
-		url:"http://192.168.1.49:8082/niems/Model/user/edit.jsp",
+		url:golbalURL+"/niems/Model/user/edit.jsp",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -189,7 +189,7 @@ http://192.168.1.49:8082/niems/Model/user/update.jsp
 		
 		
 		$.ajax({
-			url:"http://192.168.1.49:8082/niems/Model/user/update.jsp",
+			url:golbalURL+"/niems/Model/user/update.jsp",
 			type:"post",
 			dataType:"json",
 			data:{
@@ -256,7 +256,7 @@ var insertUserFn= function(){
 		
 		//check user  unique start
 			$.ajax({
-				url:"http://192.168.1.49:8082/niems/Model/user/edit.jsp",
+				url:golbalURL+"/niems/Model/user/edit.jsp",
 				type:"post",
 				dataType:"json",
 				data:{
@@ -272,7 +272,7 @@ var insertUserFn= function(){
 						
 						//insert start 
 						$.ajax({
-							url:"http://192.168.1.49:8082/niems/Model/user/insert.jsp",
+							url:golbalURL+"/niems/Model/user/insert.jsp",
 							type:"post",
 							dataType:"json",
 							//"callback":"?",
