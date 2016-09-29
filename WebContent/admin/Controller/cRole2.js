@@ -8,23 +8,23 @@ var genHTMLGirdContent = function(gridName){
 	htmldataContent="";
 	htmldataContent+="<table id=\"grid-"+gridName+"\"  class=\"gridTable\">";
 	htmldataContent+="<colgroup>";
-	//htmldataContent+="<col style=\"width:5%\" />";
-	//htmldataContent+="<col style=\"width:5%\" />";
+	htmldataContent+="<col style=\"width:5%\" />";
+	htmldataContent+="<col style=\"width:5%\" />";
 	htmldataContent+="<col style=\"width:80%\" />";
 	htmldataContent+="<col style=\"width:10%\" />";
 	htmldataContent+="<colgroup>";
 	htmldataContent+="<thead>";
 		htmldataContent+="<tr>";
-			//htmldataContent+="<th data-field=\"Field0\"></th>";
-			//htmldataContent+="<th data-field=\"Field1\"><b>#</b></th>";
-			htmldataContent+="<th data-field=\"Field2\"><b>Link</b></th>";
+			htmldataContent+="<th data-field=\"Field0\"></th>";
+			htmldataContent+="<th data-field=\"Field1\"><b>#</b></th>";
+			htmldataContent+="<th data-field=\"Field2\"><b>Cate Link</b></th>";
 			htmldataContent+="<th data-field=\"Field3\"><b>Assign</b></th>";
 			
 		htmldataContent+="</tr>";
 	htmldataContent+="</thead>";
 	htmldataContent+="<tbody >";
 	htmldataContent+="<tr>";
-			//htmldataContent+="<td></td>";
+			htmldataContent+="<td></td>";
 			htmldataContent+="<td></td>";
 			htmldataContent+="<td></td>";
 			htmldataContent+="<td></td>";
@@ -38,12 +38,11 @@ return htmldataContent;
 
 
 var $titleAssignLink =[
-               /*
+               
 	              {
 	                  field: "Field1",
 					   width: "10%"
 	              },
-	              */
 	              {
 	                  field: "Field2",
 					  width: "70%"
@@ -106,35 +105,23 @@ var listCateLink = function(){
 					dataJson+="{";
 					
 					dataJson+="FieldCateLinkId:\""+indexEntry[0]+"\",";
-					//dataJson+="Field1:\""+(index+1)+"\",";
-					dataJson+="Field2:\"<b>"+indexEntry[1]+"</b>\",";
-					//dataJson+="Field3:\"<center><input type='checkbox' name='cateLink' id='cateLink-"+indexEntry[0]+"' class='cateLink'></center>\",";
-					dataJson+="Field3:\"\",";
-					
+					dataJson+="Field1:\""+(index+1)+"\",";
+					dataJson+="Field2:\""+indexEntry[1]+"\",";
+					dataJson+="Field3:\"<center><input type='checkbox' name='cateLink' id='cateLink-"+indexEntry[0]+"' class='cateLink'></center>\",";
 					
 				}else{	
 					dataJson+=",{";
 					dataJson+="FieldCateLinkId:\""+indexEntry[0]+"\",";
-					//dataJson+="Field1:\""+(index+1)+"\",";
-					dataJson+="Field2:\"<b>"+indexEntry[1]+"</b>\",";
-					//dataJson+="Field3:\"<center><input type='checkbox' name='cateLink' id='cateLink-"+indexEntry[0]+"' class='cateLink'></center>\",";
-					dataJson+="Field3:\"\",";
-					
+					dataJson+="Field1:\""+(index+1)+"\",";
+					dataJson+="Field2:\""+indexEntry[1]+"\",";
+					dataJson+="Field3:\"<center><input type='checkbox' name='cateLink' id='cateLink-"+indexEntry[0]+"' class='cateLink'></center>\",";
 					
 				}
 				
 				dataJson+="}";
 				
-				dataJson+=listLinkByCateId(indexEntry[0]);
-				/*
-				console.log("1======");
-				console.log(listLinkByCateId(indexEntry[0]));
-				console.log("2======");
-				*/
-				
 			});
 			dataJson+="]";
-			console.log(dataJson);
 			
 			 objdataAssignLink=eval("("+dataJson+")");
 			
@@ -147,8 +134,7 @@ var listCateLink = function(){
 };
 
 var listLinkByCateId = function(cate_link_id){
-	//var linkObject="";
-	var dataJson="";
+	var linkObject="";
 	//http://192.168.1.49:8082/niems/Model/portal_link/select_link_by_cate_link.jsp?callback=?&cate_link_id=1
 	$.ajax({
 		url:golbalURL+"/niems/Model/portal_link/select_link_by_cate_link.jsp",
@@ -157,38 +143,41 @@ var listLinkByCateId = function(cate_link_id){
 		async:false,
 		data:{"cate_link_id":cate_link_id},
 		success:function(data){
-			//console.log("33333");
-			//console.log(data);
-			//"47","73","AADAbc","CUSTOM_LINK","ADBCbc","custom url\n	","2559-09-24 21:43:47.0","2559-09-24 21:58:59.0"
-			//var dataJson="";
-			//dataJson+="[";
-			if(data!=""){
-				//alert("not null");
-				
-				$.each(data,function(index,indexEntry){
-					
-					
-							dataJson+=",{";
-							//dataJson+="Field1:\""+(index+1)+"\",";
-							//dataJson+="Field1:\"\",";
-							dataJson+="Field2:\"<div class='level2'>- "+indexEntry[2]+"</div>\",";
-							dataJson+="Field3:\" <center> <input type='checkbox' name='checkboxAsignLink' class='checkboxAsignLink cateLink-"+cate_link_id+"' id='link-"+indexEntry[0]+"' value='"+indexEntry[0]+"'></center>\"";
-							dataJson+="}";
-						
-						
-					
-				});
-				
-			}else{
-				//alert("is null");
-			}
 			
-			//dataJson+="]";
-			//linkObject=eval("("+dataJson+")");	
+			console.log(data);
+			//"47","73","AADAbc","CUSTOM_LINK","ADBCbc","custom url\n	","2559-09-24 21:43:47.0","2559-09-24 21:58:59.0"
+			var dataJson="";
+			dataJson+="[";
+			
+			$.each(data,function(index,indexEntry){
+				
+					if(index==0){
+						
+						dataJson+="{";
+						//dataJson+="Field1:\""+(index+1)+"\",";
+						dataJson+="Field1:\"\",";
+						dataJson+="Field2:\"<div class='level2'>- "+indexEntry[2]+"</div>\",";
+						dataJson+="Field3:\" <center> <input type='checkbox' name='checkboxAsignLink' class='checkboxAsignLink cateLink-"+cate_link_id+"' id='link-"+cate_link_id+"-"+indexEntry[0]+"'  value='"+cate_link_id+"-"+indexEntry[0]+"'></center>\",";
+						
+					}else{	
+						dataJson+=",{";
+						//dataJson+="Field1:\""+(index+1)+"\",";
+						dataJson+="Field1:\"\",";
+						dataJson+="Field2:\"<div class='level2'>- "+indexEntry[2]+"</div>\",";
+						dataJson+="Field3:\" <center> <input type='checkbox' name='checkboxAsignLink' class='checkboxAsignLink cateLink-"+cate_link_id+"' id='link-"+cate_link_id+"-"+indexEntry[0]+"' value='"+cate_link_id+"-"+indexEntry[0]+"'></center>\",";
+						
+					}
+					
+					dataJson+="}";
+				
+			});
+			
+			dataJson+="]";
+			linkObject=eval("("+dataJson+")");	
 			
 		}
 	});
-	return dataJson;
+	return linkObject;
 }
 
 

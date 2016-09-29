@@ -259,9 +259,29 @@ var listData = function(data){
 				
 				$("#btnClose").off("click");
 				$("#btnClose").on("click",function(){
-					clearUserForm();
+					clearLinkForm();
 				});
 				//binding action end
+				
+				//click link type start
+				$(".link_type").off("click");
+				$(".link_type").on("click",function(){
+					//alert($(this).val());
+					if($(this).val()=="STATIC_LINK"){
+						$(".staticLinkArea").show();
+						$(".customLinkArea").hide();
+					}else if($(this).val()=="CUSTOM_LINK"){
+						$(".staticLinkArea").hide();
+						$(".customLinkArea").show();
+					}else if($(this).val()=="PENTAHO_LINK"){
+						$(".staticLinkArea").show();
+						$(".customLinkArea").hide();	
+					}
+				
+				});
+				$(".staticLinkArea").show();
+				$(".customLinkArea").hide();
+				//click link type end
 				
 			});
 			//action binding end
@@ -334,13 +354,21 @@ var linkTypeFn = function(linkType){
 	
 	if(linkType=="STATIC_LINK"){
 		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" checked=\"checked\" value=\"STATIC_LINK\">Static URL"
+		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" value=\"PENTAHO_LINK\">Pentaho URL";
 		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" value=\"CUSTOM_LINK\">Custom URL";
 		
 
 	}else if(linkType=="CUSTOM_LINK"){
 	
 		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" value=\"STATIC_LINK\">Static URL"
+		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" value=\"PENTAHO_LINK\">Pentaho URL";
 		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" checked=\"checked\"  value=\"CUSTOM_LINK\">Custom URL";
+	
+	}else if(linkType=="PENTAHO_LINK"){
+	
+		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" value=\"STATIC_LINK\">Static URL"
+		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" checked=\"checked\" value=\"PENTAHO_LINK\">Pentaho URL";
+		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\"   value=\"CUSTOM_LINK\">Custom URL";
 	
 	}
 	
@@ -407,6 +435,9 @@ $(document).ready(function(){
 			}else if($(this).val()=="CUSTOM_LINK"){
 				$(".staticLinkArea").hide();
 				$(".customLinkArea").show();
+			}else if($(this).val()=="PENTAHO_LINK"){
+				$(".staticLinkArea").show();
+				$(".customLinkArea").hide();
 			}
 		
 		});

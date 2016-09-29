@@ -1,22 +1,5 @@
 var bgIcon=["btn-default","btn-primary","btn-success","btn-info","btn-warning","btn btn-danger","btn-danger btn-outline","btn-default","btn-primary","btn-success","btn-info","btn-warning","btn btn-danger"];
 
-var auThenRedirectURL = function(user,pass,url){
-
-	
-	  $.ajax({
-	  	url:"/../pentaho/j_spring_security_check",
-	  	type:"get",
-	  	dataType:"html",
-	  	data:{"j_username":user,"j_password":pass},
-	  	async:false,
-	  	success:function(data){
-	  		 window.location.assign(url);
-	  	}
-	  });
-
-}
-//auThenRedirectURL("admin","password","http://localhost:8080/pentaho/api/repos/%3Apublic%3ASamitivej%3ASVH.wcdf/generatedContent?ts=1472206559057");
-
 
 var listCateType = function(){
 	
@@ -176,4 +159,13 @@ $(document).ready(function(){
 	//localStorage.getItem('last_name');
 	
 	$("#profileName").html(localStorage.getItem('first_name')+" "+localStorage.getItem('last_name'));
+	
+	$("#createReport").click(function(){
+		
+		var username=localStorage.getItem('user_name');
+		var password=localStorage.getItem('password');
+		//auThenRedirectURL("admin","password","http://localhost:8080/pentaho/api/repos/%3Apublic%3ASamitivej%3ASVH.wcdf/generatedContent?ts=1472206559057");
+
+		return false;
+	});
 });

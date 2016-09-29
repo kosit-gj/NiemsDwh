@@ -8136,5 +8136,7 @@ body.md-skin {
 .btnCustom{
 	height:30px
 }
-
+.modal-body {
+    padding: 10px;
+}
 /*custom css end*/

@@ -1,3 +1,21 @@
+var auThenRedirectURL = function(user,pass,url){
+
+	
+	  $.ajax({
+	  	url:"/../pentaho/j_spring_security_check",
+	  	type:"get",
+	  	dataType:"html",
+	  	data:{"j_username":user,"j_password":pass},
+	  	async:false,
+	  	success:function(data){
+	  		 window.location.assign(url);
+	  	}
+	  });
+
+}
+//auThenRedirectURL("admin","password","http://localhost:8080/pentaho/api/repos/%3Apublic%3ASamitivej%3ASVH.wcdf/generatedContent?ts=1472206559057");
+
+
 var getSessionFn = function(){
 	var session;
 	$.ajax({
