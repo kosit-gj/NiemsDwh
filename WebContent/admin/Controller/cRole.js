@@ -1,6 +1,6 @@
 function showSelectedValues()
 {
-  alert($("input[name=checkboxAsignLink]:checked").map(
+  return ($("input[name=checkboxAsignLink]:checked").map(
      function () {return this.value;}).get().join(","));
 }
 var genHTMLGirdContent = function(gridName){
@@ -308,7 +308,7 @@ var listData = function(data){
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
 					htmlDataContent+="<td>"+indexEntry[1]+" </td>";
-					htmlDataContent+="<td > <button data-target=\"#asignLink\"  data-toggle=\"modal\"  class=\"btn btn-primary btn-xs assignLink\" type=\"button\">Assign link</button> <button class=\"btn btn-warning btn-xs editRole \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delRole\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></td>";
+					htmlDataContent+="<td > <button data-target=\"#asignLink\"  data-toggle=\"modal\" id=\"assignRoleID-"+indexEntry[0]+"\"  class=\"btn btn-primary btn-xs assignLink\" type=\"button\">Assign link</button> <button class=\"btn btn-warning btn-xs editRole \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delRole\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></td>";
 				htmlDataContent+="</tr>";
 			});
 			$("#roleDataArea").html(htmlDataContent);
@@ -355,6 +355,10 @@ var listData = function(data){
 			//action asignLInk start
 			$(".assignLink").off("click");
 			$(".assignLink").on("click",function(){
+				var id=this.id;
+				id=id.split("-");
+				id=id[1];
+				//$(alert(id));
 				
 				
 				$("#assignDataArea").html(genHTMLGirdContent("assignLinkTable"));				
@@ -389,9 +393,10 @@ var listData = function(data){
 				});
 			
 				$(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});
-				
+				$("#assign_role_id").val(id);
 				
 				//binding action on grid start
+				/*
 					$(".cateLink").off("click");
 					$(".cateLink").on("click",function(){
 						
@@ -417,19 +422,28 @@ var listData = function(data){
 						//$(".cateLink-"+id).prop('checked',true);
 						console.log($(this).parent().prev().prev().prev().children().get());
 					});
+					*/
 				//binding action on grid end
 					
 					
 				//submit Form Start
 					$("#btnAssignSubmit").on("click",function(){
 						
-						alert("Submit now!!");
-						console.log($(".checkboxAsignLink").val());
+						//alert("Submit now!!");
 						console.log(showSelectedValues());
+						console.log($("#assign_role_id").val());
+						
+						assignLinkToRoleFn($("#assign_role_id").val(),""+showSelectedValues()+"");
+						//console.log(showSelectedValues());
+						
 						
 						
 					});
 				//Submit Form End
+					
+				//get link  for assign role start
+					getLinkFromRoleFn(id);
+				//get link  for assign role end
 					
 				//click drilldown start
 					$(".k-hierarchy-cell > .k-icon").off("click");
@@ -444,8 +458,16 @@ var listData = function(data){
 				//click drilldown end
 					
 				
+					
+				
 			});
 			//action asignLink end
+			//action asignColse start
+			$("#btnAssignClose").on("click");
+			$("#btnAssignClose").off("click",function(){
+				$("#assign_role_id").val("");
+			});
+			//action asignColse end
 	
 }
 function detailInit(e) {
@@ -543,6 +565,63 @@ var listDataAll = function(){
 		});
 	
 };
+
+var assignLinkToRoleFn = function(role_id,link_id){
+	
+	$.ajax({
+		url:golbalURL+"/niems/Model/role_map_link/insert.jsp",
+		type:"post",
+		dataType:"json",
+		data:{"role_id":role_id,"link_id":link_id},
+		success:function(data){
+			console.log("resutl assign link to role");
+			console.log(data);
+			if(data=="success"){
+				alert("asign is successfully");
+				$("#asignLink").modal('hide');
+			}
+			
+		}
+	});
+	return false;
+}
+var getLinkFromRoleFn = function(role_id){
+	//http://192.168.1.49:8082/niems/Model/role_map_link/selectLinkAll.jsp
+	$.ajax({
+		url:golbalURL+"/niems/Model/role_map_link/selectLinkAll.jsp",
+		type:"post",
+		dataType:"json",
+		data:{"role_id":role_id},
+		success:function(data){
+			
+			console.log(data);
+			
+			$.each(data,function(index1,indexEntry1){
+				//indexEntry[1];
+				$.each($(".checkboxAsignLink").get(),function(index2,indexEntry2){
+					//console.log($(indexEntry2).val());
+					if($(indexEntry2).val()==indexEntry1[1]){
+						//alert(indexEntry1[1]+"=ok");
+						$("#link-"+indexEntry1[1]).prop( "checked", true );
+						
+					
+					}
+				});
+				/*
+				if($(".checkboxAsignLink").val()==indexEntry[1]){
+					alert(indexEntry[1]+"=ok")
+					$(this).prop("checked");
+				
+				}
+				*/
+			});
+			
+			
+		}
+	});
+	return false;
+}
+
 $(document).ready(function(){
 	//$("#userTable").DataTable();
 	$("#roleTable").kendoGrid({
