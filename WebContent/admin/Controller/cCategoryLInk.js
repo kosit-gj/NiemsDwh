@@ -28,9 +28,12 @@ var insertcateLinkFn = function(){
 					"cate_type_id":cate_type_id
 					},
 				success:function(data){
+					
 					console.log(data);
-					if(data!=""){
-						alert("The Cate type name is already. ");
+					
+					if(data != ""){
+						
+						alert("The Cate type name is already.");
 						
 					}else{
 						
@@ -48,14 +51,21 @@ var insertcateLinkFn = function(){
 								"cate_type_id":cate_type_id,
 								},
 							success:function(data){
-								console.log(data);
-
 								
-								if(data[0]=="success"){
-									alert("Insert is success");
-									$("#cateLinkModal").modal('hide');
-									//listDataAll();
-									listCateLinkByCateType(cate_type_id);
+								console.log(data);
+								
+								if(cate_name != ""){
+									
+									if(data[0]=="success"){
+										alert("Insert is success");
+										$("#cateLinkModal").modal('hide');
+										//listDataAll();
+										listCateLinkByCateType(cate_type_id);
+									}
+									
+								}else{
+									
+									alert("Please insert Category Link name.");
 								}
 							}
 						});
@@ -215,20 +225,20 @@ var ineligibleFn = function(status){
 	
 	if(status=="H"){
 	
-		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"H\">ซ่อยเมนู";
-		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"N\">แสดงเมนู(คลิ๊กไม่ได้)";
+		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"H\">ซ่อนเมนู";
+		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"N\">แสดงเมนู(คลิกไม่ได้)";
 		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"Y\">แสดงเมนู";
 
 	}else if(status=="Y"){
 	
-		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\"  value=\"H\">ซ่อยเมนู";
-		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"N\">แสดงเมนู(คลิ๊กไม่ได้)";
+		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\"  value=\"H\">ซ่อนเมนู";
+		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"N\">แสดงเมนู(คลิกไม่ได้)";
 		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"Y\">แสดงเมนู";
 	
 	}else if(status=="N"){
 
-		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\"  value=\"H\">ซ่อยเมนู";
-		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"N\">แสดงเมนู(คลิ๊กไม่ได้)";
+		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\"  value=\"H\">ซ่อนเมนู";
+		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"N\">แสดงเมนู(คลิกไม่ได้)";
 		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"Y\">แสดงเมนู";
 
 	}
@@ -281,30 +291,40 @@ var updateData = function(){
 &cate_link_id=1
 		*/
 		
-		$.ajax({
-			url:golbalURL+"/niems/Model/category_link/update.jsp",
-			type:"post",
-			dataType:"json",
-			data:{
-				"cate_name":cate_name,
-				"cate_icon":cate_icon,
-				"ineligible":ineligible,
-				"cate_type_id":cate_type_id,
-				"cate_link_id":cate_link_id
-				
-				},
-			success:function(data){
-				//console.log(data);
-				if(data=="success"){
-				alert("Update success");
-				$("#cateLinkModal").modal('hide');
-				//listDataAll();
-				listCateLinkByCateType(cate_type_id);
-				
+		if(cate_name !=""){//add by jeep
+			$.ajax({
+				url:golbalURL+"/niems/Model/category_link/update.jsp",
+				type:"post",
+				dataType:"json",
+				data:{
+					
+					"cate_name":cate_name,
+					"cate_icon":cate_icon,
+					"ineligible":ineligible,
+					"cate_type_id":cate_type_id,
+					"cate_link_id":cate_link_id
+					
+					},
+					
+				success:function(data){
+					//console.log(data);
+					if(data=="success"){
+						
+						alert("Update success");
+						$("#cateLinkModal").modal('hide');
+						//listDataAll();
+						listCateLinkByCateType(cate_type_id);
+					
+					}
+					
 				}
-				
-			}
-		});
+			});
+		//add by jeep start
+		}else{
+			alert("Please insert Category type name.");
+		}
+		//add by jeep end
+		
 	}
 	
 };
