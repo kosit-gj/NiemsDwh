@@ -155,6 +155,9 @@ $(document).ready(function(){
 	//action menu start
 	$("#menu_usage_log").click(function(){
 		
+		$("ul#side-menu li").removeClass("active");
+		$(this).parent().addClass("active");
+		
 		$(".h2Title").html("Usage Log");
 		$(".activeTitle").html("Usage Log");
 		
@@ -176,6 +179,8 @@ $(document).ready(function(){
 	$("#menu_usage_log").click();
 	
 	$("#menu_user").click(function(){
+		$("ul#side-menu li").removeClass("active");
+		$(this).parent().addClass("active");
 		//alert("menu_user");
 		$(".h2Title").html("User Management");
 		$(".activeTitle").html("User Management");
@@ -192,6 +197,8 @@ $(document).ready(function(){
 		
 	});
 	$("#menu_role").click(function(){
+		$("ul#side-menu li").removeClass("active");
+		$(this).parent().addClass("active");
 		$(".h2Title").html("Role Managment");
 		$(".activeTitle").html("Role Managment");
 		
@@ -210,6 +217,8 @@ $(document).ready(function(){
 		})
 	});
 	$("#menu_cate_type").click(function(){
+		$("ul#side-menu li").removeClass("active");
+		$(this).parent().addClass("active");
 		$(".h2Title").html("Category Type Managment");
 		$(".activeTitle").html("Category Type Managment");
 		
@@ -228,6 +237,8 @@ $(document).ready(function(){
 		})
 	});
 	$("#menu_cate_link").click(function(){
+		$("ul#side-menu li").removeClass("active");
+		$(this).parent().addClass("active");
 		$(".h2Title").html("Category Link Managment");
 		$(".activeTitle").html("Category Link Managment");
 		
@@ -246,6 +257,8 @@ $(document).ready(function(){
 		})
 	});
 	$("#menu_link").click(function(){
+		$("ul#side-menu li").removeClass("active");
+		$(this).parent().addClass("active");
 		//alert("menu_link");
 		
 		$(".h2Title").html(" Link Managment");
