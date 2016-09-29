@@ -1,3 +1,44 @@
+var currentDateFn = function(){
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+	    dd='0'+dd
+	} 
+
+	if(mm<10) {
+	    mm='0'+mm
+	} 
+
+	today = yyyy+'/'+mm+'/'+dd;
+	return today;
+}
+var saveToLogFn = function(link_id){
+	
+	var user_name= localStorage.getItem('user_name');
+	var password= localStorage.getItem('password');
+	var reason= localStorage.getItem('reason');
+	
+
+		
+		$.ajax({
+			url:golbalURL+"/niems/Model/usage_log/insert.jsp",
+			type:"post",
+			dataType:"json",
+			async:false,
+			data:{"link_id":link_id,"user_name":user_name,"reason":reason},
+			success:function(data){
+				if(data=="success"){
+					console.log("save to log successfully.");
+				}
+			}
+	});
+	
+	
+	
+}
 var auThenRedirectURL = function(user,pass,url){
 
 	

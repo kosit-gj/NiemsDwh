@@ -1,4 +1,11 @@
- <script src="Controller/cUsageLog.js"> </script>
+<link rel="stylesheet" href="css/plugins/datapicker/datepicker3.css">
+<script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<script src="Controller/cUsageLog.js"> </script>
+ <!-- 
+ 
+  <link rel="stylesheet" href="css/usageLog.css">
+  
+   -->
 
             
 <div class="row">
@@ -19,8 +26,9 @@
 	                     <!-- search -->
 	                           <div class="row">
 									<div class="col-lg-2 col-lg-offset-4">
-									 <input id="fromDate" value="10/10/2011" style="width: 100%" />
-									 
+									
+									
+									 <input type="text" value="" name="searach" id="SearchText" placeholder="Search"  class="btnCustom input-sm form-control">
 										<!-- 
 										<div id="data_5" class="form-group">
 										
@@ -33,16 +41,20 @@
 										 -->
 									</div>
 									<div class="col-lg-2 ">
-									 <input id="toDate" value="10/10/2011" style="width: 100%" />
+										<div class="input-group date">
+		                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="fromDate" value="" class="form-control">
+		                                </div>
 									 </div>
 									 
 									 <div class="col-lg-2 ">
-									 <input id="textSearh" value="" style="width: 100%" />
+										 <div class="input-group date">
+		                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id="toDate" value=""  class="form-control">
+		                                </div>
 									 </div>
 									
 									<div class="col-lg-2">
 										
-										<button style="width: 100%" id="primaryTextButton" class=" btnCustom k-primary">Search</button>
+										<button style="width: 100%" id="btnSearch"  name="btnSearch" class=" btnCustom k-primary">Search</button>
                         				
 									</div>
 								</div>
@@ -53,14 +65,14 @@
 									</div>
 								</div>
 							<!-- search -->
-	
+							
 	                        <table id="usage_log_table" class="">
 		                          <colgroup>
-				                    <col style="width:5%"/>
+				                    <col style="width:2%"/>
 				                    <col style="width:10%"/>
-				                    <col style="width:10%"/>
-				                    <col style="width:10%"/>
-				                    <col style="width:10%"/>
+				                    <!-- <col style="width:10%"/>
+				                    <col style="width:10%"/> -->
+				                    <col style="width:30%"/>
 				                    <col  style="width:10%"/>
 				                    <col  style="width:10%"/>
 				                    <!-- 
@@ -71,94 +83,16 @@
 	                            <thead>
 	                            <tr>
 	                                <th  data-field="field1"><b>#</b></th>
-	                                <th  data-field="field2"><b>Full name</b></th>
-	                                <th  data-field="field3"><b>Province</b></th>
-	                                <th  data-field="field4"><b>Category Link</b></th>
+	                                <th  data-field="field2"><b>Full name</b></th> 
+	                                <!-- <th  data-field="field3"><b>Province</b></th>
+	                                <th  data-field="field4"><b>Category Link</b></th>-->
 	                                <th  data-field="field5"><b>Link</b></th>
 	                                <th  data-field="field6"><b>Reason</b></th>
 	                                <th  data-field="field7"><b>Date Time</b></th>
 	                            </tr>
 	                            </thead>
-	                            <tbody>
-	                            <tr>
-	                                <td>1</td>
-	                                <td>Kosit Aromsva</td>
-	                                <td>Bangkok</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td class="text-navy"> 21-09-2016 00:01:33 </td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>1</td>
-	                                <td>Kosit Aromsva</td>
-	                                <td>Bangkok</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td class="text-navy"> 21-09-2016 00:01:33 </td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>2</td>
-	                                <td>Kosit Aromsva</td>
-	                                <td>Bangkok</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td class="text-navy"> 21-09-2016 00:01:33 </td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>3</td>
-	                                <td>Kosit Aromsva</td>
-	                                <td>Bangkok</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td class="text-navy"> 21-09-2016 00:01:33 </td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>4</td>
-	                                <td>Kosit Aromsva</td>
-	                                <td>Bangkok</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td class="text-navy"> 21-09-2016 00:01:33 </td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>5</td>
-	                                <td>Kosit Aromsva</td>
-	                                <td>Bangkok</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td class="text-navy"> 21-09-2016 00:01:33 </td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>6</td>
-	                                <td>Kosit Aromsva</td>
-	                                <td>Bangkok</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td class="text-navy"> 21-09-2016 00:01:33</td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>7</td>
-	                                <td>Kosit Aromsva</td>
-	                                <td>Bangkok</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td>...</td>
-	                                <td class="text-navy"> 21-09-2016 00:01:33</td>
-	                            </tr>
+	                            <tbody id="logUsageDataContent">
+	                           
 	                            
 	                            </tbody>
 	                        </table>

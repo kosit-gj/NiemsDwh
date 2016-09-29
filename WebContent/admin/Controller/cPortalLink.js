@@ -84,7 +84,7 @@ var listCateType = function(){
 									console.log(data3);
 									$.each(data3,function(index3,indexEntry3){
 										
-										cateTypeHTML+=" <li><a href=\"http://"+indexEntry3[4]+"\">"+(index3+1)+". "+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
+										cateTypeHTML+=" <li><a class='linkID' id='linkID-"+indexEntry3[0]+"' href=\"http://"+indexEntry3[4]+"\">"+(index3+1)+". "+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
 										
 										
 									});
@@ -168,4 +168,16 @@ $(document).ready(function(){
 
 		return false;
 	});
+	
+	
+	//Save link start
+	//saveToLogFn();
+	$(".linkID").on("click",function(){
+		var id=this.id.split("-");
+		id=id[1];
+		saveToLogFn(id);
+		
+		return false;
+	});
+	//Save link end
 });

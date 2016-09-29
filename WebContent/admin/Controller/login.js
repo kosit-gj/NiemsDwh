@@ -396,8 +396,15 @@ $(document).ready(function(){
 		console.log("step 1");
 		var user_name=$("#user_name").val();
 		var password=$("#password").val();
-		//console.log(checkID(user_name));
-		//console.log(checkID(password));
+		var reason=$("#reason").val();
+		
+		
+		
+		//keep data here..
+		localStorage.setItem('user_name',user_name);
+		localStorage.setItem('password',password);
+		localStorage.setItem('reason',reason);
+	
 		
 		if(vaidationLogin()){
 			//vaidationLogin

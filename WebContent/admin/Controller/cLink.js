@@ -8,7 +8,7 @@ var listCateLink = function(cateLinkId){
 		dataType:"json",
 		success:function(data){
 			var selectHTML="";
-			selectHTML+="<select id=\"listCateLink\" class=\"btnCustom\">";
+			selectHTML+="<select style='width:350px;' id=\"listCateLink\" class=\"btnCustom\">";
 		
 				
 				$.each(data,function(index,indexEntry){
