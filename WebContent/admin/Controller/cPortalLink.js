@@ -140,12 +140,19 @@ $(document).ready(function(){
 		if(localStorage.getItem('role_id')==1){
 			//Check Role Start
 			$("#roleAdmin").show();
+			$("#roleSupperUser").hide();
+			//CHeck Role End
+		}else if(localStorage.getItem('role_id')==2){
+			//Check Role Start
+			$("#roleAdmin").hide();
+			$("#roleSupperUser").show();
+			
 			//CHeck Role End
 		}else{
 			$("#roleAdmin").hide();
 		}
 	}
-	
+	//
 	listCateType();
 	
 	$(".logout").click(function(){

@@ -97,3 +97,6 @@ body{
 .display{
 	display:none;
 }
+.fontLogo{
+	font-weight:bold;
+}

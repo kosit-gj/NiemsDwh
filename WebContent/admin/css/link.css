@@ -3,6 +3,7 @@
     outline: 0 none;
     overflow: auto;
     padding: 0;
+    text-align: left;
 }
 .objectRight{
 	text-align:right;

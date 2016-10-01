@@ -1,3 +1,5 @@
+
+
 function checkID(id)
 	{
 		if(id.length != 13) return false;
@@ -83,7 +85,7 @@ $(document).ready(function(){
 			success:function(data){
 				if(data=="success"){
 					console.log("step 4");
-					alert("Upate data is successfully");
+					//alert("Upate data is successfully");
 				}	
 			}
 		});
@@ -161,7 +163,7 @@ $(document).ready(function(){
 			success:function(data){
 				if(data=="success"){
 					console.log("step 4");
-					alert("Insert data is successfully");
+					//alert("Insert data is successfully");
 				}	
 			}
 		});
@@ -198,18 +200,23 @@ $(document).ready(function(){
 	}
 	
 	function authenByIITEMS(user_name,password,appid,key){
+		//http://ws.niems.go.th/EMS_MAP_API/EMSInfo.svc/reqLogin?inUSERNAME={inUSERNAME}&inPASSWORD={inPASSWORD}&appid={appid}&key={key}
 		//http://192.168.1.49:8082/niems/Model/login/authen_items.jsp
+		
 		$.ajax({
-			url:golbalURL+"/niems/Model/login/authen_items.jsp",
+			//url:golbalURL+"/niems/Model/login/authen_items.jsp",
+			url:"http://ws.niems.go.th/EMS_MAP_API/EMSInfo.svc/reqLogin?inUSERNAME="+user_name+"&inPASSWORD="+password+"&appid=dwh&key=dwh12345",
 			type:"get",
 			dataType:"json",
 			async:false,
-			data:{"user_name":user_name,"password":password,"appid":appid,"key":key},
+			//data:{"user_name":user_name,"password":password,"appid":appid,"key":key},
 			success:function(rsData){
+				
 				console.log("step 2");
 				
 				
-				if(rsData=='empty'){
+				
+				if(rsData['LOG_INResult']=='[]'){
 					//check user by dwh
 					console.log("data is empty");
 					authenByUser(user_name,password);
@@ -258,8 +265,14 @@ $(document).ready(function(){
 							
 								console.log("insert");					
 								insertUserItemtoDWH(rsData,user_name,password);
-								//$( location ).attr("href", "portal_link.html");
-								$( location ).attr("href", "admin/index.html");
+								localStorage.setItem('role_id','2');
+								localStorage.setItem('role_name','Super user');
+								setTimeout(function(){
+									$( location ).attr("href", "portal_link.html");
+								});
+								
+								
+								//$( location ).attr("href", "admin/index.html");
 								
 								
 							}else{
@@ -269,8 +282,13 @@ $(document).ready(function(){
 								console.log(user_name);
 								console.log(password);
 								updateUserItemInDWH(rsData,user_name,password);
-								//$( location ).attr("href", "portal_link.html");
-								$( location ).attr("href", "admin/index.html");
+								localStorage.setItem('role_id','2');
+								localStorage.setItem('role_name','Super user');
+								
+								setTimeout(function(){
+									$( location ).attr("href", "portal_link.html");
+								});
+								//$( location ).attr("href", "admin/index.html");
 							}	
 						}
 						

@@ -1,4 +1,4 @@
-var golbalURL="171.96.201.214:8082";
+//var golbalURL="171.96.201.214:8082";
 
 /*
 $(document).ready(function(){

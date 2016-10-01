@@ -18,7 +18,9 @@ h1 {
   font-size: 30px;
 }
 h2 {
-  font-size: 24px;
+  /*font-size: 24px;*/
+  font-size: 18px;
+  
 }
 h3 {
   font-size: 16px;
@@ -3230,6 +3232,7 @@ a.forum-item-title:hover {
 }
 body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: tahoma;*/
   background-color: #2f4050;
   font-size: 13px;
   color: #676a6c;
