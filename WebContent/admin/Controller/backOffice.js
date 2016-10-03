@@ -219,8 +219,8 @@ $(document).ready(function(){
 	$("#menu_cate_type").click(function(){
 		$("ul#side-menu li").removeClass("active");
 		$(this).parent().addClass("active");
-		$(".h2Title").html("Category Type Managment");
-		$(".activeTitle").html("Category Type Managment");
+		$(".h2Title").html("Type Category Managment");
+		$(".activeTitle").html("Type Category Managment");
 		
 		//alert("menu_usage_log");
 		$.ajax({
@@ -239,8 +239,8 @@ $(document).ready(function(){
 	$("#menu_cate_link").click(function(){
 		$("ul#side-menu li").removeClass("active");
 		$(this).parent().addClass("active");
-		$(".h2Title").html("Category Link Managment");
-		$(".activeTitle").html("Category Link Managment");
+		$(".h2Title").html("Link Category Managment");
+		$(".activeTitle").html("Link Category Managment");
 		
 		//alert("menu_usage_log");
 		$.ajax({

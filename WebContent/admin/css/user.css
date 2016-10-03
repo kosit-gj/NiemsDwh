@@ -5,14 +5,20 @@
 .searchBtn{
 	float:left;
 	width:100px;
+	margin-left: 3px;
 }
 .btnSearch{
 	width:80px;
 	height:30px
+	
 }
 .searchArea{
 	padding-bottom:2px;
 }
 .addUserBtn{
+	
 	text-align:right;
+}
+.resetPassword{
+	display:none;
 }

@@ -24,6 +24,9 @@ $(document).ready(function(){
 	
 
 	listProvince();
+	//prefix start
+	listPrefix();
+	//prefix end
 	
 	$("#submit").click(function(){
 		

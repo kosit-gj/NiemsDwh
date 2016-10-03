@@ -18,7 +18,7 @@
 
 <body class="gray-bg">
 
-กก
+
                             
     <div class="middle-box text-center loginscreen   animated fadeInDown">
         <div>
@@ -55,7 +55,7 @@
                <div class="form-group">
                
                	<label class="col-lg-4 control-label">คำนำหน้า</label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 " id="prefixArea">
                     <select id="prefix" class="form-control" >
                     	<option>นาย</option>
                     	<option>นาง</option>
@@ -72,11 +72,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                	<label class="col-lg-4 control-label">นามสกุล</label>
+                	<label class="col-lg-4 control-label">นามสกุล<span style="color:red">*</span></label>
                     <div class="col-lg-8">
                     <input id="last_name" type="text" class="form-control" placeholder="นามสกุล" >
                     </div>
                 </div>
+                 
+                <div class="form-group">
+                	<label class="col-lg-4 control-label">ตำแหน่ง</label>
+                    <div class="col-lg-8">
+                    <input id="position" type="text" class="form-control" placeholder="ตำแหน่ง" >
+                    </div>
+                </div>
+                
                 <div class="form-group">
                		 <label class="col-lg-4 control-label">อีเมลล์<span style="color:red">*</span></label>
                     <div class="col-lg-8">
@@ -84,26 +92,28 @@
                     </div>
                 </div>
                 
-                <div class="form-group">
-                	<label class="col-lg-4 control-label">จังหวัด</label>
-                    <div class="col-lg-8" id="provinceArea">
-                    
-                    </div>
-                </div>
-                
-                <div class="form-group">
+                 <div class="form-group">
                 	<label class="col-lg-4 control-label">หน่วยงานที่สังกัด</label>
                     <div class="col-lg-8">
                     <input id="organization" type="text" class="form-control" placeholder="หน่วยงานที่สังกัด" >
                     </div>
                 </div>
                 
+                
                 <div class="form-group">
-                	<label class="col-lg-4 control-label">ตำแหน่ง</label>
-                    <div class="col-lg-8">
-                    <input id="position" type="text" class="form-control" placeholder="ตำแหน่ง" >
+                	<label class="col-lg-4 control-label">จังหวัด</label>
+                    <div class="col-lg-8" id="provinceArea">
+                    
                     </div>
                 </div>
+                <div class="form-group">
+               		 <label class="col-lg-4 control-label">เบอร์โทร<span style="color:red">*</span></label>
+                    <div class="col-lg-8">
+                    <input id="tel" type="text" class="form-control" placeholder="เบอร์โทร" >
+                    </div>
+                </div>
+               
+               
                
                 
                 

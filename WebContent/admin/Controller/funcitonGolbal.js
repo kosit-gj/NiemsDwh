@@ -1,3 +1,6 @@
+var manageGridFn = function(){
+	 $(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});
+};
 var currentDateFn = function(){
 	var today = new Date();
 	var dd = today.getDate();
@@ -109,7 +112,8 @@ var listProvince = function(provinceName){
 			
 			var htmlSelectProvince="";
 			htmlSelectProvince+="<select id=\"province\" class=\"form-control\" >";
-				
+			
+					htmlSelectProvince+="<option value=\"none\">เลือกจังหวัด</option>";
 				$.each(data,function(index,indexEntry){
 					if(provinceName==indexEntry[1]){
 						htmlSelectProvince+="<option "+indexEntry[0]+" selected='selected'>"+indexEntry[1]+"</option>";
@@ -130,6 +134,7 @@ var listPrefix = function(prefixName){
 	if(prefixName=="นาย"){
 		
 		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
+			prefixHtml+="<option >เลือกคำนำหน้า</option>";
 			prefixHtml+="<option selected='selected'>นาย</option>";
 			prefixHtml+="<option>นาง</option>";
 			prefixHtml+="<option>นางสาว</option>";
@@ -138,6 +143,7 @@ var listPrefix = function(prefixName){
 	    
 	}else if(prefixName=="นาง"){
 		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
+			prefixHtml+="<option >เลือกคำนำหน้า</option>";
 			prefixHtml+="<option >นาย</option>";
 			prefixHtml+="<option selected='selected'>นาง</option>";
 			prefixHtml+="<option>นางสาว</option>";
@@ -145,11 +151,19 @@ var listPrefix = function(prefixName){
 		
 	}else if(prefixName=="นางสาว"){
 		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
+			prefixHtml+="<option >เลือกคำนำหน้า</option>";
 			prefixHtml+="<option >นาย</option>";
 			prefixHtml+="<option>นาง</option>";
 			prefixHtml+="<option selected='selected'>นางสาว</option>";
 		prefixHtml+="</select>";
 		
+	}else{
+		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
+			prefixHtml+="<option selected='selected'>เลือกคำนำหน้า</option>";
+			prefixHtml+="<option>นาย</option>";
+			prefixHtml+="<option>นาง</option>";
+			prefixHtml+="<option>นางสาว</option>";
+		prefixHtml+="</select>";
 	}
 	$("#prefixArea").html(prefixHtml);
 }
@@ -195,17 +209,23 @@ var vaidation = function(){
 	if(checkID($("#user_name").val())==false){
 		txtArert+="รหัสบัตรประชาชนไม่ถูกต้อง\n";
 	}
-	if($("#password").val()!=$("#confirm_password").val()){
-		txtArert+="รหัสผ่านไม่ตรงกัน\n";
-	}
+	
 	if($("#user_name").val()==""){
 		txtArert+="ชื่อผู้ใช้งานห้ามเป็นค่าว่าง\n";
 	}
-	if($("#password").val()==""){
-		txtArert+="รหัสผ่านห้ามเป็นค่าว่าง\n";
-	}
-	if($("#confirm_password").val()==""){
-		txtArert+="ยืนยันรหัสผ่านห้ามเป็นค่าว่าง\n";
+	
+	if($('input[name="resetPass"]:checked').val()=="Y"){
+		
+		if($("#password").val()!=$("#confirm_password").val()){
+			txtArert+="รหัสผ่านไม่ตรงกัน\n";
+		}
+		if($("#password").val()==""){
+			txtArert+="รหัสผ่านห้ามเป็นค่าว่าง\n";
+		}
+		if($("#confirm_password").val()==""){
+			txtArert+="ยืนยันรหัสผ่านห้ามเป็นค่าว่าง\n";
+		}
+		
 	}
 	
 	if($("#first_name").val()==""){
@@ -225,4 +245,6 @@ var vaidation = function(){
 	
 	
 }
+
+
 

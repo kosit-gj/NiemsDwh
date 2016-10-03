@@ -1,3 +1,5 @@
+
+
 var listDataAll = function(keyword){
 	//http://192.168.1.49:8082/niems/Model/user/selectAll.jsp?callback=?
 	var urlParam="";
@@ -29,13 +31,13 @@ var listDataAll = function(keyword){
 					htmlDataContent+="<td>"+indexEntry[2]+" </td>";
 					htmlDataContent+="<td>"+indexEntry[3]+"</td>";
 					if(indexEntry[6]=="Y"){
-						htmlDataContent+="<td><img src=\"img/button-turn-on.jpg\" width=\"20\"></td>";
+						htmlDataContent+="<td><center><img src=\"img/button-turn-on.jpg\" width=\"20\"></center></td>";
 					}else{
-						htmlDataContent+="<td><img src=\"img/button-turn-off.jpg\" width=\"20\"></td>";
+						htmlDataContent+="<td><center><img src=\"img/button-turn-off.jpg\" width=\"20\"></center></td>";
 					}
 					htmlDataContent+="<td>"+indexEntry[13]+"</td>";
 					htmlDataContent+="<td>"+indexEntry[5]+"</td>";
-					htmlDataContent+="<td > <button class=\"btn btn-warning btn-xs editUser \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delUser\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></td>";
+					htmlDataContent+="<td ><center> <button class=\"btn btn-warning btn-xs editUser \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delUser\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></center></td>";
 				htmlDataContent+="</tr>";
 			});
 			$("#userDataContent").html(htmlDataContent);
@@ -58,12 +60,38 @@ var listDataAll = function(keyword){
 				$("#userModal").modal();
 				findData(id);
 				
+				
+				$("#user_name").attr('disabled', 'disabled');
+				$(".resetPass").off("click");
+				$(".resetPass").on("click",function(){
+					
+					
+					if($(this).val()=="Y"){
+						$(".resetPassword").show();
+					}else{
+						$(".resetPassword").hide();
+					}
+				});
+				
 				$("#action").val("edit");
+				
+				
+				
+				
+				setTimeout(function(){
+					$("#resetPassN").click();
+					$(".resetPassArea").show();
+				});
+				
+				
+				
+				
+				$("#resetPassArea").show();
 				
 				//submit binding action start
 					$("#btnSubmit").off("click");
 					$("#btnSubmit").on("click",function(){
-						alert("submit");
+						
 						if($("#action").val()=="add"){
 							insertUserFn();
 						}else{
@@ -186,6 +214,7 @@ http://192.168.1.49:8082/niems/Model/user/update.jsp
 		var organization=$("#organization").val();
 		var user_items="N";
 		var role_id=$("#role_id").val();
+		var resetPass=$('input[name="resetPass"]:checked').val();
 		
 		
 		$.ajax({
@@ -204,8 +233,10 @@ http://192.168.1.49:8082/niems/Model/user/update.jsp
 				"position":position,
 				"organization":organization,
 				"user_items":user_items,
-				"role_id":role_id
+				"role_id":role_id,
+				"resetPass":resetPass
 				},
+				
 			success:function(data){
 				//console.log(data);
 				if(data=="success"){
@@ -317,12 +348,13 @@ var insertUserFn= function(){
 var clearUserForm = function(){
 	$("#user_name").val("");
 	$("#password").val("");
-	listPrefix("นาย");
+	listPrefix("");
 	$("#first_name").val("");
 	$("#last_name").val("");
 	$("#email").val("");
 	$("#province").val("");
 	
+	$("#user_name").removeAttr("disabled");
 	listStatusUserFn("Y");
 	
 	$("#position").val("");
@@ -332,10 +364,22 @@ var clearUserForm = function(){
 	listRole(3);
 	listProvince();
 	$("#action").val("add");
+	
+	
+	
 }
 
 
 $(document).ready(function(){
+	
+	/*
+	var md5 = $.md5('11');
+	var md51 = $.md5('6512bd43d9caa6e02c990b0a82652dca');
+
+	//alert(md5);
+	alert(md51);
+	*/
+	
 	//$("#userTable").DataTable();
 	$("#userTable").kendoGrid({
         height:"",
@@ -346,6 +390,9 @@ $(document).ready(function(){
             refresh: true,
             pageSizes: true,
             buttonCount: 5
+        },
+        dataSource: {
+            pageSize: 10
         }
 	});
 	
@@ -365,11 +412,23 @@ $(document).ready(function(){
 	listDataAll();
 	//list data end
 	
+	
+	
 	$("#manageUser").click(function(){
 		//listRole(3);
 		//listProvince();
 		
 		clearUserForm();
+	
+		setTimeout(function(){
+			$("#resetPassY").click();
+			$(".resetPassArea").hide();
+		});
+		
+		
+		
+		
+		
 		
 		$("#btnSubmit").off("click");
 		$("#btnSubmit").on("click",function(){
@@ -388,6 +447,18 @@ $(document).ready(function(){
 			clearUserForm();
 		});
 		
+		//click enable reset password start
+		$(".resetPass").off("click");
+		$(".resetPass").on("click",function(){
+			
+			
+			if($(this).val()=="Y"){
+				$(".resetPassword").show();
+			}else{
+				$(".resetPassword").hide();
+			}
+		});
+		//click enable reset password start
 		
 	});
 	

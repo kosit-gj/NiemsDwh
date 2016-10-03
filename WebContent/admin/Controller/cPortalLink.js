@@ -1,7 +1,11 @@
-var bgIcon=["btn-default","btn-primary","btn-success","btn-info","btn-warning","btn btn-danger","btn-danger btn-outline","btn-default","btn-primary","btn-success","btn-info","btn-warning","btn btn-danger"];
+var bgIcon=["btn-default","btn-primary","btn-success","btn-info","btn-warning","btn btn-danger",
+            "btn-danger btn-outline","btn-default","btn-primary","btn-success","btn-info","btn-warning",
+            "btn btn-danger","btn-default","btn-primary","btn-success","btn-info","btn-warning","btn btn-danger",
+            "btn-danger btn-outline","btn-default","btn-primary","btn-success","btn-info","btn-warning",
+            "btn btn-danger"];
 
 
-var listCateType = function(){
+var listCateType = function(role_id){
 	
 	$.ajax({
 		url:golbalURL+"/niems/Model/category_type/selectAll.jsp",
@@ -38,29 +42,52 @@ var listCateType = function(){
 				async:false,
 				data:{"cate_type_id":indexEntry[0]},
 				success:function(data2){
-					
-					//console.log(data2);
+					/*
+					console.log("hello testttt");
+					console.log(data2);
+					*/
 					/*			
-					0:"71"
-					1:"ฟก2"
-					2:null
-					3:"N"
-					4:"1"
-					5:"2559-09-24 11:41:06.0"
-					6:"2559-09-24 11:56:20.0"
-					7:"Test case"
+					0:194"
+					1:"555"
+					2:"fa fa-sort-amount-asc"
+					3:"H"
+					4:"231"
+					5:"2559-10-02 10:13:10.0"
+					6:"2559-10-02 10:13:33.0"
+					7:"#ff062f"
+					8:"ข้อมูลพื้นฐาน ที่ขึ้นทะเ...การแพทย์ฉุกเฉิน (ITEMS)"
+
 					 */
 					$.each(data2,function(index2,indexEntry2){
+					var displayPanel="";	
+					if(indexEntry2[3]=="H"){
+						//Hidden
+						displayPanel="panelHide";
+					}else if(indexEntry2[3]=="N"){
+						//Disable
+						displayPanel="panelDisable";
+					}else if(indexEntry2[3]=="Y"){
+						//Show
+						displayPanel="panelShow";
+					}
+					
 						
-					
-					
 					cateTypeHTML+="<div class=\"col-lg-6\">";
-						cateTypeHTML+="<div class=\"ibox panelCustom\">";
+						cateTypeHTML+="<div class=\"ibox "+displayPanel+" panelCustom\">";
 						cateTypeHTML+="<div class=\"ibox-title \">";
-						cateTypeHTML+="<h5><span  class=\"btn "+bgIcon[index2]+" btn-circle\">";
-						cateTypeHTML+="<i class=\"fa fa fa-list fontIcon\"></i>";
+						if(indexEntry2[7]==null){
+							cateTypeHTML+="<h5><span    class=\"btn btn-circle "+bgIcon[index2]+"\">";
+						}else{
+							cateTypeHTML+="<h5><span  style='background:"+indexEntry2[7]+"';  class=\"btn btn-circle\">";
+						}
+						
+						if(indexEntry2[2]==null){
+							cateTypeHTML+="<i class=\"fa fa-area-chart fontIcon\"></i>";
+						}else{
+							cateTypeHTML+="<i class=\""+indexEntry2[2]+" fontIcon\"></i>";
+						}
 						cateTypeHTML+=" </span>";
-						cateTypeHTML+=" "+indexEntry2[1]+"</h5>";
+						cateTypeHTML+="<span class=\"contentCate\"> "+indexEntry2[1]+"</span></h5>";
 						cateTypeHTML+="<div class=\"ibox-tools\">";
 						cateTypeHTML+="<a class=\"collapse-link\">";
 						cateTypeHTML+="<i class=\"i fa fa-plus\"></i>";
@@ -74,11 +101,11 @@ var listCateType = function(){
 							
 							$.ajax({
 								   
-								url:golbalURL+"/niems/Model/portal_link/select_link_by_cate_link.jsp",
+								url:golbalURL+"/niems/Model/portal_link/select_link_by_cate_link_by_role.jsp",
 								type:"post",
 								dataType:"json",
 								async:false,
-								data:{"cate_link_id":indexEntry2[0]},
+								data:{"cate_link_id":indexEntry2[0],"role_id":role_id},
 								success:function(data3){
 									
 									console.log(data3);
@@ -117,8 +144,9 @@ var listCateType = function(){
 	        var button = $(this).find('.i');
 	        var content = ibox.find('div.ibox-content');
 	        content.slideToggle(200);
-	        button.toggleClass('fa-plus').toggleClass('fa-minus');
+	        button.toggleClass('fa-plus').toggleClass('fa-minus').css({"color":"white"});
 	        ibox.toggleClass('').toggleClass('border-bottom');
+	        $(this).toggleClass('titleClicked');
 	        setTimeout(function () {
 	            ibox.resize();
 	            ibox.find('[id^=map-]').resize();
@@ -131,7 +159,10 @@ var listCateType = function(){
 	});
 }
 $(document).ready(function(){
-	//alert(localStorage.getItem('user_name'));
+	//alert(localStorage.getItem('role_id'));
+	
+	
+	
 	if(localStorage.getItem('user_name')==""){
 		$( location ).attr("href", "./index.html");
 		return false;
@@ -153,7 +184,7 @@ $(document).ready(function(){
 		}
 	}
 	//
-	listCateType();
+	listCateType(localStorage.getItem('role_id'));
 	
 	$(".logout").click(function(){
 		logoutFn();

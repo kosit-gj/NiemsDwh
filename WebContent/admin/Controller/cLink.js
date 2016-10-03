@@ -8,9 +8,9 @@ var listCateLink = function(cateLinkId){
 		dataType:"json",
 		success:function(data){
 			var selectHTML="";
-			selectHTML+="<select style='width:350px;' id=\"listCateLink\" class=\"btnCustom\">";
+			selectHTML+="<select style='width:350px;' id=\"listCateLink\" class=\"btnCustom form-control\">";
 		
-				
+				selectHTML+="<option value='All'>เลือก Link Category</option>";
 				$.each(data,function(index,indexEntry){
 					if(indexEntry[0]==cateLinkId){
 						selectHTML+="<option selected='selected' value="+indexEntry[0]+">"+indexEntry[1]+"</option>";	
@@ -34,6 +34,46 @@ var listCateLink = function(cateLinkId){
 			$("#listLink").change();
 			*/
 			//list cate link end
+			
+			
+		}
+	});
+}
+var listCateLinkFilter = function(){
+
+	$.ajax({
+		url:golbalURL+"/niems/Model/category_link/selectAll.jsp",
+		type:"post",
+		dataType:"json",
+		success:function(data){
+			console.log(data);
+			var selectHTML="";
+			selectHTML+="<select style='width:190px;' id=\"listCateLinkFilter\" class=\"btnCustom form-control\">";
+			
+			selectHTML+="<option value=\"All\">All Link Category</option>";
+				
+				$.each(data,function(index,indexEntry){
+					
+						selectHTML+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+					
+				});
+				
+			selectHTML+="</select>";
+			
+			$("#linkCateFilterArea").html(selectHTML);
+			
+			//list cate link filter start
+			
+			$("#listCateLinkFilter").change(function(){
+				listLinkByCateLink($(this).val());
+				
+				$("#embedCateLinkFilterId").remove();
+				var paramHtml="<input type='hidden' calass='paramEmbed' id='embedCateLinkFilterId' name='embedCateLinkFilterId' value='"+$(this).val()+"'>";
+				$("body").append(paramHtml);
+			});
+			$("#listCateLinkFilter").change();
+			
+			//list cate link filter end
 			
 			
 		}
@@ -170,9 +210,15 @@ var insertLinkFn = function(){
 var vaidationLink = function(){
 	var txtArert="";
 	
+	if($("#listCateLink").val()=="All"){
+		txtArert+=" โปรดเลือก Link Category\n";
+	}
 	if($("#link_name").val()==""){
 		txtArert+=" link name ห้ามเป็นค่าว่าง\n";
 	}
+	
+	
+	
 	
 	if(txtArert!=""){
 		alert(txtArert);
@@ -199,6 +245,25 @@ var listDataAll = function(){
 		});
 	
 };
+var listLinkByCateLink = function(id){	
+
+	if(id=="All"){
+		listDataAll()
+	}else{
+	
+		$.ajax({
+			url:golbalURL+"/niems/Model/portal_link/select_link_by_cate_link.jsp",
+			type:"post",
+			dataType:"json",
+			data:{"cate_link_id":id},
+			success:function(data){
+				console.log(data);
+				listData(data);
+			}
+		});
+	}
+
+};
 
 var clearLinkForm = function(){
 	$("#link_name").val("");
@@ -221,7 +286,7 @@ var listData = function(data){
 					
 					
 					
-					htmlDataContent+="<td > <button class=\"btn btn-warning btn-xs editLink \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delLink\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></td>";
+					htmlDataContent+="<td ><center> <button class=\"btn btn-warning btn-xs editLink \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delLink\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></center></td>";
 				htmlDataContent+="</tr>";
 			});
 			$("#linkDataArea").html(htmlDataContent);
@@ -384,15 +449,14 @@ $(document).ready(function(){
 	 
 	//$("#userTable").DataTable();
 	$("#linkTable").kendoGrid({
-		height:"",
-        sortable: true,
-        pageable: true,
-        scrollable: false,
-        pageable: {
-            refresh: true,
-            pageSizes: true,	
-            buttonCount: 5
-        }
+		 height: "",
+         sortable: true,
+         //filterable: true,
+         pageable: true,
+         scrollable: false,
+         dataSource: {
+             pageSize: 10
+         }
 	});
 	$(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});
 	
@@ -404,7 +468,8 @@ $(document).ready(function(){
 	$("#manageLink").click(function(){
 
 		clearLinkForm();
-		listCateLink();
+		
+		listCateLink($("#embedCateLinkFilterId").val());
 		
 		
 		 $('.summernote').summernote();
@@ -415,6 +480,7 @@ $(document).ready(function(){
 		$("#btnSubmit").off("click");
 		$("#btnSubmit").on("click",function(){
 			
+		
 			insertLinkFn();
 		
 		});
@@ -458,6 +524,11 @@ $(document).ready(function(){
 		
 	});
 	//search end
+	
+	//listCateLinkFilter start
+	
+	listCateLinkFilter();
+	//listCateLinkFilter end
 	
 	
 	

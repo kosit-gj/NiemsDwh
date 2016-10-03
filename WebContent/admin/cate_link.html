@@ -1,4 +1,7 @@
+<script src="js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 <script src="Controller/cCategoryLInk.js"> </script>
+<link href="css/cateLink.css" rel="stylesheet">
+<link rel="stylesheet" href="css/plugins/colorpicker/bootstrap-colorpicker.min.css">
 
             
 <div class="row">
@@ -6,7 +9,7 @@
 	            <div class="col-lg-12">
 	                <div class="ibox float-e-margins">
 	                    <div class="ibox-title">
-	                        <h5>Category Link Management</h5>
+	                        <h5> Link Category Management</h5>
 	                       
 	                        <div class="ibox-tools">
 	                       
@@ -20,24 +23,26 @@
 							 <div class="row searchArea">
 								<div class="col-lg-6">
 									<div class='searchInput'>
-									<input type="text" name="search" id="searchInput"  >
+									<input type="text"class='form-control' placeholder="Search"  name="search" id="searchInput"  >
 									</div>
 									<div class='searchBtn'>
-									<button class="btnSearch" id="btnSearch">Search</button>
+									<button class=" btn btn-white"  id="btnSearch">Search</button>
 									</div>
 								</div>
 								
 								<div class="col-lg-5 col-lg-offset-1 addUserBtn textAlignRight">
 									 <div class='btnManagement ' style='width:auto !important;'>
-									 	<button id="manageCateLink" data-target="#cateLinkModal" data-toggle="modal" class="btnCustom" type="button">
-	 												Add Category Link
+									 	<button id="manageCateLink" data-target="#cateLinkModal" data-toggle="modal" class="btnCustom btn btn-primary" type="button">
+	 												Add Link Category 
 									 	</button>
 									 </div>
-									 <div class='listCate' id="listCateLinkArea">
+									 <div class='listCate' id="listCateLinkFilterArea">
+									 		<!-- 
 									 		<select id="listCateLink" class="btnCustom">
 									 			<option>Category1</option>
 									 			<option>Category2</option>
 									 		</select>
+									 		 -->
 									 </div>
 								</div>
 							</div>
@@ -57,8 +62,8 @@
 	                            <thead>
 	                            <tr>
 	                                <th data-field="field1"><b>#</b></th>
-	                                <th data-field="field2" ><b><center>Category Type</center></b></th>
-	                                <th data-field="field3"  ><b><center>Category Link</center></b></th>
+	                                <th data-field="field2" ><b>Type Category </b></th>
+	                                <th data-field="field3"  ><b>Link Category </b></th>
 	                                <th data-field="field4"  ><b><center>Display</center></b></th>
 	                                <th data-field="field5"><b><center>Action</center></b></th>
 	                            </tr>
@@ -109,7 +114,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Category Link</h4>
+                <h4 class="modal-title">Link Category </h4>
             </div>
             <div class="modal-body">
                 <!-- content start -->
@@ -120,22 +125,17 @@
 					            <!-- <p>Create account to see it in action.</p> -->
 					            <form class="form-horizontal" role="form" action="login.html">
 					                <div class="form-group">
-					                	<label class="col-lg-4 control-label">Category Link name</label>
+					                	<label class="col-lg-4 control-label">Link Category  Name</label>
 					                    <div class="col-lg-8">
-					                    	<input type="text" id="cate_name" class=" form-control" placeholder="Category Link Name" >
+					                    	<input type="text" id="cate_name" class=" form-control" placeholder="Link Category Name" >
 					                    </div>
 					                </div>
-					                <div class="form-group">
-					                	<label class="col-lg-4 control-label">รูปภาพ(Icon)</label>
-					                    <div class="col-lg-8">
-					                    	<input type="file" id='cate_icon'>
-					                    </div>
-					                </div>
+					               
 					                
 					                
 					                 <div class="form-group">
-					                	<label class="col-lg-4 control-label">Category Type</label>
-					                    <div class="col-lg-8" id="listCateLinkModalArea">
+					                	<label class="col-lg-4 control-label">Type Category </label>
+					                    <div class="col-lg-8" id="listCateLinkArea">
 					                    		
 					                    </div>
 					                 </div>
@@ -144,12 +144,469 @@
 					                
 					                 <div class="form-group">
 					                	<label class="col-lg-4 control-label">รูปแบบการแสดงผล</label>
-					                    <div class="col-lg-8" id="ineligibleArea">
-					                   		<input class ="ineligible"  name="ineligible" type="radio" checked="checked" value="H">ซ่อนเมนู
-					                   		<input class ="ineligible" name="ineligible" type="radio" value="N">แสดงเมนู(คลิกไม่ได้)
-					                   		<input class ="ineligible" name="ineligible" type="radio" value="Y">แสดงเมนู
+					                    <div class="col-lg-8 objectLeft" id="ineligibleArea">
+					                    	<input class ="ineligible" name="ineligible" type="radio"  checked="checked"  value="Y"><span class='radioStyle'>แสดง Link Category</span><br>
+					                   		<input class ="ineligible"  name="ineligible" type="radio"value="H"><span class='radioStyle'>ซ่อน Link Category</span><br>
+					                   		<input class ="ineligible" name="ineligible" type="radio" value="N"><span class='radioStyle'>แสดง Link Category(คลิกไม่ได้)</span><br>
+					                   		
 					                    </div>
 					                </div>
+					                
+					                 <div class="form-group">
+					                	<label class="col-lg-4 control-label">พื้นหลัง(Icon)</label>
+					                    <div class="col-lg-8">
+					                    <!-- 
+					                    	<div class='textColor'>
+					                    	<input type="text" id="cate_bg" value="#5367ce" class="form-control demo1 colorpicker-element">
+					                   		</div>
+					                   		<div class='exColor'>
+					                   		<div class='classExColor'></div>
+					                   		</div>
+					                   		-->
+					                   	  <div class="input-group colorpicker-component colorpicker-element" id="cate_icon_bg_action">
+									          <input type="text" class="form-control" id="cate_icon_bg" value="#00AABB">
+									          <span class="input-group-addon"><i style="background-color: rgb(26, 76, 81);"></i></span>
+									      </div>
+					                    </div>
+					                    
+					                  
+					                </div>
+					                
+					                
+					                
+					                
+					                 <div class="form-group">
+					                	<label class="col-lg-4 control-label ">รูปภาพ(Icon)</label>
+					                	 <div class="col-lg-8 objectLeft exampleIcon">
+					                	 	<span id="cate_icon"><i class="fa fa-angellist "></i></span>
+					                    	
+					                    </div>
+					                  </div>
+					                  <hr>
+					                  <div class="form-group">
+					                  
+					                    <div class="col-lg-12">
+					                    	
+					                    	<div id="cateIconArea" >
+					                    		
+					                    		
+					                    		<div>        
+							                    <h3>Web Application Icons</h3>
+							
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-adjust"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-anchor"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-archive"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-arrows"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-arrows-h"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-arrows-v"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-asterisk"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-ban"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bar-chart-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-barcode"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bars"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-beer"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bell"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bell-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bolt"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-book"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bookmark"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bookmark-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-briefcase"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bug"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-building-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bullhorn"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bullseye"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-calendar"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-calendar-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-camera"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-camera-retro"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-caret-square-o-down"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-caret-square-o-left"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-caret-square-o-right"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-caret-square-o-up"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-certificate"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-check"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-check-circle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-check-circle-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-check-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-check-square-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-circle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-circle-o"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-clock-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cloud"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cloud-download"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cloud-upload"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-code"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-code-fork"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-coffee"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cog"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cogs"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-comment"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-comment-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-comments"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-comments-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-compass"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-credit-card"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-crop"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-crosshairs"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cutlery"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-dashboard"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-desktop"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-dot-circle-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-download"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-edit"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-ellipsis-h"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-ellipsis-v"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-envelope"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-envelope-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-eraser"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-exchange"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-exclamation"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-exclamation-circle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-exclamation-triangle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-external-link"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-external-link-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-eye"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-eye-slash"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-female"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-fighter-jet"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-film"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-filter"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-fire"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-fire-extinguisher"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-flag"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-flag-checkered"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-flag-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-flash"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-flask"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-folder"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-folder-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-folder-open"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-folder-open-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-frown-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-gamepad"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-gavel"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-gear"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-gears"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-gift"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-glass"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-globe"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-group"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-hdd-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-headphones"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-heart"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-heart-o"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-home"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-inbox"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-info"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-info-circle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-key"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-keyboard-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-laptop"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-leaf"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-legal"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-lemon-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-level-down"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-level-up"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-lightbulb-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-location-arrow"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-lock"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-magic"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-magnet"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-mail-forward"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-mail-reply"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-mail-reply-all"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-male"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-map-marker"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-meh-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-microphone"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-microphone-slash"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-minus"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-minus-circle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-minus-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-minus-square-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-mobile"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-mobile-phone"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-money"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-moon-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-music"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-pencil"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-pencil-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-pencil-square-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-phone"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-phone-square"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-picture-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-plane"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-plus"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-plus-circle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-plus-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-plus-square-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-power-off"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-print"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-puzzle-piece"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-qrcode"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-question"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-question-circle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-quote-left"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-quote-right"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-random"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-refresh"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-reply"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-reply-all"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-retweet"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-road"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-rocket"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-rss"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-rss-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-search"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-search-minus"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-search-plus"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-share"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-share-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-share-square-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-shield"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-shopping-cart"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sign-in"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sign-out"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-signal"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sitemap"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-smile-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-alpha-asc"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-alpha-desc"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-amount-asc"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-amount-desc"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-asc"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-desc"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-down"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-numeric-asc"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-numeric-desc"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sort-up"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-spinner"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-square-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-star"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-star-half"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-star-half-empty"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-star-half-full"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-star-half-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-star-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-subscript"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-suitcase"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sun-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-superscript"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-tablet"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-tachometer"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-tag"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-tags"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-tasks"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-terminal"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-thumb-tack"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-thumbs-down"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-thumbs-o-down"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-thumbs-o-up"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-thumbs-up"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-ticket"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-times"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-times-circle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-times-circle-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-tint"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-toggle-down"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-toggle-left"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-toggle-right"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-toggle-up"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-trash-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-trophy"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-truck"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-umbrella"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-unlock"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-unlock-alt"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-unsorted"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-upload"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-user"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-users"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-video-camera"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-volume-down"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-volume-off"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-volume-up"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-warning"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-wheelchair"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-wrench"></i> </a></div>
+							                    <div class="clearfix"></div>
+							                    </div>
+					                    			<div>
+					                    	
+							                        <h3>  New Icons in 4.3.0  </h3>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-angellist"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-area-chart"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-at"></i></a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bell-slash"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bell-slash-o"></i></a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bicycle"></i></a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-binoculars"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-birthday-cake"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bus"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-calculator"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cc"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cc-amex"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cc-discover"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cc-mastercard"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cc-paypal"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cc-stripe"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cc-visa"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-copyright"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-eyedropper"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-futbol-o"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-google-wallet"></i></a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-ils"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-ioxhost"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-lastfm"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-lastfm-square"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-line-chart"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-meanpath"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-newspaper-o"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-paint-brush"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-paypal"></i></a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-pie-chart"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-plug"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-shekel"></i></a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sheqel"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-slideshare"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-soccer-ball-o"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-toggle-off"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-toggle-on"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-trash"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-tty"></i></a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-twitch"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-wifi"></i> </a></div>
+							                        <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-yelp"></i> </a></div>
+							
+							                        <div class="clearfix"></div>
+							                    
+					                    		</div>
+					                    		
+					                    		<div>
+							                    <h3> New Icons in 4.1.0 </h3>
+							
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-rub"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-ruble"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-rouble"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-pagelines"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-stack-exchange"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-arrow-circle-o-right"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-arrow-circle-o-left"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-caret-square-o-left"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-toggle-left"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-dot-circle-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-wheelchair"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-vimeo-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-try"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-turkish-lira"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-plus-square-o"></i> </a></div>
+							
+							
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-automobile"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bank"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-behance"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-behance-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-bomb"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-building"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cab"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-car"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-child"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-circle-o-notch"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-circle-thin"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-codepen"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cube"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-cubes"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-database"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-delicious"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-deviantart"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-digg"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-drupal"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-empire"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-envelope-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-fax"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-archive-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-audio-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-code-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-excel-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-image-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-movie-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-pdf-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-photo-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-picture-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-powerpoint-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-sound-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-video-o"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-word-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-file-zip-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-ge"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-git"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-git-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-google"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-graduation-cap"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-hacker-news"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-header"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-history"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-institution"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-joomla"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-jsfiddle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-language"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-life-bouy"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-life-ring"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-life-saver"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-mortar-board"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-openid"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-paper-plane"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-paper-plane-o"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-paragraph"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-paw"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-pied-piper"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-pied-piper-alt"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-pied-piper-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-qq"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-ra"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-rebel"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-recycle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-reddit"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-reddit-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-send"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-send-o"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-share-alt"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-share-alt-square"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-slack"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-sliders"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-soundcloud"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-space-shuttle"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-spoon"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-spotify"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-steam"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-steam-square"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-stumbleupon"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-stumbleupon-circle"></i></a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-support"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-taxi"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-tencent-weibo"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-tree"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-university"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-vine"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-wechat"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-weixin"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-wordpress"></i> </a></div>
+							                    <div class="infont col-md-3 col-sm-4"><a href="#" class="getIcon"><i class="fa fa-yahoo"></i> </a></div>
+							
+							                    <div class="clearfix"></div>
+							                    
+							                    </div>
+							                    
+							                    
+							           			
+					                    	
+					                    	</div>
+					                    </div>
+					                </div>
+					                
 					             
 					            </form>
 					            

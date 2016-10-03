@@ -16,3 +16,25 @@
 .addUserBtn{
 	text-align:right;
 }
+#cateIconArea{
+	width:100%;
+	height:200px;
+	overflow: scroll;
+}
+.exampleIcon{
+	font-size:25px;
+}
+.classExColor{
+	height: 34px;
+    width: 34px;
+	background:white;
+	margin-left:3px;
+}
+.textColor{
+	float:left;
+	width:200px;
+}
+.exColor{
+	float:left;
+	width:50px;
+}

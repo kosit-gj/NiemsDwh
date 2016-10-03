@@ -1,5 +1,7 @@
+<!-- <script src="js/jqeuryMD5.js"> </script> -->
 <script src="Controller/funcitonGolbal.js"></script>
 <script src="Controller/cUser.js"> </script>
+
 
 <link href="css/user.css" rel="stylesheet">
 
@@ -30,15 +32,15 @@
 	                    <div class="row searchArea">
 							<div class="col-lg-6">
 								<div class='searchInput'>
-								<input type="text" name="search" id="searchInput" >
+								<input type="text" name="search" class='form-control' placeholder="Search" id="searchInput" >
 								</div>
 								<div class='searchBtn'>
-								<button class="btnSearch" id="btnSearch">Search</button>
+								<button class=" btn btn-white" >Search</button>
 								</div>
 							</div>
 							
 							<div class="col-lg-2 col-lg-offset-4 addUserBtn">
-								 <button id="manageUser" data-target="#userModal" data-toggle="modal" class="btnCustom  " type="button">
+								 <button id="manageUser" data-target="#userModal" data-toggle="modal" class="btnCustom btn btn-primary " type="button">
  												Add user
 									</button>
 							</div>
@@ -50,7 +52,7 @@
 				                    <col style="width:2%"/>
 				                    <col style="width:10%"/>
 				                    <col style="width:10%"/>
-				                    <col style="width:5%"/>
+				                    <col style="width:3%"/>
 				                    <col style="width:5%"/>
 				                    <col  style="width:5%"/>
 				                    <col style="width:5%"/>
@@ -62,12 +64,12 @@
 	                            <thead>
 	                            <tr>
 	                                <th data-field="field1"><b>#</b></th>
-	                                <th data-field="field2"><b>Fist name</b></th>
-	                                <th data-field="field3"><b>Last name</b></th>
+	                                <th data-field="field2"><b>First Name</b></th>
+	                                <th data-field="field3"><b>Last Name</b></th>
 	                                <th data-field="field4"><b>Status</b></th>
 	                                <th data-field="field5"><b>Role</b></th>
 	                                <th data-field="field6"><b>Province</b></th>
-	                                <th data-field="field7"><b>Action</b></th>
+	                                <th data-field="field7"><b><center>Action</center></b></th>
 	                            </tr>
 	                            </thead>
 	                            <tbody id="userDataContent">
@@ -161,18 +163,26 @@
 					            <!-- <p>Create account to see it in action.</p> -->
 					            <form class="form-horizontal" role="form" action="#">
 					                <div class="form-group">
-					                	<label class="col-lg-4 control-label">ชื่อผู้ใช้งาน<span style="color:red">*</span></label>
+					                	<label class="col-lg-4 control-label">เลขบัตรประชาชน<span style="color:red">*</span></label>
 					                    <div class="col-lg-8">
-					                    	<input type="text" id="user_name" class=" form-control" placeholder="ชื่อผู้ใช้งาน" >
+					                    	<input type="text" id="user_name" class=" form-control" placeholder="เลขบัตรประชาชน" >
 					                    </div>
 					                </div>
-					                <div class="form-group">
+					                  <div class="form-group resetPassArea">
+					                	<label class="col-lg-4 control-label">ตั้งรหัสผ่านใหม่<span style="color:red">*</span></label>
+					                    <div class="col-lg-8 objectLeft">
+					                    <input type="radio" class="resetPass" id="resetPassN"  name="resetPass" checked class="form-control" value='N'><span class='radioStyle'>ปิด</span>
+					                    <input type="radio" class="resetPass" id="resetPassY" name="resetPass" class="form-control" value='Y'><span class='radioStyle'>เปิด</span>
+					                    </div>
+					                </div>
+					                
+					                <div class="form-group resetPassword">
 					                	<label class="col-lg-4 control-label">รหัสผ่าน<span style="color:red">*</span></label>
 					                    <div class="col-lg-8">
 					                    <input type="password" id="password" class="form-control" placeholder="รหัสผ่าน" >
 					                    </div>
 					                </div>
-					                <div class="form-group">
+					                <div class="form-group resetPassword">
 					                	<label class="col-lg-4 control-label">ยืนยันรหัสผ่าน<span style="color:red">*</span></label>
 					                    <div class="col-lg-8">
 					                    <input type="password" id="confirm_password" class="form-control" placeholder="ยืนยันรหัสผ่าน" >
@@ -201,18 +211,34 @@
 					                    </div>
 					                </div>
 					                <div class="form-group">
-					                	<label class="col-lg-4 control-label">นามสกุล</label>
+					                	<label class="col-lg-4 control-label">นามสกุล<span style="color:red">*</span></label>
 					                    <div class="col-lg-8">
 					                    <input id="last_name" type="text" class="form-control" placeholder="นามสกุล" >
 					                    </div>
 					                </div>
-					                <div class="form-group">
+					                
+					                 <div class="form-group">
+					                	<label class="col-lg-4 control-label">ตำแหน่ง</label>
+					                    <div class="col-lg-8">
+					                    <input id="position" type="text" class="form-control" placeholder="ตำแหน่ง" >
+					                    </div>
+					                </div>
+					                
+					                 <div class="form-group">
 					               		 <label class="col-lg-4 control-label">อีเมลล์<span style="color:red">*</span></label>
 					                    <div class="col-lg-8">
 					                    <input id="email" type="text" class="form-control" placeholder="อีเมลล์" >
 					                    </div>
 					                </div>
 					                
+					                  <div class="form-group">
+					                	<label class="col-lg-4 control-label">หน่วยงานที่สังกัด</label>
+					                    <div class="col-lg-8">
+					                    <input id="organization" type="text" class="form-control" placeholder="หน่วยงานที่สังกัด" >
+					                    </div>
+					                </div>
+					                
+					                 
 					                <div class="form-group">
 					                	<label class="col-lg-4 control-label">จังหวัด</label>
 					                    <div class="col-lg-8" id="provinceArea">
@@ -224,19 +250,20 @@
 					                    </div>
 					                </div>
 					                
+					                 
 					                <div class="form-group">
-					                	<label class="col-lg-4 control-label">หน่วยงานที่สังกัด</label>
+					               		 <label class="col-lg-4 control-label">เบอร์โทร<span style="color:red">*</span></label>
 					                    <div class="col-lg-8">
-					                    <input id="organization" type="text" class="form-control" placeholder="หน่วยงานที่สังกัด" >
+					                    <input id="tel" type="text" class="form-control" placeholder="เบอร์โทร" >
 					                    </div>
 					                </div>
 					                
-					                <div class="form-group">
-					                	<label class="col-lg-4 control-label">ตำแหน่ง</label>
-					                    <div class="col-lg-8">
-					                    <input id="position" type="text" class="form-control" placeholder="ตำแหน่ง" >
-					                    </div>
-					                </div>
+					                
+					               
+					               
+					                
+					              
+					               
 					                
 					                <div class="form-group">
 					                	<label class="col-lg-4 control-label">Role</label>
@@ -248,9 +275,9 @@
 					                
 					                  <div class="form-group">
 					                	<label class="col-lg-4 control-label">สถานะ</label>
-					                    <div class="col-lg-8" id="statusArea">
-					                   		<input class ="status"  name="status" type="radio" checked="checked" value="Y">เปิดใช้งาน
-					                   		<input class ="status" name="status" type="radio" value="N">ปิดใช้งาน
+					                    <div class="col-lg-8 objectLeft" id="statusArea ">
+					                   		<input class ="status "  name="status" type="radio" checked="checked" value="Y"><span class='radioStyle'>เปิดใช้งาน</span>
+					                   		<input class ="status " name="status" type="radio" value="N"><span class='radioStyle'>ปิดใช้งาน</span>
 					                    </div>
 					                </div>
 					                

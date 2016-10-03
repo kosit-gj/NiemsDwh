@@ -84,6 +84,9 @@ $(document).ready(function(){
          //filterable: true,
          pageable: true,
          scrollable: false,
+         dataSource: {
+             pageSize: 10
+         }
        /*
          schema: {
              model: {
@@ -101,7 +104,7 @@ $(document).ready(function(){
          */
      });
 	 
-	 $(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});
+	// $(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});
 	 
 	
 	 $(".date").datepicker({
@@ -121,8 +124,6 @@ $(document).ready(function(){
 	 
 	 //search start
 	 
-	 
 	
-	 
 	 
 });

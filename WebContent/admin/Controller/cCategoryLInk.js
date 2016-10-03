@@ -2,8 +2,10 @@ var insertcateLinkFn = function(){
 	if(vaidationcateLink()==true){
 		
 		var cate_name=$("#cate_name").val();
-		var cate_type_id= $("#embedCateTypeId").val();
-		var cate_icon=$("#cate_icon").val();
+		var cate_type_id= $("#listCateLink").val();
+		var cate_icon=$("#cate_icon i").attr('class');
+
+		var cate_icon_bg=$("#cate_icon_bg").val();
 		var ineligible=$('input[name="ineligible"]:checked').val();
 		/*
 		alert(cate_name);
@@ -47,6 +49,7 @@ var insertcateLinkFn = function(){
 							data:{
 								"cate_name":cate_name,
 								"cate_icon":cate_icon,
+								"cate_icon_bg":cate_icon_bg,
 								"ineligible":ineligible,
 								"cate_type_id":cate_type_id,
 								},
@@ -90,7 +93,7 @@ var listData = function(data){
 				
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
-					htmlDataContent+="<td>"+indexEntry[7]+" </td>";
+					htmlDataContent+="<td>"+indexEntry[8]+" </td>";
 					htmlDataContent+="<td>"+indexEntry[1]+" </td>";
 					if(indexEntry[3]=="Y"){
 						htmlDataContent+="<td><center> <img width=\"20\" src=\"img/button-turn-on.jpg\"></center></td>";
@@ -101,7 +104,7 @@ var listData = function(data){
 					}
 					
 					
-					htmlDataContent+="<td > <button class=\"btn btn-warning btn-xs editcateLink \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delcateLink\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></td>";
+					htmlDataContent+="<td ><center> <button class=\"btn btn-warning btn-xs editcateLink \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delcateLink\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></center></td>";
 				htmlDataContent+="</tr>";
 			});
 			$("#cateLinkDataArea").html(htmlDataContent);
@@ -146,6 +149,18 @@ var listData = function(data){
 				});
 				//binding action end
 				
+				//binding action color picker 
+				$(function() { $('#cate_icon_bg_action').colorpicker(); });
+				
+				//GET ICON START
+				$(".getIcon").off("click");
+				$(".getIcon").on("click",function(){
+					console.log($("i",this).attr('class'));
+					$("#cate_icon").html("<i class=\""+$("i",this).attr('class')+"\"></i>");
+				});
+				
+				//GET ICON END
+				
 			});
 			//action binding end
 	
@@ -183,16 +198,24 @@ var clearcateLinkForm = function(){
 	
 }
 var vaidationcateLink = function(){
+	
 	var txtArert="";
 	
-	if($("#cate_link_name").val()==""){
-		txtArert+="Cate link name ห้ามเป็นค่าว่าง\n";
+	
+	if($("#listCateLink").val()=="All"){
+		txtArert+="โปรดเลือก Category Link\n";
 	}
+	if($("#cate_name").val()==""){
+		txtArert+="Cate link name  ห้ามเป็นค่าว่าง\n";
+	}
+	
 	
 	if(txtArert!=""){
 		alert(txtArert);
+	
 		return false
 	}else{
+	
 		return true;
 	}
 	
@@ -224,22 +247,24 @@ var ineligibleFn = function(status){
 	var ineligibleHTML="";
 	
 	if(status=="H"){
-	
-		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"H\">ซ่อนเมนู";
-		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"N\">แสดงเมนู(คลิกไม่ได้)";
-		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"Y\">แสดงเมนู";
+		
+		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"Y\">แสดง Link Category <br>";
+		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"H\">ซ่อน Link Category <br>";
+		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"N\">แสดง Link Category(คลิกไม่ได้) <br>";
+		
 
 	}else if(status=="Y"){
-	
-		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\"  value=\"H\">ซ่อนเมนู";
-		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"N\">แสดงเมนู(คลิกไม่ได้)";
-		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"Y\">แสดงเมนู";
+		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"Y\">แสดง Link Category <br>";
+		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\"  value=\"H\">ซ่อน Link Category <br>";
+		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"N\">แสดง Link Category(คลิกไม่ได้) <br>";
+		
 	
 	}else if(status=="N"){
-
-		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\"  value=\"H\">ซ่อนเมนู";
-		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"N\">แสดงเมนู(คลิกไม่ได้)";
-		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"Y\">แสดงเมนู";
+		
+		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" value=\"Y\">แสดง Link Category <br>";
+		ineligibleHTML+="<input class =\"ineligible\"  name=\"ineligible\" type=\"radio\"  value=\"H\">ซ่อน Link Category <br>";
+		ineligibleHTML+="<input class =\"ineligible\" name=\"ineligible\" type=\"radio\" checked=\"checked\" value=\"N\">แสดง Link Category(คลิกไม่ได้) <br>";
+		
 
 	}
 	
@@ -260,6 +285,13 @@ var findData = function(id){
 		
 			
 			$("#cate_name").val(data[0][1]);
+			//$("#cate_icon").val(data[0][1]);
+			$("#cate_icon").html("<i class=\""+data[0][2]+"\"></i>");
+			
+			//var cate_type_id= $("#listCateLink").val();
+			listCateType(data[0][4]);
+			$("#cate_icon_bg").val(data[0][5]);
+			
 			ineligibleFn(data[0][3]);
 
 			
@@ -277,8 +309,12 @@ var updateData = function(){
 
 		
 		var cate_name=$("#cate_name").val();
-		var cate_type_id= $("#embedCateTypeId").val();
-		var cate_icon=$("#cate_icon").val();
+		
+		var cate_type_id= $("#listCateLink").val();
+		var cate_icon=$("#cate_icon i").attr('class');
+		
+
+		var cate_icon_bg=$("#cate_icon_bg").val();
 		var ineligible=$('input[name="ineligible"]:checked').val();
 		var cate_link_id=$("#cate_link_id").val();
 		
@@ -300,6 +336,7 @@ var updateData = function(){
 					
 					"cate_name":cate_name,
 					"cate_icon":cate_icon,
+					"cate_icon_bg":cate_icon_bg,
 					"ineligible":ineligible,
 					"cate_type_id":cate_type_id,
 					"cate_link_id":cate_link_id
@@ -330,37 +367,48 @@ var updateData = function(){
 };
 var listCateLinkByCateType = function(cate_type_id){
 	//http://192.168.1.49:8082/niems/Model/portal_link/select_cate_link_by_cate_tpe.jsp?callback=?&cate_type_id=1
-	$.ajax({
-		url:golbalURL+"/niems/Model/portal_link/select_cate_link_by_cate_tpe.jsp",
-		type:"post",
-		dataType:"json",
-		data:{"cate_type_id":cate_type_id},
-		success:function(data){
-			
-			listData(data);
+	
+	if(cate_type_id=="All"){
 		
-		}
-	});
+		listDataAll();
+		
+	}else{
+		$.ajax({
+			url:golbalURL+"/niems/Model/portal_link/select_cate_link_by_cate_tpe.jsp",
+			type:"post",
+			dataType:"json",
+			data:{"cate_type_id":cate_type_id},
+			success:function(data){
+				
+				listData(data);
+			
+			}
+		});
+	}
 }
-var listCateType = function(){
+var listCateType = function(cateTypeId){
 	$.ajax({
 		url:golbalURL+"/niems/Model/category_type/selectAll.jsp",
 		type:"post",
 		dataType:"json",
 		success:function(data){
 			var selectHTML="";
-			selectHTML+="<select style='width:200px;' id=\"listCateLink\" class=\"btnCustom\">";
+			selectHTML+="<select style='width:100%;' id=\"listCateLink\" class=\"btnCustom form-control\">";
 		
-				
+					selectHTML+="<option value='All'>เลือก Type Category </option>";
 				$.each(data,function(index,indexEntry){
-					selectHTML+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+					if(indexEntry[0]==cateTypeId){
+						selectHTML+="<option selected='selected' value="+indexEntry[0]+">"+indexEntry[1]+"</option>";	
+					}else{
+						selectHTML+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+					}
 				});
 				
 			selectHTML+="</select>";
 			
 			$("#listCateLinkArea").html(selectHTML);
 			//list cate link start
-			
+			/*
 			$("#listCateLink").change(function(){
 				//alert($(this).val());
 				listCateLinkByCateType($(this).val());
@@ -369,6 +417,38 @@ var listCateType = function(){
 				$("body").append(paramHtml);
 			});
 			$("#listCateLink").change();
+			*/
+		//list cate link end
+		}
+	});
+}
+var listCateTypeFilterFn = function(){
+	$.ajax({
+		url:golbalURL+"/niems/Model/category_type/selectAll.jsp",
+		type:"post",
+		dataType:"json",
+		success:function(data){
+			var selectHTML="";
+			selectHTML+="<select style='width:200px;' id=\"listCateLinkFilter\" class=\"btnCustom form-control\">";
+		
+				selectHTML+="<option value=\"All\">All Type Category</option>";
+				$.each(data,function(index,indexEntry){
+					selectHTML+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+				});
+				
+			selectHTML+="</select>";
+			
+			$("#listCateLinkFilterArea").html(selectHTML);
+			//list cate link start
+			
+			$("#listCateLinkFilter").change(function(){
+				//alert($(this).val());
+				listCateLinkByCateType($(this).val());
+				$("#embedCateTypeFilterId").remove();
+				var paramHtml="<input type='hidden' calass='paramEmbed' id='embedCateTypeFilterId' name='embedCateTypeFilterId' value='"+$(this).val()+"'>";
+				$("body").append(paramHtml);
+			});
+			$("#listCateLinkFilter").change();
 		//list cate link end
 		}
 	});
@@ -379,13 +459,7 @@ var clearCateLinkForm = function(){
 	$("#action").val("add");
 }
 $(document).ready(function(){
-	var abc = function(){
-		alert("tesr");
-	};
 	
-	var insertcateLinkFn2 = function(){
-		alert("test2");
-	}
 	
 	//$("#userTable").DataTable();
 	$("#cateLinkTable").kendoGrid({
@@ -397,6 +471,9 @@ $(document).ready(function(){
             refresh: true,
             pageSizes: true,	
             buttonCount: 5
+        }, 
+        dataSource: {
+            pageSize: 10
         }
 	});
 	$(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});
@@ -409,7 +486,7 @@ $(document).ready(function(){
 	//Link All End
 	
 	//list cate link start
-	listCateType();
+	listCateTypeFilterFn();
 	//list cate link end
 	
 	
@@ -426,6 +503,7 @@ $(document).ready(function(){
 	$("#manageCateLink").click(function(){
 
 		clearCateLinkForm();
+		listCateType($("#embedCateTypeFilterId").val());
 		
 		$("#btnSubmit").off("click");
 		$("#btnSubmit").on("click",function(){
@@ -446,7 +524,20 @@ $(document).ready(function(){
 			clearCateLinkForm();
 		});
 		
+		//GET ICON START
+		$(".getIcon").off("click");
+		$(".getIcon").on("click",function(){
+			console.log($("i",this).attr('class'));
+			$("#cate_icon").html("<i class=\""+$("i",this).attr('class')+"\"></i>");
+		});
 		
+		//GET ICON END
+		
+		//binding action color picker start
+		//$("#cate_bg").colorpicker();
+		
+		//binding action color picker 
+		$(function() { $('#cate_icon_bg_action').colorpicker(); });
 	});
 	//manage cateType end
 	

@@ -78,7 +78,7 @@ var listDataAll = function(keyword){
 					htmlDataContent+="<td>"+(index+1)+"</td>";
 					htmlDataContent+="<td>"+indexEntry[1]+" </td>";
 					
-					htmlDataContent+="<td > <button class=\"btn btn-warning btn-xs editCateType \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delCateType\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></td>";
+					htmlDataContent+="<td > <center><button class=\"btn btn-warning btn-xs editCateType \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delCateType\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></cente></td>";
 				htmlDataContent+="</tr>";
 			});
 			$("#cateTypeDataArea").html(htmlDataContent);
@@ -236,6 +236,9 @@ $(document).ready(function(){
             refresh: true,
             pageSizes: true,
             buttonCount: 5
+        },
+        dataSource: {
+            pageSize: 10
         }
 	});
 	$(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});

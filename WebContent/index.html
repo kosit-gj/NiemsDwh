@@ -27,19 +27,34 @@
 
             </div>
             <h3>ยินดีตอนรับสู่ระบบคลังข้อมูล </h3>
-            <p>กรุณากรอกเหตุผลในการเข้าใช้งานระบบคลังขอมูลของสพฉ.เพื่อเป็นแนวทางในการพัฒนาและปรับปรุงการให้บริการให้ดียิงขึ้นต่อไป.
+            <p>กรุณาระบุเหตุผลในการเข้าใช้งานระบบคลังขอมูลของสพฉ.<br>เพื่อเป็นแนวทางในการพัฒนาและปรับปรุงการให้บริการให้ดียิงขึ้นต่อไป
                 <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
             </p>
             <!-- <p>Login in. To see it in action.</p> -->
             <form class="m-t" role="form" action="index.html">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="user_name"  placeholder="รหัสบัตรประชาชน" required="">
+                    <input type="text" class="form-control" id="user_name"  placeholder="ชื่อผู้ใช้งาน" required="">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" placeholder="รหัสผ่าน" required="">
                 </div>
+                
                  <div class="form-group">
-                    <textarea class="form-control" id="reason" cols="5" style='height:150px' placeholder="เหตุผลการขอใช้บริการ" required="" ></textarea>
+                    <select class="form-control" id="listReason">
+                    
+                    	<option selected>เลือกเหตุผลการขอใช้บริการ</option>
+						<option value="reason1">เสนอผู้บริหารในจังหวัด</option>
+						<option value="reason2">วางแผนพัฒนาในจังหวัด</option>
+						<option value="reason3">ดูรายงาน</option>
+						<option value="reason4">งานวิจัย</option>
+						<option value="reason5">เพื่อการตัดสินใจ อื่นๆ</option>
+                    	
+                    </select>
+                </div>
+                
+                
+                 <div class="form-group textareaReason"   style="display:none;">
+                    <textarea class="form-control" id="reason" cols="5" style='height:150px' placeholder="เหตุผลที่ขอใช้บริการ" required="" ></textarea>
                 </div>
                 <button type="submit" id='btn_submit' class="btn btn-primary block full-width m-b">ลงชื่อเข้าใช้งาน</button>
 

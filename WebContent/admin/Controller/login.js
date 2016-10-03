@@ -40,6 +40,13 @@ var vaidationLogin = function(){
 
 $(document).ready(function(){
 	
+	$("#listReason").click(function(){
+		if($(this).val()=="reason5"){
+			$(".textareaReason").show();
+		}else{
+			$(".textareaReason").hide();
+		}
+	});
 	
 	function updateUserItemInDWH(rsData,user_name,password){
 		/*

@@ -18,7 +18,7 @@ var genHTMLGirdContent = function(gridName){
 			//htmldataContent+="<th data-field=\"Field0\"></th>";
 			//htmldataContent+="<th data-field=\"Field1\"><b>#</b></th>";
 			htmldataContent+="<th data-field=\"Field2\"><b>Link</b></th>";
-			htmldataContent+="<th data-field=\"Field3\"><b>Assign</b></th>";
+			htmldataContent+="<th data-field=\"Field3\"><b>Assign <input type='checkbox' name='assignLinkAll' id='assignLinkAll'></b></th>";
 			
 		htmldataContent+="</tr>";
 	htmldataContent+="</thead>";
@@ -99,11 +99,17 @@ var listCateLink = function(){
 			// [["1", "Admin", "2016-09-14 14:30:55.0", "2559-09-19 18:57:56.0"]]
 			var dataJson="";
 			dataJson+="[";
+		/*
+		 <input type='checkbox' name='assignALl' id='assignAll'>
+		 */
+		
 			$.each(data,function(index,indexEntry){
 				
 				if(index==0){
 					
+					
 					dataJson+="{";
+					
 					
 					dataJson+="FieldCateLinkId:\""+indexEntry[0]+"\",";
 					//dataJson+="Field1:\""+(index+1)+"\",";
@@ -308,7 +314,7 @@ var listData = function(data){
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
 					htmlDataContent+="<td>"+indexEntry[1]+" </td>";
-					htmlDataContent+="<td > <button data-target=\"#asignLink\"  data-toggle=\"modal\" id=\"assignRoleID-"+indexEntry[0]+"\"  class=\"btn btn-primary btn-xs assignLink\" type=\"button\">Assign link</button> <button class=\"btn btn-warning btn-xs editRole \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delRole\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></td>";
+					htmlDataContent+="<td ><center> <button data-target=\"#asignLink\"  data-toggle=\"modal\" id=\"assignRoleID-"+indexEntry[0]+"\"  class=\"btn btn-primary btn-xs assignLink\" type=\"button\">Assign link</button> <button class=\"btn btn-warning btn-xs editRole \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delRole\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></center></td>";
 				htmlDataContent+="</tr>";
 			});
 			$("#roleDataArea").html(htmlDataContent);
@@ -427,6 +433,7 @@ var listData = function(data){
 					
 					
 				//submit Form Start
+					$("#btnAssignSubmit").off("click");
 					$("#btnAssignSubmit").on("click",function(){
 						
 						//alert("Submit now!!");
@@ -633,6 +640,9 @@ $(document).ready(function(){
             refresh: true,
             pageSizes: true,	
             buttonCount: 5
+        },
+        dataSource: {
+            pageSize: 10
         }
 	});
 	$(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});

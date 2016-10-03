@@ -8110,6 +8110,7 @@ body.md-skin {
   .searchInput{
 	float:left;
 	width:187px;
+	padding-right: 3px;
 }
 .searchBtn{
 	float:left;
@@ -8141,5 +8142,20 @@ body.md-skin {
 }
 .modal-body {
     padding: 10px;
+}
+.objectRight{
+	text-align:right;
+}
+.objectLeft{
+	text-align:left;
+}
+.searchBtn {
+    float: left;
+    margin-left: 3px;
+    width: 100px;
+}
+.radioStyle{
+	padding-left:2px;
+	padding-right:5px;
 }
 /*custom css end*/
