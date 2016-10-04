@@ -314,7 +314,11 @@ var listData = function(data){
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
 					htmlDataContent+="<td>"+indexEntry[1]+" </td>";
-					htmlDataContent+="<td ><center> <button data-target=\"#asignLink\"  data-toggle=\"modal\" id=\"assignRoleID-"+indexEntry[0]+"\"  class=\"btn btn-primary btn-xs assignLink\" type=\"button\">Assign link</button> <button class=\"btn btn-warning btn-xs editRole \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delRole\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></center></td>";
+					if(indexEntry[0]=="1" || indexEntry[0]=="2" || indexEntry[0]=="3"){
+						htmlDataContent+="<td ><center> <button data-target=\"#asignLink\"  data-toggle=\"modal\" id=\"assignRoleID-"+indexEntry[0]+"\"  class=\"btn btn-primary btn-xs assignLink\" type=\"button\">Assign link</button></center></td>";
+					}else{
+						htmlDataContent+="<td ><center> <button data-target=\"#asignLink\"  data-toggle=\"modal\" id=\"assignRoleID-"+indexEntry[0]+"\"  class=\"btn btn-primary btn-xs assignLink\" type=\"button\">Assign link</button> <button class=\"btn btn-warning btn-xs editRole \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delRole\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></center></td>";
+					}
 				htmlDataContent+="</tr>";
 			});
 			$("#roleDataArea").html(htmlDataContent);
@@ -399,6 +403,23 @@ var listData = function(data){
 				});
 			
 				$(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});
+				
+				
+				//assign all,none assign all start
+				
+					$('#assignLinkAll').change(function(){
+						if($(this).is( ':checked' )){
+							//alert("1");
+							$(".checkboxAsignLink").prop("checked",true);
+						}else{
+							//alert("0");
+							$(".checkboxAsignLink").prop("checked",false);
+						}
+					});
+				//assign all,none assign all end
+				
+				
+				
 				$("#assign_role_id").val(id);
 				
 				//binding action on grid start
@@ -437,11 +458,14 @@ var listData = function(data){
 					$("#btnAssignSubmit").on("click",function(){
 						
 						//alert("Submit now!!");
-						console.log(showSelectedValues());
-						console.log($("#assign_role_id").val());
+						//console.log(showSelectedValues());
+						//console.log($("#assign_role_id").val());
 						
 						assignLinkToRoleFn($("#assign_role_id").val(),""+showSelectedValues()+"");
 						//console.log(showSelectedValues());
+						
+						
+						
 						
 						
 						
@@ -671,6 +695,8 @@ $(document).ready(function(){
 		});
 		
 		
+		
+		
 	});
 	//manage cateType end
 	//search start 
@@ -681,4 +707,6 @@ $(document).ready(function(){
 		
 	});
 	//search end
+	
+	
 });

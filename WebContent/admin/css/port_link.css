@@ -107,6 +107,7 @@ body{
 .panelDisable{
 	background:#dddddd;
 	cursor:default;
+	z-index:99;
 }
 .panelShow{
 	display:'';
@@ -121,7 +122,7 @@ body{
 }
 .ibox-title{
 	 background: #d7e9f0 none repeat scroll 0 0;
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 5px 5px;
     font-size: 18px;
     height: 68px;
     padding-top: 10px;
@@ -129,4 +130,13 @@ body{
 .titleClicked{
 	background:#1157ad none repeat scroll 0 0;
 	color:white;
+	 border-radius: 5px 5px 0px 0px;
+}
+.fontWhite{
+	
+	color:white;
+}
+.fontBlue{
+	color:#1157ad;
+
 }

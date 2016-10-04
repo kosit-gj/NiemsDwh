@@ -107,7 +107,7 @@ var listDataAll = function(keyword){
 				//binding action start
 				$("#btnSubmit").off("click");
 				$("#btnSubmit").on("click",function(){
-					alert("submit");
+					
 					if($("#action").val()=="add"){
 						insertUserFn();
 					}else{

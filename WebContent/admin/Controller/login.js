@@ -21,9 +21,15 @@ var vaidationLogin = function(){
 	if($("#password").val()==""){
 		txtArert+=" password ห้ามเป็นค่าว่าง\n";
 	}
-	if($("#reason").val()==""){
-		txtArert+=" reason ห้ามเป็นค่าว่าง\n";
+	if($("#listReason").val()=="All"){
+		txtArert+=" เลือกเหตุผลการขอใช้บริการด้วยครับ\n";
 	}
+	if($("#listReason").val()=="reason5"){
+		if($("#reason").val()==""){
+			txtArert+=" reason ห้ามเป็นค่าว่าง\n";
+		}
+	}
+	
 	
 	
 	
@@ -76,7 +82,7 @@ $(document).ready(function(){
 		var role_id="2";
 		
 		$.ajax({
-			url:golbalURL+"/niems/Model/user/update.jsp",
+			url:golbalURL+"/niems/Model/user/update_by_user_items.jsp",
 			type:"get",
 			dataType:"json",
 			async:false,
@@ -84,9 +90,9 @@ $(document).ready(function(){
 				"user_name":user_name,"password":password,
 				"prefix":prefix,"first_name":first_name,
 				"last_name":last_name,"email":email,
-				"province":province,"status":status,
-				"position":position,"organization":organization,
-				"user_items":"Y","role_id":"2"
+				"province":province,
+				"position":position,"organization":organization
+				//"user_items":"Y","role_id":"2","status":status
 				
 			},
 			success:function(data){
@@ -275,7 +281,13 @@ $(document).ready(function(){
 								localStorage.setItem('role_id','2');
 								localStorage.setItem('role_name','Super user');
 								setTimeout(function(){
-									$( location ).attr("href", "portal_link.html");
+									if(rsData2[7]=="Y"){
+										$( location ).attr("href", "portal_link.html");
+									}else{
+										alert("รหัสผู้ใช้งานนี้ถูกระงับการใช้งาน");
+										return false;
+										$( location ).attr("href", "./index.html");
+									}
 								});
 								
 								
@@ -293,7 +305,9 @@ $(document).ready(function(){
 								localStorage.setItem('role_name','Super user');
 								
 								setTimeout(function(){
+									
 									$( location ).attr("href", "portal_link.html");
+									
 								});
 								//$( location ).attr("href", "admin/index.html");
 							}	
@@ -351,7 +365,7 @@ $(document).ready(function(){
 					var organization= rsData[0][8]
 					var user_items=rsData[0][9];
 					var role_id=rsData[0][10];
-					var role_name=rsData[0][13];
+					var role_name=rsData[0][14];
 					/*
 					console.log(user_name);
 					console.log(prefix);
@@ -372,8 +386,15 @@ $(document).ready(function(){
 					localStorage.setItem('role_name',role_name);
 					
 					//DefineSession End
-
-					$( location ).attr("href", "./portal_link.html");
+					if(localStorage.getItem('status')=="Y"){
+						$( location ).attr("href", "./portal_link.html");
+					}else{
+						
+						alert("รหัสผู้ใช้งานนี้ถูกระงับการใช้งาน");
+						return false;
+						
+						$( location ).attr("href", "./index.html");
+					}
 					
 					
 					/*
@@ -421,7 +442,20 @@ $(document).ready(function(){
 		console.log("step 1");
 		var user_name=$("#user_name").val();
 		var password=$("#password").val();
-		var reason=$("#reason").val();
+		var reason="";
+		
+		
+		if($("#listReason").val()=="reason1"){
+			reason="เสนอผู้บริหารในจังหวัด";
+		}else if($("#listReason").val()=="reason2"){
+			reason="วางแผนพัฒนาในจังหวัด";
+		}else if($("#listReason").val()=="reason3"){
+			reason="ดูรายงาน";
+		}else if($("#listReason").val()=="reason4"){
+			reason="งานวิจัย";
+		}else if($("#listReason").val()=="reason5"){
+			reason=$("#reason").val();
+		}
 		
 		
 		
@@ -431,7 +465,9 @@ $(document).ready(function(){
 		localStorage.setItem('reason',reason);
 	
 		
+		
 		if(vaidationLogin()){
+			
 			//vaidationLogin
 			var appid="dwh";
 			var key="dwh12345";

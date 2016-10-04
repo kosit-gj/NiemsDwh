@@ -1,3 +1,43 @@
+function convestToYearTH(date){
+	var yyyy="";
+	var mm="";
+	var dd="";
+	var dateConvest="";
+	
+	var date=date.split("/");
+	yyyy=(parseInt(date[0])+543);
+	mm=date[1];
+	dd=date[2];
+	dateConvest=yyyy+"/"+mm+"/"+dd;
+	return dateConvest;
+	
+}
+
+function validateTel(phoneno){
+	 
+	 
+	 if (/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/.test(phoneno))  
+	  {  
+	    return (true)  
+	  }  
+	    
+	    return (false)  
+	    
+	    
+}
+
+
+
+
+function ValidateEmail(mail)   
+{  
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))  
+  {  
+    return (true)  
+  }  
+    
+    return (false)  
+} 
 var manageGridFn = function(){
 	 $(".k-grid td").css({"padding":"0px","padding-left":"3px","padding-right":"3px"});
 };
@@ -224,6 +264,10 @@ var vaidation = function(){
 		}
 		if($("#confirm_password").val()==""){
 			txtArert+="ยืนยันรหัสผ่านห้ามเป็นค่าว่าง\n";
+			
+		}
+		if($("#password").val().length<=4){
+			txtArert+="รหัสผ่านต้องมากกว่า 4 ตัวอักษร\n";
 		}
 		
 	}
@@ -231,10 +275,28 @@ var vaidation = function(){
 	if($("#first_name").val()==""){
 		txtArert+="ชื่อห้ามเป็นค่าว่าง\n";
 	}
+	if($("#last_name").val()==""){
+		txtArert+="นามสกุลห้ามเป็นค่าว่าง\n";
+	}
+	
 	
 	if($("#email").val()==""){
 		txtArert+="อีเมลล์ห้ามเป็นค่าว่าง\n";
 	}
+	if(ValidateEmail($("#email").val())==false){
+		txtArert+="อีเมลล์ไม่ถูกต้อง\n";
+	}
+	
+	if($("#tel").val()==""){
+		txtArert+="เบอร์โทรห้ามเป็นค่าว่าง\n";
+	}
+	if(validateTel($("#tel").val())==false){
+		txtArert+="เบอร์โทรไม่ถูกต้อง\n";
+	}
+	
+	
+	
+	
 	
 	if(txtArert!=""){
 		alert(txtArert);

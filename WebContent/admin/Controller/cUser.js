@@ -30,13 +30,14 @@ var listDataAll = function(keyword){
 					htmlDataContent+="<td>"+(index+1)+"</td>";
 					htmlDataContent+="<td>"+indexEntry[2]+" </td>";
 					htmlDataContent+="<td>"+indexEntry[3]+"</td>";
+					
+					htmlDataContent+="<td>"+indexEntry[14]+"</td>";
+					htmlDataContent+="<td>"+indexEntry[5]+"</td>";
 					if(indexEntry[6]=="Y"){
 						htmlDataContent+="<td><center><img src=\"img/button-turn-on.jpg\" width=\"20\"></center></td>";
 					}else{
 						htmlDataContent+="<td><center><img src=\"img/button-turn-off.jpg\" width=\"20\"></center></td>";
 					}
-					htmlDataContent+="<td>"+indexEntry[13]+"</td>";
-					htmlDataContent+="<td>"+indexEntry[5]+"</td>";
 					htmlDataContent+="<td ><center> <button class=\"btn btn-warning btn-xs editUser \"  id=\"edit-"+indexEntry[0]+"\" type=\"button\">Edit</button> <button class=\"btn btn-danger btn-xs delUser\" id=\"del-"+indexEntry[0]+"\" type=\"button\">Del</button></center></td>";
 				htmlDataContent+="</tr>";
 			});
@@ -168,6 +169,7 @@ var findData = function(id){
 			$("#first_name").val(data[0][3]);
 			$("#last_name").val(data[0][4]);
 			$("#email").val(data[0][5]);
+			$("#tel").val(data[0][14]);
 			//$("#province").val(data[0][6]);
 			listProvince(data[0][6]);
 			$("#organization").val(data[0][9]);
@@ -207,6 +209,7 @@ http://192.168.1.49:8082/niems/Model/user/update.jsp
 		var first_name=$("#first_name").val();
 		var last_name=$("#last_name").val();
 		var email=$("#email").val();
+		var tel=$("#tel").val();
 		var province=$("#province").val();
 		var status=$('input[name="status"]:checked').val();
 		
@@ -228,6 +231,7 @@ http://192.168.1.49:8082/niems/Model/user/update.jsp
 				"first_name":first_name,
 				"last_name":last_name,
 				"email":email,
+				"tel":tel,
 				"province":province,
 				"status":status,
 				"position":position,
@@ -277,6 +281,7 @@ var insertUserFn= function(){
 		var first_name=$("#first_name").val();
 		var last_name=$("#last_name").val();
 		var email=$("#email").val();
+		var tel=$("#tel").val();
 		var province=$("#province").val();
 		var status="Y";
 		var position=$("#position").val();
@@ -314,6 +319,7 @@ var insertUserFn= function(){
 								"first_name":first_name,
 								"last_name":last_name,
 								"email":email,
+								"tel":tel,
 								"province":province,
 								"status":status,
 								"position":position,

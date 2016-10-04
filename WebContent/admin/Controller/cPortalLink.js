@@ -71,9 +71,17 @@ var listCateType = function(role_id){
 						displayPanel="panelShow";
 					}
 					
-						
-					cateTypeHTML+="<div class=\"col-lg-6\">";
-						cateTypeHTML+="<div class=\"ibox "+displayPanel+" panelCustom\">";
+					if(displayPanel!="panelDisable"){
+					cateTypeHTML+="<div class=\"col-lg-6  "+displayPanel+"\">";
+					}else{
+						cateTypeHTML+="<div class=\"col-lg-6 \">";	
+					}
+					
+					if(displayPanel=="panelDisable"){
+						cateTypeHTML+="<div class=\"ibox panelDisable panelCustom\">";
+					}else{
+						cateTypeHTML+="<div class=\"ibox panelCustom\">";
+					}
 						cateTypeHTML+="<div class=\"ibox-title \">";
 						if(indexEntry2[7]==null){
 							cateTypeHTML+="<h5><span    class=\"btn btn-circle "+bgIcon[index2]+"\">";
@@ -90,7 +98,7 @@ var listCateType = function(role_id){
 						cateTypeHTML+="<span class=\"contentCate\"> "+indexEntry2[1]+"</span></h5>";
 						cateTypeHTML+="<div class=\"ibox-tools\">";
 						cateTypeHTML+="<a class=\"collapse-link\">";
-						cateTypeHTML+="<i class=\"i fa fa-plus\"></i>";
+						cateTypeHTML+="<i class=\"i fa fa-plus fontBlue\"></i>";
 						cateTypeHTML+=" </a>";
 					               
 						cateTypeHTML+="</div>";
@@ -144,9 +152,10 @@ var listCateType = function(role_id){
 	        var button = $(this).find('.i');
 	        var content = ibox.find('div.ibox-content');
 	        content.slideToggle(200);
-	        button.toggleClass('fa-plus').toggleClass('fa-minus').css({"color":"white"});
+	        button.toggleClass('fa-plus').toggleClass('fa-minus')
+	        button.toggleClass('fontBlue').toggleClass('fontWhite');
 	        ibox.toggleClass('').toggleClass('border-bottom');
-	        $(this).toggleClass('titleClicked');
+	        $(this).toggleClass('').toggleClass('titleClicked');
 	        setTimeout(function () {
 	            ibox.resize();
 	            ibox.find('[id^=map-]').resize();

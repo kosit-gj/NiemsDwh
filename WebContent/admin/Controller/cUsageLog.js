@@ -1,3 +1,4 @@
+
 var searchDataFn= function(start_date,end_date,keyword){
 	
 	/*
@@ -35,7 +36,7 @@ var listData = function(data){
 					//htmlDataContent+="<td>"+indexEntry[9]+"</td>";
 					htmlDataContent+="<td>"+indexEntry[8]+"</td>";
 					htmlDataContent+="<td>"+indexEntry[1]+"</td>";
-					htmlDataContent+=" <td class=\"text-navy\"> "+indexEntry[4]+"</td>";
+					htmlDataContent+=" <td ><center> "+indexEntry[4]+"</center></td>";
 				htmlDataContent+="</tr>";
              
 				
@@ -67,8 +68,11 @@ $(document).ready(function(){
 	//SearchText
 	 $("#btnSearch").click(function(){
 		// alert("hello");
-		 searchDataFn( $("#fromDate").val(),$("#toDate").val(),$("#SearchText").val());
+		 //alert($("#fromDate").val());
+		 //alert(convestToYearTH("2016/10/10"));
+		 searchDataFn( convestToYearTH($("#fromDate").val()),convestToYearTH($("#toDate").val()),$("#SearchText").val());
 		 
+		 return false;
 	 });
 	 //search end
 	

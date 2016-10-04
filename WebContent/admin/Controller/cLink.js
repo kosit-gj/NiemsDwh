@@ -209,12 +209,21 @@ var insertLinkFn = function(){
 }
 var vaidationLink = function(){
 	var txtArert="";
-	
-	if($("#listCateLink").val()=="All"){
-		txtArert+=" โปรดเลือก Link Category\n";
-	}
-	if($("#link_name").val()==""){
-		txtArert+=" link name ห้ามเป็นค่าว่าง\n";
+	//alert($( ".link_type:checked" ).val());
+	if($(".link_type:checked" ).val()=="CUSTOM_LINK"){
+		if($("#listCateLink").val()=="All"){
+			txtArert+="โปรดเลือก Link Category\n";
+		}
+	}else{
+		if($("#listCateLink").val()=="All"){
+			txtArert+="โปรดเลือก Link Category\n";
+		}
+		if($("#link_name").val()==""){
+			txtArert+="Link Name ห้ามเป็นค่าว่าง\n";
+		}
+		if($("#link_url").val()==""){
+			txtArert+="Link URL ห้ามเป็นค่าว่าง\n";
+		}
 	}
 	
 	
@@ -281,8 +290,8 @@ var listData = function(data){
 				
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
-					htmlDataContent+="<td>"+indexEntry[8]+" </td>";
 					htmlDataContent+="<td>"+indexEntry[2]+" </td>";
+					htmlDataContent+="<td>"+indexEntry[8]+" </td>";
 					
 					
 					

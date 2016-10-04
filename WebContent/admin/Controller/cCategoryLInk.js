@@ -93,8 +93,8 @@ var listData = function(data){
 				
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
-					htmlDataContent+="<td>"+indexEntry[8]+" </td>";
 					htmlDataContent+="<td>"+indexEntry[1]+" </td>";
+					htmlDataContent+="<td>"+indexEntry[8]+" </td>";
 					if(indexEntry[3]=="Y"){
 						htmlDataContent+="<td><center> <img width=\"20\" src=\"img/button-turn-on.jpg\"></center></td>";
 					}else if(indexEntry[3]=="N"){
@@ -224,7 +224,8 @@ var vaidationcateLink = function(){
 var deleteData = function(id){
 	
 	//http://192.168.1.49:8082/niems/Model/category_link/delete.jsp?callback=?&cate_link_id=1
-	var cate_type_id= $("#embedCateTypeId").val();
+	var cate_type_id= $("#embedCateTypeFilterId").val();
+	//alert(cate_type_id);
 	$.ajax({
 		url:golbalURL+"/niems/Model/category_link/delete.jsp",
 		type:"post",
