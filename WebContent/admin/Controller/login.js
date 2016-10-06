@@ -1,4 +1,8 @@
-
+function getReason()
+{
+  return ($("input[name=reason]:checked").map(
+     function () {return this.value;}).get().join(","));
+}
 
 function checkID(id)
 	{
@@ -16,19 +20,15 @@ var vaidationLogin = function(){
 	}
 	
 	if($("#user_name").val()==""){
-		txtArert+=" user_name ห้ามเป็นค่าว่าง\n";
+		txtArert+="ชื่อผู้ใช้งานห้ามเป็นค่าว่าง\n";
 	}
 	if($("#password").val()==""){
-		txtArert+=" password ห้ามเป็นค่าว่าง\n";
+		txtArert+="รหัสผ่านห้ามเป็นค่าว่าง\n";
 	}
-	if($("#listReason").val()=="All"){
-		txtArert+=" เลือกเหตุผลการขอใช้บริการด้วยครับ\n";
+	if(getReason()==""){
+		txtArert+="เลือกเหตุผลการขอใช้บริการด้วยครับ\n";
 	}
-	if($("#listReason").val()=="reason5"){
-		if($("#reason").val()==""){
-			txtArert+=" reason ห้ามเป็นค่าว่าง\n";
-		}
-	}
+	
 	
 	
 	
@@ -46,6 +46,7 @@ var vaidationLogin = function(){
 
 $(document).ready(function(){
 	
+	/*
 	$("#listReason").click(function(){
 		if($(this).val()=="reason5"){
 			$(".textareaReason").show();
@@ -53,8 +54,28 @@ $(document).ready(function(){
 			$(".textareaReason").hide();
 		}
 	});
+	*/
+	
+	
+	$("#reason6").click(function(){
+		
+		if($("#reason6").is(':checked')){
+			
+		    $(".textareaReason").show();  // checked
+		}else{
+			
+			$("#textareaReason").val("");
+		    $(".textareaReason").hide();
+		}
+		
+	});
+	
 	
 	function updateUserItemInDWH(rsData,user_name,password){
+		
+		var objectItem = eval("("+rsData['LOG_INResult']+")");
+	    objectItem=objectItem[0];
+	    
 		/*
 		http://192.168.1.49:8082/niems/Model/user/update.jsp
 			?user_name=123456
@@ -69,21 +90,21 @@ $(document).ready(function(){
 			&role_id=1
 		*/
 
-		var prefix= rsData['LOG_INResult'][0]['TITLE_NAME'];
-		var first_name= rsData['LOG_INResult'][0]['FIRST_NAME'];
-		var last_name= rsData['LOG_INResult'][0]['LAST_NAME'];
+		var prefix= objectItem['TITLE_NAME'];
+		var first_name= objectItem['FIRST_NAME'];
+		var last_name= objectItem['LAST_NAME'];
 		var email= "";
-		var province= rsData['LOG_INResult'][0]['CHANGWAT_NAME'];
+		var province= objectItem['CHANGWAT_NAME'];
 		var status= "Y";
-		var position= rsData['LOG_INResult'][0]['POSITIONS'];
-		var organization= rsData['LOG_INResult'][0]['DEP_NAME'];
+		var position= objectItem['POSITIONS'];
+		var organization= objectItem['DEP_NAME'];
 		
 		var user_items= "Y";
 		var role_id="2";
 		
 		$.ajax({
 			url:golbalURL+"/niems/Model/user/update_by_user_items.jsp",
-			type:"get",
+			type:"POST",
 			dataType:"json",
 			async:false,
 			data:{
@@ -106,6 +127,10 @@ $(document).ready(function(){
 		
 	}
 	function insertUserItemtoDWH(rsData,user_name,password){
+	
+	    var objectItem = eval("("+rsData['LOG_INResult']+")");
+	    objectItem=objectItem[0];
+	    
 		/*
 		http://192.168.1.49:8082/niems/Model/user/insert.jsp
 		?callback=?
@@ -147,21 +172,34 @@ $(document).ready(function(){
 		TUMBON_NAME:null
 			*/
 		
-		var prefix= rsData['LOG_INResult'][0]['TITLE_NAME'];
-		var first_name= rsData['LOG_INResult'][0]['FIRST_NAME'];
-		var last_name= rsData['LOG_INResult'][0]['LAST_NAME'];
+		var prefix= objectItem['TITLE_NAME'];
+		var first_name= objectItem['FIRST_NAME'];
+		var last_name= objectItem['LAST_NAME'];
 		var email= "";
-		var province= rsData['LOG_INResult'][0]['CHANGWAT_NAME'];
+		var province= objectItem['CHANGWAT_NAME'];
 		var status= "Y";
-		var position= rsData['LOG_INResult'][0]['POSITIONS'];
-		var organization= rsData['LOG_INResult'][0]['DEP_NAME'];
+		var position= objectItem['POSITIONS'];
+		var organization= objectItem['DEP_NAME'];
+		
+		
 		
 		var user_items= "Y";
 		var role_id="2";
+		localStorage.setItem('first_name',first_name);
+		localStorage.setItem('last_name',last_name);
+		
+		/*
+		console.log("TITLE_NAME="+objectItem['TITLE_NAME']);
+		console.log("FIRST_NAME="+objectItem['FIRST_NAME']);
+		console.log("LAST_NAME="+objectItem['LAST_NAME']);
+		console.log("CHANGWAT_NAME="+objectItem['CHANGWAT_NAME']);
+		console.log("POSITIONS="+objectItem['POSITIONS']);
+		console.log("DEP_NAME="+objectItem['DEP_NAME']);
+	*/
 		
 		$.ajax({
 			url:golbalURL+"/niems/Model/user/insert.jsp",
-			type:"get",
+			type:"POST",
 			dataType:"json",
 			async:false,
 			data:{
@@ -176,12 +214,14 @@ $(document).ready(function(){
 			success:function(data){
 				if(data=="success"){
 					console.log("step 4");
+					return false;
 					//alert("Insert data is successfully");
 				}	
 			}
 		});
 		
 	}
+	
 	
 	var rs=false;
 	function findUserItemsInDWH(user_name){
@@ -274,13 +314,20 @@ $(document).ready(function(){
 						success:function(rsData2){
 							console.log("step 3.1");
 							console.log(rsData2);
+							var statusUser=rsData2[0][7];
+							
 							if(rsData2==" " || rsData2=="" || rsData2==[]){
 							
 								console.log("insert");					
 								insertUserItemtoDWH(rsData,user_name,password);
 								localStorage.setItem('role_id','2');
 								localStorage.setItem('role_name','Super user');
+								
+								
+								
 								setTimeout(function(){
+									$( location ).attr("href", "portal_link.html");
+									/*
 									if(rsData2[7]=="Y"){
 										$( location ).attr("href", "portal_link.html");
 									}else{
@@ -288,6 +335,7 @@ $(document).ready(function(){
 										return false;
 										$( location ).attr("href", "./index.html");
 									}
+									*/
 								});
 								
 								
@@ -301,12 +349,27 @@ $(document).ready(function(){
 								console.log(user_name);
 								console.log(password);
 								updateUserItemInDWH(rsData,user_name,password);
-								localStorage.setItem('role_id','2');
+								localStorage.setItem('role_id',rsData2[0][11]);
 								localStorage.setItem('role_name','Super user');
+								
+								localStorage.setItem('first_name',rsData2[0][3]);
+								localStorage.setItem('last_name',rsData2[0][4]);
+								
+								
 								
 								setTimeout(function(){
 									
-									$( location ).attr("href", "portal_link.html");
+									//alert(statusUser);
+									if(statusUser=="Y"){
+										$( location ).attr("href", "portal_link.html");
+									}else{
+										alert("รหัสผู้ใช้งานนี้ถูกระงับการใช้งาน");
+										return false;
+										$( location ).attr("href", "./index.html");
+									}
+									
+									
+									//$( location ).attr("href", "portal_link.html");
 									
 								});
 								//$( location ).attr("href", "admin/index.html");
@@ -444,7 +507,7 @@ $(document).ready(function(){
 		var password=$("#password").val();
 		var reason="";
 		
-		
+		/*
 		if($("#listReason").val()=="reason1"){
 			reason="เสนอผู้บริหารในจังหวัด";
 		}else if($("#listReason").val()=="reason2"){
@@ -456,8 +519,14 @@ $(document).ready(function(){
 		}else if($("#listReason").val()=="reason5"){
 			reason=$("#reason").val();
 		}
-		
-		
+		*/
+		//alert(getReason());
+		if($("#reason6").is(':checked')){
+		    reason= getReason()+": "+$("#textareaReason").val();
+		}else{
+			reason=getReason();
+		}
+
 		
 		//keep data here..
 		localStorage.setItem('user_name',user_name);

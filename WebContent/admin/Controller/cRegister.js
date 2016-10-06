@@ -28,6 +28,11 @@ $(document).ready(function(){
 	listPrefix();
 	//prefix end
 	
+	
+	
+	
+	//console.log(sendEmail("1234","1234","nn.it@hotmail.com"));
+	
 	$("#submit").click(function(){
 		
 		if(vaidation()==true){
@@ -87,7 +92,7 @@ $(document).ready(function(){
 		success:function(data){
 			//console.log(data);
 			if(data!=""){
-				alert("The user is already. ");
+				alert("User is already. ");
 				
 			}else{
 				
@@ -114,7 +119,12 @@ $(document).ready(function(){
 					success:function(data){
 						//console.log(data);
 						if(data=="success"){
-							alert("Register is success");
+							
+							if(sendEmail(user_name,password,email)==true){
+								alert("Register is success");
+							}
+							
+							
 							clearUserForm();
 							
 							

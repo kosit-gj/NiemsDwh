@@ -28,11 +28,11 @@ var listDataAll = function(keyword){
 			$.each(data,function(index,indexEntry){
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
-					htmlDataContent+="<td>"+indexEntry[2]+" </td>";
-					htmlDataContent+="<td>"+indexEntry[3]+"</td>";
+					htmlDataContent+="<td>"+convertNull(indexEntry[2])+" </td>";
+					htmlDataContent+="<td>"+convertNull(indexEntry[3])+"</td>";
 					
 					htmlDataContent+="<td>"+indexEntry[14]+"</td>";
-					htmlDataContent+="<td>"+indexEntry[5]+"</td>";
+					htmlDataContent+="<td>"+convertNull(indexEntry[5])+"</td>";
 					if(indexEntry[6]=="Y"){
 						htmlDataContent+="<td><center><img src=\"img/button-turn-on.jpg\" width=\"20\"></center></td>";
 					}else{
@@ -244,9 +244,11 @@ http://192.168.1.49:8082/niems/Model/user/update.jsp
 			success:function(data){
 				//console.log(data);
 				if(data=="success"){
-				alert("Update success");
-				$("#userModal").modal('hide');
-				listDataAll();
+					if(sendEmail(user_name,password,email)==true){
+						alert("Update success");
+						$("#userModal").modal('hide');
+						listDataAll();
+					}
 				
 				}
 				
@@ -333,9 +335,11 @@ var insertUserFn= function(){
 								console.log(eval+"("+data+")");
 								
 								if(data[0]=="success"){
+									if(sendEmail(user_name,password,email)==true){
 									alert("Register is success");
 									$("#userModal").modal('hide');
 									listDataAll();
+									}
 								}
 							}
 						});

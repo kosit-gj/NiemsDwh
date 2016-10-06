@@ -427,21 +427,19 @@ var linkTypeFn = function(linkType){
 	var HTML="";
 	
 	if(linkType=="STATIC_LINK"){
-		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" checked=\"checked\" value=\"STATIC_LINK\">Static URL"
 		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" value=\"PENTAHO_LINK\">Pentaho URL";
+		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" checked=\"checked\" value=\"STATIC_LINK\">Static URL"
 		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" value=\"CUSTOM_LINK\">Custom URL";
 		
 
 	}else if(linkType=="CUSTOM_LINK"){
-	
-		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" value=\"STATIC_LINK\">Static URL"
 		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" value=\"PENTAHO_LINK\">Pentaho URL";
+		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" value=\"STATIC_LINK\">Static URL"
 		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" checked=\"checked\"  value=\"CUSTOM_LINK\">Custom URL";
 	
 	}else if(linkType=="PENTAHO_LINK"){
-	
-		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" value=\"STATIC_LINK\">Static URL"
 		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" checked=\"checked\" value=\"PENTAHO_LINK\">Pentaho URL";
+		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" value=\"STATIC_LINK\">Static URL"
 		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\"   value=\"CUSTOM_LINK\">Custom URL";
 	
 	}

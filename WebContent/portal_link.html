@@ -5,8 +5,16 @@
  <link href="admin/css/animate.css" rel="stylesheet">
  <link href="admin/css/style.css" rel="stylesheet">
  <link href="admin/css/port_link.css" rel="stylesheet">
- <div class="container display" style="display:none;">
+ <link href="admin/loading/jquery.mloading.css" rel="stylesheet">
  
+  <style>
+ 	 body{
+ 	 font-family: tahoma;
+ 	 }
+ </style>
+ 
+ <div class="container display" style="display:none;">
+
   <!--  title start-->
      		<div class="row wrapper border-bottom white-bg page-heading">
               <div class="col-lg-6">
@@ -21,7 +29,7 @@
                       </li>
                       
                       <li class="active activeTitle">
-                          <strong>บริการคลังข้อมูล</strong>
+                          <strong>คลังข้อมุลการแพทย์ฉุกเฉิน</strong>
                       </li>
                           
                   </ol>
@@ -52,15 +60,15 @@
 				<span  class="btn btn-primary btn-circle">
 					<i class="fa fa-users fontIcon"></i>
 	            </span>
-				<span class="bold">Back office</span>
+				<span class="bold">Back office(Administrator)</span>
 				</a>
 			 </div>
 			 <div class="col-lg-6">
-				<button id="createReport" class="btn ibox btn-admin btn-w-m btn-success" style="width:100%;" type="button">
+				<button id="createReport"  class="createReport btn ibox btn-admin btn-w-m btn-success" style="width:100%;" type="button">
 				<span  class="btn btn-danger btn-circle">
 					<i class="fa fa-tachometer fontIcon"></i>
 	            </span>
-				<span  class="bold">สร้างรายงาน(Siaku)</span>
+				<span  class="bold">สร้างรายงานด้วยตัวเอง(Siaku)</span>
 				</button>
 			 </div>
 	
@@ -73,7 +81,7 @@
 	<div class="row headerContent">
 			
 			 <div class="col-lg-6">
-				<button id="createReport" class="btn ibox btn-admin btn-w-m btn-success" style="width:100%;" type="button">
+				<button id="createReport" class="createReport btn ibox btn-admin btn-w-m btn-success" style="width:100%;" type="button">
 				<span  class="btn btn-danger btn-circle">
 					<i class="fa fa-tachometer fontIcon"></i>
 	            </span>
@@ -91,6 +99,7 @@
  
   <!-- Mainly scripts -->
     <script src="admin/js/jquery-2.1.1.js"></script>
+    <script src="admin/loading/jquery.mloading.js"></script>
     <script src="admin/js/bootstrap.min.js"></script>
     <script src="admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>

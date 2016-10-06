@@ -13,7 +13,14 @@
 
     <link href="admin/css/animate.css" rel="stylesheet">
     <link href="admin/css/style.css" rel="stylesheet">
+     <link href="admin/css/login.css" rel="stylesheet">
+    <link href="admin/loading/jquery.mloading.css" rel="stylesheet">
 
+ <style>
+ 	 body{
+ 	 font-family: tahoma;
+ 	 }
+ </style>
 </head>
 
 <body class="gray-bg">
@@ -26,48 +33,133 @@
                  -->
 
             </div>
-            <h3>ยินดีตอนรับสู่ระบบคลังข้อมูล </h3>
-            <p>กรุณาระบุเหตุผลในการเข้าใช้งานระบบคลังขอมูลของสพฉ.<br>เพื่อเป็นแนวทางในการพัฒนาและปรับปรุงการให้บริการให้ดียิงขึ้นต่อไป
-                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
-            </p>
+            <h3>ยินดีต้อนรับเข้าสู่ระบบคลังข้อมูลการแพทย์ฉุกเฉิน </h3>
+            
             <!-- <p>Login in. To see it in action.</p> -->
-            <form class="m-t" role="form" action="index.html">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="user_name"  placeholder="เลขบัตรประชาชน" >
+            <form class="m-t" role="form" action="#">
+            
+            <div class='rowLogin'>
+            	<div class='labelLoginLabel'>
+            	Username :
+            	</div>
+            	<div class='labelLoginText'>
+	                <div class="form-group">
+	                    <input type="text" class="form-control" id="user_name"  placeholder="เลขบัตรประชาชน" >
+	                </div>
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="password" placeholder="รหัสผ่าน" >
+           </div>
+           
+            <div class='rowLogin'>
+            	<div class='labelLoginLabel'>
+            	Password :
+            	</div>
+            	<div class='labelLoginText'>
+	                <div class="form-group">
+	                    <input type="password" class="form-control" id="password"  placeholder="รหัสผ่าน" >
+	                </div>
                 </div>
-                
+           </div>
+           <small>(ใช้ Username & Password ของระบบ ITEMS)</small>
+           
+                                
+                                
+               
+                 <hr>
+                <p>กรุณาเลือกเหตุผลในการนำข้อมูลไปใช้งาน(เลือกได้มากกว่า 1 ข้อ)
+	                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+	            </p>
+	           
                  <div class="form-group">
+                   <!--
                     <select class="form-control" id="listReason">
-                    
+                     
                     	<option selected value="All">เลือกเหตุผลการขอใช้บริการ</option>
 						<option value="reason1">เสนอผู้บริหารในจังหวัด</option>
 						<option value="reason2">วางแผนพัฒนาในจังหวัด</option>
 						<option value="reason3">ดูรายงาน</option>
 						<option value="reason4">งานวิจัย</option>
 						<option value="reason5">เพื่อการตัดสินใจ อื่นๆ</option>
-                    	
+                   
                     </select>
+                     -->
+                  
+                     		
+						   <div class="col-lg-6">
+                           		<div class="reasonRows">
+                           			<div class='checkboxArea'>
+                           				<input type='checkbox' name='reason' id='reason1' class='reason' value='เสนอผู้บริหารในจังหวัด'>
+                           			</div>
+                           			<div class="labelArea">
+                           				เสนอผู้บริหารในจังหวัด
+                           			</div>
+                           		</div>
+                           		<div class="reasonRows">
+                           			<div class='checkboxArea'>
+                           				<input type='checkbox' name='reason' id='reason2' class='reason' value='วางแผนพัฒนาในจังหวัด'>
+                           			</div>
+                           			<div class="labelArea">
+                           				วางแผนพัฒนาในจังหวัด
+                           			</div>
+                           		</div>
+                           		<div class="reasonRows">
+                           			<div class='checkboxArea'>
+                           				<input type='checkbox' name='reason' id='reason3' class='reason' value='งานวิจัย'>
+                           			</div>
+                           			<div class="labelArea">
+                           				งานวิจัย
+                           			</div>
+                           		</div>
+                           		
+                           </div>
+                           <div class="col-lg-6">
+                           		<div class="reasonRows">
+                           			<div class='checkboxArea'>
+                           				<input type='checkbox' name='reason' id='reason4' class='reason' value='เสนอ KPI ระดับกระทรวง'>
+                           			</div>
+                           			<div class="labelArea">
+                           				เสนอ KPI ระดับกระทรวง
+                           			</div>
+                           		</div>
+                           		<div class="reasonRows">
+                           			<div class='checkboxArea'>
+                           				<input type='checkbox' name='reason' id='reason5' class='reason' value='เพื่อวางแผนและตัดสินใจ'>
+                           			</div>
+                           			<div class="labelArea">
+                           				เพื่อวางแผนและตัดสินใจ
+                           			</div>
+                           		</div>
+                           		<div class="reasonRows">
+                           			<div class='checkboxArea'>
+                           				<input type='checkbox' name='reason' id='reason6' class='reason' value='อื่นๆ ระบุ'>
+                           			</div>
+                           			<div class="labelArea">
+                           				อื่นๆ ระบุ
+                           			</div>
+                           		</div>
+                           </div>
+                      <br style=clear:both>
                 </div>
                 
+                <hr>
                 
-                 <div class="form-group textareaReason"   style="display:none;">
-                    <textarea class="form-control" id="reason" cols="5" style='height:150px' placeholder="เหตุผลที่ขอใช้บริการ" required="" ></textarea>
+                 
+                 <div class="form-group textareaReason"   style="margin-bottom:5px;display:none;">
+                    <textarea class="form-control" id="textareaReason" cols="5" style='height:150px' placeholder="เหตุผลที่ขอใช้บริการ" ></textarea>
                 </div>
                 <button type="submit" id='btn_submit' class="btn btn-primary block full-width m-b">ลงชื่อเข้าใช้งาน</button>
 
-               <!-- <a href="#"><small>ลืมรหัสผ่าน?</small></a> --> 
-                <p class="text-muted text-center"><small>ยังไม่มีเป็นสมาชิก ?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="register.html">สมัครสมาชิก</a>
+               <!-- <a href="#"><small>ลืมรหัสผ่าน?</small></a>
+                <p class="text-muted text-center"><small>ยังไม่มีเป็นสมาชิก ?</small></p> --> 
+                <a class="btn btn-sm btn-white btn-block" href="register.html"> ลงทะเบียนผู้ใช้งาน</a>
+                 <a class="btn btn-sm btn-white btn-block" href="forgot_password.html">ลืมรหัสผ่าน ?</a>
             </form>
            
         </div>
     </div>
 
-    <!-- Mainly scripts -->
+    <!-- Mainly scripts -->	
     <script src="admin/js/jquery-2.1.1.js"></script>
+    <script src="admin/loading/jquery.mloading.js"></script>
     <script src="admin/js/bootstrap.min.js"></script>
     
     <script src="admin/Controller/cConfig.js"></script>

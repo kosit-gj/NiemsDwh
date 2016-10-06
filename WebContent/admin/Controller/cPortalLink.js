@@ -119,7 +119,7 @@ var listCateType = function(role_id){
 									console.log(data3);
 									$.each(data3,function(index3,indexEntry3){
 										
-										cateTypeHTML+=" <li><a class='linkID' id='linkID-"+indexEntry3[0]+"' href=\"http://"+indexEntry3[4]+"\">"+(index3+1)+". "+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
+										cateTypeHTML+=" <li><a class='linkID "+indexEntry3[3]+"' id='linkID-"+indexEntry3[0]+"' href=\""+indexEntry3[4]+"\">"+(index3+1)+". "+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
 										
 										
 									});
@@ -207,10 +207,10 @@ $(document).ready(function(){
 	
 	$("#profileName").html(localStorage.getItem('first_name')+" "+localStorage.getItem('last_name'));
 	
-	$("#createReport").click(function(){
-		
-		var username=localStorage.getItem('user_name');
-		var password=localStorage.getItem('password');
+	$(".createReport").on("click",function(){
+		alert("create report");
+		var url=golbalPentahoURL+"/pentaho/plugin/jpivot/Pivot?new-action=true&schema=SVH_Data&cube=SVH_Data&Ok=Ok";
+		auThenRedirectURL(localStorage.getItem('user_name'),localStorage.getItem('password'),url);
 		//auThenRedirectURL("admin","password","http://localhost:8080/pentaho/api/repos/%3Apublic%3ASamitivej%3ASVH.wcdf/generatedContent?ts=1472206559057");
 
 		return false;
@@ -223,6 +223,45 @@ $(document).ready(function(){
 		var id=this.id.split("-");
 		id=id[1];
 		saveToLogFn(id);
+		var url="";
+		if($(this).hasClass("PENTAHO_LINK")){
+			
+			//url=$(this).attr("href")+"&userid="+localStorage.getItem('user_name')+"&password="+localStorage.getItem('password')+"";
+			url=$(this).attr("href");
+			/*
+			var htmlForm="";
+			htmlForm+="<form target=\"_blank\" method='post' id='formLoginPentaho' action='"+url+"'>";
+			htmlForm+="<input type=\"hidden\" name=\"userid\" id=\"userid\" value="+localStorage.getItem('user_name')+">";
+			htmlForm+="<input type=\"hidden\" name=\"password\" id=\"password\" value="+localStorage.getItem('password')+">";
+			htmlForm+="<input type='submit' id='btnSubmit' name='btnSubmit'";
+			htmlForm+="<form>";
+			$("#formLoginPentaho").remove();
+			$("body").append(htmlForm);
+			
+			setTimeout(function(){
+				
+				//auThenRedirectURL(localStorage.getItem('user_name'),localStorage.getItem('password'),url);
+				//http://192.168.1.38:8086/pentaho/api/repos/%3Apublic%3ASteel%20Wheels%3AReports%3ATop%20Customers%20%28report%29.prpt/viewer?ts=1475595423671&userid=1460600053789&password=11111
+					
+					$("#btnSubmit").click();
+					//$( location ).attr({"target" : "_blank"}).attr("href", url);
+			},1000);
+			*/
+			auThenRedirectURL(localStorage.getItem('user_name'),localStorage.getItem('password'),url);
+			
+			
+		}else if($(this).hasClass("STATIC_LINK")){
+		
+			url=$(this).attr("href");
+			setTimeout(function(){
+				$( location ).attr({"target" : "_blank"}).attr("href", url);
+			},1000);
+			
+			
+			
+		}
+		
+		
 		
 		return false;
 	});

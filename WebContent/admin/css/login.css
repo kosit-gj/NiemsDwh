@@ -1,0 +1,32 @@
+.checkboxArea{
+	float:left;
+	wdith:50px;
+}
+.labelArea{
+	float:left;
+	width:150px;
+	text-align:left;
+	margin-left:3px;
+}
+.reasonRows{
+	height:27px;
+}
+.object-right{
+	text-align:right;
+}
+.rowLogin{
+	height:27px;
+}
+
+.rowLogin .labelLoginLabel{
+	width:100px;
+	float:left;
+	text-align:right;
+	padding-top:5px;
+	padding-right:5px;
+}
+.rowLogin .labelLoginText{
+	width:300px;
+	float:left;
+}
+
