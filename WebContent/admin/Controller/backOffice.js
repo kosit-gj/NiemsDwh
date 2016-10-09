@@ -1,4 +1,11 @@
 $(document).ready(function(){
+	
+	  $.get("skin-config.html", function (data) {
+	        if (!$('body').hasClass('no-skin-config'))
+	            $('body').append(data);
+	    });
+	  
+	  
 	var listCategoryTypeFn = function(){
 		//http://192.168.1.49:8082/niems/Model/category_type/selectAll.jsp?callback=?
 		$.ajax({

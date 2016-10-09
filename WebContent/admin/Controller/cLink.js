@@ -279,18 +279,25 @@ var clearLinkForm = function(){
 	$("#link_url").val("");
 	$("#link_url").val(""); 
 	$("#action").val("add");
+	linkRadioTypeFn("PENTAHO_LINK");
 	
 }
 var listData = function(data){
 			console.log(data);
 			//userDataContent
 			var htmlDataContent="";
+			var link="";
 		
 			$.each(data,function(index,indexEntry){
 				
+				if(indexEntry[3]="CUSTOM_LINK"){
+					link=indexEntry[5];
+				}else{
+					link=indexEntry[2];
+				}
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
-					htmlDataContent+="<td>"+indexEntry[2]+" </td>";
+					htmlDataContent+="<td>"+link+" </td>";
 					htmlDataContent+="<td>"+indexEntry[8]+" </td>";
 					
 					
@@ -321,6 +328,10 @@ var listData = function(data){
 				$("#action").val("edit");
 				$("#link_id").val(id);
 				
+				summernoteFn();
+				
+				
+				
 				//binding action start
 				$("#btnSubmit").off("click");
 				$("#btnSubmit").on("click",function(){
@@ -331,34 +342,44 @@ var listData = function(data){
 				
 				});
 				
+				
+				
 				$("#btnClose").off("click");
 				$("#btnClose").on("click",function(){
 					clearLinkForm();
 				});
 				//binding action end
 				
+				
 				//click link type start
 				$(".link_type").off("click");
 				$(".link_type").on("click",function(){
-					//alert($(this).val());
 					if($(this).val()=="STATIC_LINK"){
 						$(".staticLinkArea").show();
 						$(".customLinkArea").hide();
 					}else if($(this).val()=="CUSTOM_LINK"){
 						$(".staticLinkArea").hide();
 						$(".customLinkArea").show();
+						$(".modal-backdrop").remove();
 					}else if($(this).val()=="PENTAHO_LINK"){
 						$(".staticLinkArea").show();
-						$(".customLinkArea").hide();	
+						$(".customLinkArea").hide();
 					}
-				
 				});
-				$(".staticLinkArea").show();
-				$(".customLinkArea").hide();
-				//click link type end
+				
+				
+				$(".close").off("click");
+				$(".close").click(function(){
+					$(".modal-backdrop").remove();
+					$(".note-link-dialog").modal('hide');
+					
+				});
+				
 				
 			});
 			//action binding end
+			
+			
 	
 }
 
@@ -404,6 +425,7 @@ var findData = function(id){
 		data:{
 			"link_id":id
 			},
+		async:false,
 		success:function(data){
 			//console.log(data);
 			/*
@@ -416,14 +438,58 @@ var findData = function(id){
 			$("#link_name").val(data[0][2]);
 			$("#link_url").val(data[0][4]);
 			$(".note-editable").html(data[0][5]);
-			linkTypeFn(data[0][3]);
+			linkRadioTypeFn(data[0][3]);
 			listCateLink(data[0][1]);
+			
+			//summernoteFn("");
+			
+			//click link type start
+			//alert(data[0][3]);
+			showHideinputTypeFn(data[0][3]);
+			//click link type end
+			
+			
+			
 			
 		}
 	});
 	
 }
-var linkTypeFn = function(linkType){
+
+var showHideinputTypeFn =function(linkType){
+	//click link type start
+	
+	
+		
+		if(linkType=="STATIC_LINK"){
+			$(".staticLinkArea").show();
+			$(".customLinkArea").hide();
+		}else if(linkType=="CUSTOM_LINK"){
+			
+			//click edit custom link start
+			//$(".note-editable").html("EDIT");
+			//click edit custom link end
+			
+			$(".staticLinkArea").hide();
+			$(".customLinkArea").show();
+			//$(".modal-backdrop").remove();
+			
+		}else if(linkType=="PENTAHO_LINK"){
+			$(".staticLinkArea").show();
+			$(".customLinkArea").hide();	
+		}else{
+			$(".staticLinkArea").show();
+			$(".customLinkArea").hide();
+		}
+
+	
+
+	//click link type end
+	
+}
+
+
+var linkRadioTypeFn = function(linkType){
 	var HTML="";
 	
 	if(linkType=="STATIC_LINK"){
@@ -442,10 +508,39 @@ var linkTypeFn = function(linkType){
 		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" value=\"STATIC_LINK\">Static URL"
 		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\"   value=\"CUSTOM_LINK\">Custom URL";
 	
+	}else{
+		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\" checked=\"checked\" value=\"PENTAHO_LINK\">Pentaho URL";
+		HTML+="<input class =\"link_type\"  name=\"link_type\" type=\"radio\" value=\"STATIC_LINK\">Static URL"
+		HTML+="<input class =\"link_type\" name=\"link_type\" type=\"radio\"   value=\"CUSTOM_LINK\">Custom URL";
+	
 	}
 	
 	
 	$("#linkTypeArea").html(HTML);
+	
+	
+	
+}
+var summernoteFn = function(){
+	
+	$("#summernoteArea").html( "<div class=\"summernote\"> </div>");
+	$('.summernote').summernote({
+		toolbar: [
+		         // ['style', ['style']],
+		          ['font', ['bold', 'italic', 'underline', 'clear']],
+		          //['fontname', ['fontname']],
+		          ['color', ['color']],
+		          ['para', ['ul', 'ol', 'paragraph']],
+		        //  ['height', ['height']],
+		          ['table', ['table']],
+		          ['insert', ['link']],
+		          //['view', ['fullscreen', 'codeview']],
+		         // ['help', ['help']]
+		        
+		  ]
+		});
+	
+	
 }
 
 $(document).ready(function(){
@@ -457,7 +552,7 @@ $(document).ready(function(){
 	//$("#userTable").DataTable();
 	$("#linkTable").kendoGrid({
 		 height: "",
-         sortable: true,
+         sortable: false,
          //filterable: true,
          pageable: true,
          scrollable: false,
@@ -477,17 +572,24 @@ $(document).ready(function(){
 		clearLinkForm();
 		
 		listCateLink($("#embedCateLinkFilterId").val());
+		linkRadioTypeFn();
 		
 		
-		 $('.summernote').summernote();
-		 setTimeout(function(){
-			 $('.click2edit').summernote({focus: true});
-		 },1000);
+		
+		summernoteFn();
+		
+		
+		$(".close").off("click");
+		$(".close").click(function(){
+			$(".modal-backdrop").remove();
+			$(".note-link-dialog").modal('hide');
+		});
+		
 		
 		$("#btnSubmit").off("click");
 		$("#btnSubmit").on("click",function(){
 			
-		
+			$('.click2edit').destroy();
 			insertLinkFn();
 		
 		});
@@ -501,21 +603,22 @@ $(document).ready(function(){
 		//click link type start
 		$(".link_type").off("click");
 		$(".link_type").on("click",function(){
-			//alert($(this).val());
+			//showHideinputTypeFn($(this).val());
 			if($(this).val()=="STATIC_LINK"){
 				$(".staticLinkArea").show();
 				$(".customLinkArea").hide();
 			}else if($(this).val()=="CUSTOM_LINK"){
 				$(".staticLinkArea").hide();
 				$(".customLinkArea").show();
+				$(".modal-backdrop").remove();
 			}else if($(this).val()=="PENTAHO_LINK"){
 				$(".staticLinkArea").show();
 				$(".customLinkArea").hide();
 			}
-		
 		});
 		$(".staticLinkArea").show();
 		$(".customLinkArea").hide();
+		
 		//$(".link_type").click();
 		//click link type end
 		

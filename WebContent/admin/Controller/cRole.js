@@ -163,21 +163,29 @@ var listLinkByCateId = function(cate_link_id){
 		async:false,
 		data:{"cate_link_id":cate_link_id},
 		success:function(data){
-			//console.log("33333");
-			//console.log(data);
+			console.log("33333");
+			console.log(data);
 			//"47","73","AADAbc","CUSTOM_LINK","ADBCbc","custom url\n	","2559-09-24 21:43:47.0","2559-09-24 21:58:59.0"
 			//var dataJson="";
 			//dataJson+="[";
 			if(data!=""){
 				//alert("not null");
-				
+				var linkName="";
 				$.each(data,function(index,indexEntry){
 					
-					
+					if(indexEntry[3]=="CUSTOM_LINK"){
+						//alert(indexEntry3[5]);
+						linkName+="Custom Link";
+						
+					}else if(indexEntry[3]=="STATIC_LINK"){
+						linkName+=indexEntry[2];
+					}else{
+						linkName+=indexEntry[2];
+					}
 							dataJson+=",{";
 							//dataJson+="Field1:\""+(index+1)+"\",";
 							//dataJson+="Field1:\"\",";
-							dataJson+="Field2:\"<div class='level2'>- "+indexEntry[2]+"</div>\",";
+							dataJson+="Field2:\"<div class='level2'>- "+linkName+"</div>\",";
 							dataJson+="Field3:\" <center> <input type='checkbox' name='checkboxAsignLink' class='checkboxAsignLink cateLink-"+cate_link_id+"' id='link-"+indexEntry[0]+"' value='"+indexEntry[0]+"'></center>\"";
 							dataJson+="}";
 						
@@ -657,7 +665,7 @@ $(document).ready(function(){
 	//$("#userTable").DataTable();
 	$("#roleTable").kendoGrid({
 		height:"",
-        sortable: true,
+        sortable: false,
         pageable: true,
         scrollable: false,
         pageable: {

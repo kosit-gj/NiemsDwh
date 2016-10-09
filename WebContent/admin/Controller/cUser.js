@@ -244,11 +244,20 @@ http://192.168.1.49:8082/niems/Model/user/update.jsp
 			success:function(data){
 				//console.log(data);
 				if(data=="success"){
-					if(sendEmail(user_name,password,email)==true){
+					if(resetPass=="N"){
+						
 						alert("Update success");
 						$("#userModal").modal('hide');
 						listDataAll();
+						
+					}else{
+						if(sendEmail(user_name,password,email)==true){
+							alert("Update success");
+							$("#userModal").modal('hide');
+							listDataAll();
+						}
 					}
+					
 				
 				}
 				
@@ -393,7 +402,7 @@ $(document).ready(function(){
 	//$("#userTable").DataTable();
 	$("#userTable").kendoGrid({
         height:"",
-        sortable: true,
+        sortable: false,
         pageable: true,
         scrollable: false,
         pageable: {

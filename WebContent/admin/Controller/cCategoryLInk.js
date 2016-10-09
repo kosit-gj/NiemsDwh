@@ -465,7 +465,7 @@ $(document).ready(function(){
 	//$("#userTable").DataTable();
 	$("#cateLinkTable").kendoGrid({
 		height:"",
-        sortable: true,
+        sortable: false,
         pageable: true,
         scrollable: false,
         pageable: {

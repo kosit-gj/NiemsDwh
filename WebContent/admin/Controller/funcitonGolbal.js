@@ -20,10 +20,12 @@ function sendEmail(userName,password,email){
 		var dataRetrun=false;
 		//http://localhost:8082/niems/Model/user/sendEmail.jsp?user_name=abcd&password=1234&email=nn.it@hotmail.com
 		$.ajax({
-			url:golbalURL+"/niems/Model/user/sendEmail.jsp?user_name="+userName+"&password="+password+"&email="+email+"",
+			//url:golbalURL+"/niems/Model/user/sendEmail.jsp?user_name="+userName+"&password="+password+"&email="+email+"",
+			url:golbalURL+"/niems/Model/user/sendEmail.jsp",
 			type:"post",
 			dataType:"json",
 			async:false,
+			data:{"user_name":userName,"password":password,"email":email},
 			success:function(data){
 				if(data=="success"){
 					//alert("hello1");

@@ -1,0 +1,18 @@
+.rowLogin{
+	height:22px;
+}
+
+.rowLogin .labelLoginLabel{
+	width:85	px;
+	float:left;
+	text-align:right;
+	padding-top:5px;
+	padding-right:5px;
+}
+.rowLogin .labelLoginText{
+	width:299px;
+	float:left;
+}
+.m-t {
+    margin-top: 5px;
+}

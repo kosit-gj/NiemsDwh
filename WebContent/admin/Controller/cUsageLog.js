@@ -84,7 +84,7 @@ $(document).ready(function(){
 	 
 	 $("#usage_log_table").kendoGrid({
          height: "",
-         sortable: true,
+         sortable: false,
          //filterable: true,
          pageable: true,
          scrollable: false,

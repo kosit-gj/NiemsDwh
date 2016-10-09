@@ -9,13 +9,13 @@
 	margin-left:3px;
 }
 .reasonRows{
-	height:27px;
+	height:25px;
 }
 .object-right{
 	text-align:right;
 }
 .rowLogin{
-	height:27px;
+	height:22px;
 }
 
 .rowLogin .labelLoginLabel{
@@ -28,5 +28,15 @@
 .rowLogin .labelLoginText{
 	width:300px;
 	float:left;
+}
+.wellcomeTitle{
+	margin-top:5px;	
+	padding:5px;
+}
+.middle-box {
+    margin: 0 auto;
+    max-width: 400px;
+    padding-top: 10px;
+    z-index: 100;
 }
 

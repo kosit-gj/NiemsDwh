@@ -8129,6 +8129,7 @@ body.md-skin {
 .listCate{
 	float:right;
 	width:200px;
+	margin-right: 5px;
 }
 .btnManagement{
 	float:right;

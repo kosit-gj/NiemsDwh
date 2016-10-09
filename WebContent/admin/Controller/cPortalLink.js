@@ -98,7 +98,7 @@ var listCateType = function(role_id){
 						cateTypeHTML+="<span class=\"contentCate\"> "+indexEntry2[1]+"</span></h5>";
 						cateTypeHTML+="<div class=\"ibox-tools\">";
 						cateTypeHTML+="<a class=\"collapse-link\">";
-						cateTypeHTML+="<i class=\"i fa fa-plus fontBlue\"></i>";
+						cateTypeHTML+="<i class=\"i fa fa-plus fontIconRight fontBlue\"></i>";
 						cateTypeHTML+=" </a>";
 					               
 						cateTypeHTML+="</div>";
@@ -115,11 +115,23 @@ var listCateType = function(role_id){
 								async:false,
 								data:{"cate_link_id":indexEntry2[0],"role_id":role_id},
 								success:function(data3){
-									
+									console.log("data34");
 									console.log(data3);
+									var customLink="";
 									$.each(data3,function(index3,indexEntry3){
 										
-										cateTypeHTML+=" <li><a class='linkID "+indexEntry3[3]+"' id='linkID-"+indexEntry3[0]+"' href=\""+indexEntry3[4]+"\">"+(index3+1)+". "+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
+										if(indexEntry3[3]=="CUSTOM_LINK"){
+											//alert(indexEntry3[5]);
+											cateTypeHTML+=indexEntry3[5];
+											
+										}else if(indexEntry3[3]=="STATIC_LINK"){
+											
+											cateTypeHTML+=" <li><a class='linkID "+indexEntry3[3]+"' id='linkID-"+indexEntry3[0]+"' href=\""+indexEntry3[4]+"\">"+(index3+1)+". "+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
+										}else{
+											
+											cateTypeHTML+=" <li><a class='linkID "+indexEntry3[3]+"' id='linkID-"+indexEntry3[0]+"' href=\""+indexEntry3[4]+"\">"+(index3+1)+". "+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
+										}
+										
 										
 										
 									});
@@ -172,7 +184,7 @@ $(document).ready(function(){
 	
 	
 	
-	if(localStorage.getItem('user_name')==""){
+	if(localStorage.getItem('user_name')=="" || localStorage.getItem('user_name')==null){
 		$( location ).attr("href", "./index.html");
 		return false;
 	}else{
