@@ -2,7 +2,7 @@ var clearUserForm = function(){
 	$("#user_name").val("");
 	$("#password").val("");
 	$("#confirm_password").val("");
-	//listPrefix("นาย");
+	listPrefix();
 	$("#first_name").val("");
 	$("#last_name").val("");
 	$("#email").val("");
@@ -13,7 +13,7 @@ var clearUserForm = function(){
 	$("#position").val("");
 	$("#organization").val("");
 	//var user_items="N";
-	//$("#role_id").val("");
+	$("#tel").val("");
 
 	//listProvince();
 	
@@ -120,7 +120,7 @@ $(document).ready(function(){
 						//console.log(data);
 						if(data=="success"){
 							
-							if(sendEmail(user_name,password,email)==true){
+							if(sendEmail(user_name,password,email,"newPass")==true){
 								alert("Register is success");
 							}
 							

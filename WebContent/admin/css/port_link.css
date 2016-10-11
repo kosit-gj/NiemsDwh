@@ -1,3 +1,45 @@
+/* Large desktop */
+@media (min-width: 1200px) { 
+	
+	#leftTitle{
+	text-align:right;
+	}
+
+ }
+ /*  desktop */
+@media (min-width: 980px) and (max-width: 1199px) {
+	#leftTitle{
+	text-align:left;
+	}	
+		
+ }
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+	#leftTitle{
+	text-align:left;
+	}
+	
+ }
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+ 	
+ 	#leftTitle{
+	text-align:left;
+	}
+ }
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+	#leftTitle{
+	text-align:left;
+	}
+	
+ }
+     
+
+
+
 body{
 	background:	white;
 }
@@ -106,7 +148,7 @@ body{
 	display:none;
 }
 .panelDisable{
-	background:#dddddd;
+	/*background:#dddddd;*/
 	cursor:default;
 	z-index:99;
 }
@@ -158,4 +200,18 @@ body{
 }
 .folder-list li a:hover{
 	color:red;
+}
+.ibox-title2 {
+    background: #d7e9f0 none repeat scroll 0 0;
+    border-radius: 5px;
+    font-size: 18px;
+    height: 60px;
+    padding-top: 7px;
+    padding-left: 25px;
+}
+.ibox {
+    clear: both;
+    margin-bottom: 15px;
+    margin-top: 0;
+    padding: 0;
 }

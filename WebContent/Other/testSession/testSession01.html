@@ -1,0 +1,38 @@
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<script>
+$(document).ready(function(){
+	alert("hello jquery");
+	$("#createSession").click(function(){
+		
+		$.ajax({
+			url:"http://192.168.1.49:8083/niems/view/create_session.jsp?param1=test2&callback=?",
+			type:"GET",
+			dataType:"json",
+			async:false,
+			//data:{"param1":"test1","param2":"test2"},
+			success:function(data){
+			alert(data);
+			}
+		});
+		
+	});
+	$("#getSession").click(function(){
+
+			
+		$.ajax({
+			url:"http://192.168.1.49:8083/niems/view/get_session.jsp?callback=?",
+			type:"GET",
+			dataType:"json",
+			async:false,
+			success:function(data){
+			alert(data);
+			}
+		});
+			
+		
+	});
+});
+</script>
+
+<button id='createSession'>create session</button>
+<button id='getSession'>Get session</button>

@@ -93,8 +93,8 @@ var listData = function(data){
 				
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
-					htmlDataContent+="<td>"+indexEntry[1]+" </td>";
 					htmlDataContent+="<td>"+indexEntry[8]+" </td>";
+					htmlDataContent+="<td>"+indexEntry[1]+" </td>";
 					if(indexEntry[3]=="Y"){
 						htmlDataContent+="<td><center> <img width=\"20\" src=\"img/button-turn-on.jpg\"></center></td>";
 					}else if(indexEntry[3]=="N"){

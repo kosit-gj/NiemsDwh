@@ -15,7 +15,7 @@ function convertNull(data){
 	return value;
 }
 
-function sendEmail(userName,password,email){
+function sendEmail(userName,password,email,emailType){
 		//alert("test1");
 		var dataRetrun=false;
 		//http://localhost:8082/niems/Model/user/sendEmail.jsp?user_name=abcd&password=1234&email=nn.it@hotmail.com
@@ -25,7 +25,7 @@ function sendEmail(userName,password,email){
 			type:"post",
 			dataType:"json",
 			async:false,
-			data:{"user_name":userName,"password":password,"email":email},
+			data:{"user_name":userName,"password":password,"email":email,"emailType":emailType},
 			success:function(data){
 				if(data=="success"){
 					//alert("hello1");
@@ -218,7 +218,7 @@ var listProvince = function(provinceName){
 			var htmlSelectProvince="";
 			htmlSelectProvince+="<select id=\"province\" class=\"form-control\" >";
 			
-					htmlSelectProvince+="<option value=\"none\">เลือกจังหวัด</option>";
+					htmlSelectProvince+="<option value=\"0\">เลือกจังหวัด</option>";
 				$.each(data,function(index,indexEntry){
 					if(provinceName==indexEntry[1]){
 						htmlSelectProvince+="<option "+indexEntry[0]+" selected='selected'>"+indexEntry[1]+"</option>";
@@ -238,36 +238,36 @@ var listPrefix = function(prefixName){
 	var prefixHtml="";
 	if(prefixName=="นาย"){
 		
-		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
-			prefixHtml+="<option >เลือกคำนำหน้า</option>";
-			prefixHtml+="<option selected='selected'>นาย</option>";
-			prefixHtml+="<option>นาง</option>";
-			prefixHtml+="<option>นางสาว</option>";
+		prefixHtml+="<select  id=\"prefix\" class=\"form-control\" >";
+			prefixHtml+="<option value='0'>เลือกคำนำหน้า</option>";
+			prefixHtml+="<option value='1' selected='selected'>นาย</option>";
+			prefixHtml+="<option value='2' >นาง</option>";
+			prefixHtml+="<option value='3' >นางสาว</option>";
 		prefixHtml+="</select>";
 	    
 	    
 	}else if(prefixName=="นาง"){
 		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
-			prefixHtml+="<option >เลือกคำนำหน้า</option>";
-			prefixHtml+="<option >นาย</option>";
-			prefixHtml+="<option selected='selected'>นาง</option>";
-			prefixHtml+="<option>นางสาว</option>";
+			prefixHtml+="<option value='0' >เลือกคำนำหน้า</option>";
+			prefixHtml+="<option value='1'  >นาย</option>";
+			prefixHtml+="<option value='2' selected='selected'>นาง</option>";
+			prefixHtml+="<option value='3' >นางสาว</option>";
 		prefixHtml+="</select>";
 		
 	}else if(prefixName=="นางสาว"){
 		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
-			prefixHtml+="<option >เลือกคำนำหน้า</option>";
-			prefixHtml+="<option >นาย</option>";
-			prefixHtml+="<option>นาง</option>";
-			prefixHtml+="<option selected='selected'>นางสาว</option>";
+			prefixHtml+="<option value='0' >เลือกคำนำหน้า</option>";
+			prefixHtml+="<option value='1' >นาย</option>";
+			prefixHtml+="<option value='2' >นาง</option>";
+			prefixHtml+="<option value='3' selected='selected'>นางสาว</option>";
 		prefixHtml+="</select>";
 		
 	}else{
 		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
-			prefixHtml+="<option selected='selected'>เลือกคำนำหน้า</option>";
-			prefixHtml+="<option>นาย</option>";
-			prefixHtml+="<option>นาง</option>";
-			prefixHtml+="<option>นางสาว</option>";
+			prefixHtml+="<option value='0' selected='selected'>เลือกคำนำหน้า</option>";
+			prefixHtml+="<option value='1' >นาย</option>";
+			prefixHtml+="<option value='2' >นาง</option>";
+			prefixHtml+="<option value='3' >นางสาว</option>";
 		prefixHtml+="</select>";
 	}
 	$("#prefixArea").html(prefixHtml);
@@ -314,6 +314,9 @@ var vaidation = function(){
 	if(checkID($("#user_name").val())==false){
 		txtArert+="รหัสบัตรประชาชนไม่ถูกต้อง\n";
 	}
+	if($("#prefix").val()=="0"){
+		txtArert+="เลือกคำนำหน้าด้วยครับ\n";
+	}
 	
 	if($("#user_name").val()==""){
 		txtArert+="ชื่อผู้ใช้งานห้ามเป็นค่าว่าง\n";
@@ -357,6 +360,9 @@ var vaidation = function(){
 	}
 	if(validateTel($("#tel").val())==false){
 		txtArert+="เบอร์โทรไม่ถูกต้อง\n";
+	}
+	if($("#province").val()=="0"){
+		txtArert+="เลือกจังหวัดด้วยครับ\n";
 	}
 	
 	

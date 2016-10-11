@@ -251,7 +251,7 @@ http://192.168.1.49:8082/niems/Model/user/update.jsp
 						listDataAll();
 						
 					}else{
-						if(sendEmail(user_name,password,email)==true){
+						if(sendEmail(user_name,password,email,"changePass")==true){
 							alert("Update success");
 							$("#userModal").modal('hide');
 							listDataAll();
@@ -344,7 +344,7 @@ var insertUserFn= function(){
 								console.log(eval+"("+data+")");
 								
 								if(data[0]=="success"){
-									if(sendEmail(user_name,password,email)==true){
+									if(sendEmail(user_name,password,email,"newEmail")==true){
 									alert("Register is success");
 									$("#userModal").modal('hide');
 									listDataAll();

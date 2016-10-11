@@ -6,7 +6,7 @@ var bgIcon=["btn-default","btn-primary","btn-success","btn-info","btn-warning","
 
 
 var listCateType = function(role_id){
-	
+	var displayPanel="";
 	$.ajax({
 		url:golbalURL+"/niems/Model/category_type/selectAll.jsp",
 		type:"post",
@@ -24,11 +24,12 @@ var listCateType = function(role_id){
 		
 		$.each(data,function(inde,indexEntry){
 			
+			
 			cateTypeHTML+="<div class=\"row wrapper border-bottom white-bg page-heading\">";
-				cateTypeHTML+="<div class=\"col-lg-10\">";
+				cateTypeHTML+="<div class=\"col-md-10\">";
 					cateTypeHTML+="<h2 class=\"h2Title\">"+indexEntry[1]+"</h2>";      
 				cateTypeHTML+="</div>";
-				cateTypeHTML+="<div class=\"col-lg-2\">";
+				cateTypeHTML+="<div class=\"col-md-2\">";
 				
 				cateTypeHTML+="</div>";
 			cateTypeHTML+="</div>";
@@ -58,8 +59,9 @@ var listCateType = function(role_id){
 					8:"ข้อมูลพื้นฐาน ที่ขึ้นทะเ...การแพทย์ฉุกเฉิน (ITEMS)"
 
 					 */
+					var countLinkCate=0;
 					$.each(data2,function(index2,indexEntry2){
-					var displayPanel="";	
+						
 					if(indexEntry2[3]=="H"){
 						//Hidden
 						displayPanel="panelHide";
@@ -72,17 +74,20 @@ var listCateType = function(role_id){
 					}
 					
 					if(displayPanel!="panelDisable"){
-					cateTypeHTML+="<div class=\"col-lg-6  "+displayPanel+"\">";
+					cateTypeHTML+="<div class=\"col-md-6  "+displayPanel+" parentTypeCate-"+indexEntry[0]+" linkCate-"+indexEntry2[0]+"\">";
 					}else{
-						cateTypeHTML+="<div class=\"col-lg-6 \">";	
+						cateTypeHTML+="<div class=\"col-md-6 \">";	
 					}
 					
-					if(displayPanel=="panelDisable"){
-						cateTypeHTML+="<div class=\"ibox panelDisable panelCustom\">";
-					}else{
+					
 						cateTypeHTML+="<div class=\"ibox panelCustom\">";
-					}
-						cateTypeHTML+="<div class=\"ibox-title \">";
+					
+						if(displayPanel=="panelDisable"){
+							cateTypeHTML+="<div style='cursor: default; background:#cccccc; opacity:0.5;' class=\"ibox-title2 \">";
+						}else{
+							cateTypeHTML+="<div class=\"ibox-title \">";
+						}
+						
 						if(indexEntry2[7]==null){
 							cateTypeHTML+="<h5><span    class=\"btn btn-circle "+bgIcon[index2]+"\">";
 						}else{
@@ -98,7 +103,12 @@ var listCateType = function(role_id){
 						cateTypeHTML+="<span class=\"contentCate\"> "+indexEntry2[1]+"</span></h5>";
 						cateTypeHTML+="<div class=\"ibox-tools\">";
 						cateTypeHTML+="<a class=\"collapse-link\">";
-						cateTypeHTML+="<i class=\"i fa fa-plus fontIconRight fontBlue\"></i>";
+						if(displayPanel=="panelDisable"){
+							cateTypeHTML+="<i class=\" fontIconRight fontBlue\"></i>";
+						}else{
+							cateTypeHTML+="<i class=\"i fa fa-plus fontIconRight fontBlue\"></i>";
+						}
+						
 						cateTypeHTML+=" </a>";
 					               
 						cateTypeHTML+="</div>";
@@ -118,6 +128,7 @@ var listCateType = function(role_id){
 									console.log("data34");
 									console.log(data3);
 									var customLink="";
+									var countLink=0;
 									$.each(data3,function(index3,indexEntry3){
 										
 										if(indexEntry3[3]=="CUSTOM_LINK"){
@@ -126,15 +137,22 @@ var listCateType = function(role_id){
 											
 										}else if(indexEntry3[3]=="STATIC_LINK"){
 											
-											cateTypeHTML+=" <li><a class='linkID "+indexEntry3[3]+"' id='linkID-"+indexEntry3[0]+"' href=\""+indexEntry3[4]+"\">"+(index3+1)+". "+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
+											cateTypeHTML+=" <li><a class='parentLinkCate"+indexEntry2[0]+" linkID "+indexEntry3[3]+"' id='linkID-"+indexEntry3[0]+"' href=\""+indexEntry3[4]+"\">"+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
 										}else{
 											
-											cateTypeHTML+=" <li><a class='linkID "+indexEntry3[3]+"' id='linkID-"+indexEntry3[0]+"' href=\""+indexEntry3[4]+"\">"+(index3+1)+". "+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
+											cateTypeHTML+=" <li><a class='parentLinkCate"+indexEntry2[0]+" linkID "+indexEntry3[3]+"' id='linkID-"+indexEntry3[0]+"' href=\""+indexEntry3[4]+"\">"+indexEntry3[2]+" <i class=\"titleIconGreen fa fa-share-alt\"></i> </a></li>";
 										}
 										
-										
+										countLink++;
 										
 									});
+									
+									if(countLink==0){
+										cateTypeHTML+="<span class='linkCateDisable' id='linkCateDisable-"+indexEntry2[0]+"'> </span>";
+										//alert("hide");
+										//$(".parentLinkCate-"+indexEntry2[0]).hide();
+									}
+									
 									
 								}
 							});
@@ -146,8 +164,14 @@ var listCateType = function(role_id){
 						cateTypeHTML+="</div>";
 					cateTypeHTML+="</div>";
 					
-					
+					countLinkCate++;
 					});
+					if(countLinkCate==0){
+						
+						cateTypeHTML+="<span class='typeCateDisable' id='typeCateDisable-"+indexEntry[0]+"'> </span>";
+						//alert("hide");
+						//$(".parentLinkCate-"+indexEntry2[0]).hide();
+					}
 					
 				}
 			});
@@ -157,6 +181,10 @@ var listCateType = function(role_id){
 		});
 		
 		$("#contentCateType").html(cateTypeHTML);
+		
+		$(".linkCateDisable").parent().parent().parent().parent().hide();
+		$(".typeCateDisable").parent().prev().hide();
+		
 		// Collapse ibox function
 	    $('.ibox-title ').css({"cursor":"pointer"});
 	    $('.ibox-title ').click(function () {
@@ -220,11 +248,11 @@ $(document).ready(function(){
 	$("#profileName").html(localStorage.getItem('first_name')+" "+localStorage.getItem('last_name'));
 	
 	$(".createReport").on("click",function(){
-		alert("create report");
-		var url=golbalPentahoURL+"/pentaho/plugin/jpivot/Pivot?new-action=true&schema=SVH_Data&cube=SVH_Data&Ok=Ok";
+		//alert("create report");
+		var url="http://warehouse.niems.go.th/pentaho/content/saiku-ui/index.html?biplugin5=true&ts=1475808646732&ts=1475823209681";
+		//var url=golbalPentahoURL+"/pentaho/plugin/jpivot/Pivot?new-action=true&schema=SVH_Data&cube=SVH_Data&Ok=Ok";
 		auThenRedirectURL(localStorage.getItem('user_name'),localStorage.getItem('password'),url);
-		//auThenRedirectURL("admin","password","http://localhost:8080/pentaho/api/repos/%3Apublic%3ASamitivej%3ASVH.wcdf/generatedContent?ts=1472206559057");
-
+		
 		return false;
 	});
 	

@@ -283,6 +283,7 @@ var clearLinkForm = function(){
 	
 }
 var listData = function(data){
+			//console.log("datassssssssssssssss");
 			console.log(data);
 			//userDataContent
 			var htmlDataContent="";
@@ -290,15 +291,16 @@ var listData = function(data){
 		
 			$.each(data,function(index,indexEntry){
 				
-				if(indexEntry[3]="CUSTOM_LINK"){
+				if(indexEntry[3]=="CUSTOM_LINK"){
 					link=indexEntry[5];
 				}else{
 					link=indexEntry[2];
 				}
 				htmlDataContent+="<tr>";
 					htmlDataContent+="<td>"+(index+1)+"</td>";
-					htmlDataContent+="<td>"+link+" </td>";
+					htmlDataContent+="<td>"+indexEntry[9]+" </td>";
 					htmlDataContent+="<td>"+indexEntry[8]+" </td>";
+					htmlDataContent+="<td>"+link+" </td>";
 					
 					
 					

@@ -58,7 +58,7 @@ var updateNewPassword = function(user_name,newPassword,email){
 			console.log(data);
 			if(data=="success"){
 				
-				 if(sendEmail(user_name,newPassword,email)==true){
+				 if(sendEmail(user_name,newPassword,email,"changePass")==true){
 					 returnData=true;
 				 }else{
 					 returnData=false;
@@ -81,20 +81,20 @@ $(document).ready(function(){
 	$("#btnSubmit").click(function(){
 		var email="";
 		var generatePassword=generatePasswordFn();
-		//if(vaidation()==true){
+		if(vaidation()==true){
 			var dataUser=findUsername($("#user_name").val());
 			if(dataUser==""){
 				alert("ไม่พบ Username นี้");
 			}else{
 				
 				email=dataUser[0][5];
-				alert(generatePassword);
+				//alert(generatePassword);
 				if(updateNewPassword($("#user_name").val(),generatePassword,email)==true){
 					alert("ได้ส่งรหัสผ่านใหม่ไปที่ E-mail:"+email+"แล้ว");
 					//return false;
 				}
 			}
-		//}
+		}
 		
 		
 		

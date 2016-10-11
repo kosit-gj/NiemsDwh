@@ -1,3 +1,16 @@
+var createSessionAuthen =function(){
+	$.ajax({
+		//url:golbalURL+"/niems/Model/user/insert.jsp",
+		url:golbalURL+"/niems/Model/login/create_session.jsp?secretKey=9987&callback=?",
+		type:"POST",
+		dataType:"json",
+		async:false,
+		//data:{"param1":"test1","param2":"test2"},
+		success:function(data){
+		console.log(data);
+		}
+	});
+}
 function getReason()
 {
   return ($("input[name=reason]:checked").map(
@@ -228,7 +241,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			url:golbalURL+"/niems/Model/user/edit.jsp",
-			type:"get",
+			type:"POST",
 			dataType:"json",
 			async:false,
 			data:{"user_name":user_name},
@@ -307,7 +320,7 @@ $(document).ready(function(){
 
 					$.ajax({
 						url:golbalURL+"/niems/Model/user/edit.jsp",
-						type:"get",
+						type:"POST",
 						dataType:"json",
 						async:false,
 						data:{"user_name":user_name},
@@ -320,11 +333,12 @@ $(document).ready(function(){
 							
 								console.log("insert");					
 								insertUserItemtoDWH(rsData,user_name,password);
+								
 								localStorage.setItem('role_id','2');
 								localStorage.setItem('role_name','Super user');
 								
 								
-								
+								//createSessionAuthen();
 								setTimeout(function(){
 									$( location ).attr("href", "portal_link.html");
 									/*
@@ -350,11 +364,12 @@ $(document).ready(function(){
 								console.log(password);
 								updateUserItemInDWH(rsData,user_name,password);
 								localStorage.setItem('role_id',rsData2[0][11]);
-								localStorage.setItem('role_name','Super user');
+								localStorage.setItem('role_name',rsData2[0][15]);
 								
 								localStorage.setItem('first_name',rsData2[0][3]);
 								localStorage.setItem('last_name',rsData2[0][4]);
 								
+								//createSessionAuthen();
 								
 								
 								setTimeout(function(){
@@ -405,7 +420,7 @@ $(document).ready(function(){
 		//alert("authenByUser"+password);
 		$.ajax({
 			url:golbalURL+"/niems/Model/login/authen.jsp",
-			type:"get",
+			type:"POST",
 			dataType:"json",
 			async:false,
 			data:{"user_name":user_name,"password":password},
@@ -450,7 +465,11 @@ $(document).ready(function(){
 					
 					//DefineSession End
 					if(localStorage.getItem('status')=="Y"){
-						$( location ).attr("href", "./portal_link.html");
+						//createSessionAuthen();
+						setTimeout(function(){
+							$( location ).attr("href", "./portal_link.html");
+						});
+						
 					}else{
 						
 						alert("รหัสผู้ใช้งานนี้ถูกระงับการใช้งาน");
