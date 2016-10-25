@@ -48,6 +48,7 @@ $(document).ready(function(){
 			var position=$("#position").val();
 			var organization=$("#organization").val();
 			var user_items="N";
+			var tel=$("#tel").val();;
 			var role_id="3";
 			
 			/*
@@ -114,7 +115,8 @@ $(document).ready(function(){
 						"position":position,
 						"organization":organization,
 						"user_items":user_items,
-						"role_id":role_id
+						"role_id":role_id,
+						"tel":tel
 						},
 					success:function(data){
 						//console.log(data);

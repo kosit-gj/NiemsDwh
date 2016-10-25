@@ -122,7 +122,8 @@ var updateData = function(){
 				if(data=="success"){
 				alert("Update success");
 				$("#linkModal").modal('hide');
-				listDataAll();
+				//listDataAll();
+				listLinkByCateLink(cate_link_id);
 				//listCateLinkByCateType(cate_type_id);
 				
 				}
@@ -189,7 +190,8 @@ var insertLinkFn = function(){
 								if(data[0]=="success"){
 									alert("Insert is success");
 									$("#linkModal").modal('hide');
-									listDataAll();
+									//listDataAll();
+									listLinkByCateLink(cate_link_id);
 									//listCateLinkByCateType(cate_type_id);
 								}
 							}
@@ -223,7 +225,13 @@ var vaidationLink = function(){
 		}
 		if($("#link_url").val()==""){
 			txtArert+="Link URL ห้ามเป็นค่าว่าง\n";
+		}else{
+			if (!/^http:\/\//.test($("#link_url").val())) {
+				$("#link_url").val("http://" + $("#link_url").val());
+	        }
 		}
+		
+		
 	}
 	
 	
@@ -398,7 +406,9 @@ var deleteData = function(id){
 		success:function(data){
 			if(data=="success"){
 				
-				listDataAll();
+				//listDataAll();
+				var cate_link_id=$("#listCateLink").val();
+				listLinkByCateLink(cate_link_id);
 				//listCateLinkByCateType(cate_type_id);
 				
 			}

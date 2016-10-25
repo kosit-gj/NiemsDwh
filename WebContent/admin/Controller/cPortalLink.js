@@ -151,6 +151,8 @@ var listCateType = function(role_id){
 										cateTypeHTML+="<span class='linkCateDisable' id='linkCateDisable-"+indexEntry2[0]+"'> </span>";
 										//alert("hide");
 										//$(".parentLinkCate-"+indexEntry2[0]).hide();
+									}else{
+										countLinkCate++;
 									}
 									
 									
@@ -164,7 +166,7 @@ var listCateType = function(role_id){
 						cateTypeHTML+="</div>";
 					cateTypeHTML+="</div>";
 					
-					countLinkCate++;
+					//countLinkCate++;
 					});
 					if(countLinkCate==0){
 						
@@ -248,11 +250,13 @@ $(document).ready(function(){
 	$("#profileName").html(localStorage.getItem('first_name')+" "+localStorage.getItem('last_name'));
 	
 	$(".createReport").on("click",function(){
-		//alert("create report");
-		var url="http://warehouse.niems.go.th/pentaho/content/saiku-ui/index.html?biplugin5=true&ts=1475808646732&ts=1475823209681";
-		//var url=golbalPentahoURL+"/pentaho/plugin/jpivot/Pivot?new-action=true&schema=SVH_Data&cube=SVH_Data&Ok=Ok";
-		auThenRedirectURL(localStorage.getItem('user_name'),localStorage.getItem('password'),url);
 		
+		saveToLogFn(1);
+		
+		//setTimeout(function(){
+			var url="http://warehouse.niems.go.th/pentaho/content/saiku-ui/index.html?biplugin5=true&ts=1475808646732&ts=1475823209681";
+			auThenRedirectURL(localStorage.getItem('user_name'),localStorage.getItem('password'),url);
+		//},500);
 		return false;
 	});
 	
@@ -291,10 +295,15 @@ $(document).ready(function(){
 			
 			
 		}else if($(this).hasClass("STATIC_LINK")){
-		
+			
+			var id=this.id.split("-");
+			id=id[1];
+			saveToLogFn(id);
+			
 			url=$(this).attr("href");
 			setTimeout(function(){
-				$( location ).attr({"target" : "_blank"}).attr("href", url);
+				//$( location ).attr({"target" : "_blank"}).attr("href", url);
+				 window.open(url);
 			},1000);
 			
 			

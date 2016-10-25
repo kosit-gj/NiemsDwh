@@ -41,6 +41,15 @@ var vaidationLogin = function(){
 	if(getReason()==""){
 		txtArert+="เลือกเหตุผลการขอใช้บริการด้วยครับ\n";
 	}
+	//alert($("#reason6").val());
+	if($("#reason6:checked").val()){
+
+		if($("#textareaReason").val()==""){
+			txtArert+="กรอกเหตุผลการขอใช้บริการด้วยครับ\n";
+		}	
+		
+	}
+	
 	
 	
 	
@@ -50,6 +59,7 @@ var vaidationLogin = function(){
 		alert(txtArert);
 		return false
 	}else{
+		//return false;
 		return true;
 	}
 	
@@ -268,7 +278,7 @@ $(document).ready(function(){
 	function authenByIITEMS(user_name,password,appid,key){
 		//http://ws.niems.go.th/EMS_MAP_API/EMSInfo.svc/reqLogin?inUSERNAME={inUSERNAME}&inPASSWORD={inPASSWORD}&appid={appid}&key={key}
 		//http://192.168.1.49:8082/niems/Model/login/authen_items.jsp
-		
+		//http://ws.niems.go.th/EMS_MAP_API/EMSInfo.svc/reqLogin?inUSERNAME="1460600053789"&inPASSWORD="12345"&appid=dwh&key=dwh12345
 		$.ajax({
 			//url:golbalURL+"/niems/Model/login/authen_items.jsp",
 			url:"http://ws.niems.go.th/EMS_MAP_API/EMSInfo.svc/reqLogin?inUSERNAME="+user_name+"&inPASSWORD="+password+"&appid=dwh&key=dwh12345",
@@ -327,10 +337,11 @@ $(document).ready(function(){
 						success:function(rsData2){
 							console.log("step 3.1");
 							console.log(rsData2);
-							var statusUser=rsData2[0][7];
+							var statusUser="";
+							
 							
 							if(rsData2==" " || rsData2=="" || rsData2==[]){
-							
+								statusUser="Y";
 								console.log("insert");					
 								insertUserItemtoDWH(rsData,user_name,password);
 								
@@ -357,7 +368,7 @@ $(document).ready(function(){
 								
 								
 							}else{
-								
+								statusUser=rsData2[0][7];
 								console.log("update");
 								console.log(rsData);
 								console.log(user_name);

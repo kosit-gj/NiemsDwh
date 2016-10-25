@@ -5,6 +5,16 @@ $(document).ajaxStop(function(){
 	$("body").mLoading('hide');
 });
 
+
+function checkURL (url) {
+	  var string = url.value;
+	  if (!~string.indexOf("http")) {
+	    string = "http://" + string;
+	  }
+	  url.value = string;
+	  return url
+	}
+
 function convertNull(data){
 	var value="";
 	if(data==null){
@@ -106,7 +116,10 @@ var saveToLogFn = function(link_id){
 	var password= localStorage.getItem('password');
 	var reason= localStorage.getItem('reason');
 	
-
+	console.log(link_id);
+	//console.log(user_name);
+	//console.log(password);
+	//console.log(reason);
 		
 		$.ajax({
 			url:golbalURL+"/niems/Model/usage_log/insert.jsp",
@@ -115,6 +128,7 @@ var saveToLogFn = function(link_id){
 			async:false,
 			data:{"link_id":link_id,"user_name":user_name,"reason":reason},
 			success:function(data){
+				
 				if(data=="success"){
 					console.log("save to log successfully.");
 				}
@@ -240,34 +254,34 @@ var listPrefix = function(prefixName){
 		
 		prefixHtml+="<select  id=\"prefix\" class=\"form-control\" >";
 			prefixHtml+="<option value='0'>เลือกคำนำหน้า</option>";
-			prefixHtml+="<option value='1' selected='selected'>นาย</option>";
-			prefixHtml+="<option value='2' >นาง</option>";
-			prefixHtml+="<option value='3' >นางสาว</option>";
+			prefixHtml+="<option value='นาย' selected='selected'>นาย</option>";
+			prefixHtml+="<option value='นาง' >นาง</option>";
+			prefixHtml+="<option value='นางสาว' >นางสาว</option>";
 		prefixHtml+="</select>";
 	    
 	    
 	}else if(prefixName=="นาง"){
 		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
 			prefixHtml+="<option value='0' >เลือกคำนำหน้า</option>";
-			prefixHtml+="<option value='1'  >นาย</option>";
-			prefixHtml+="<option value='2' selected='selected'>นาง</option>";
-			prefixHtml+="<option value='3' >นางสาว</option>";
+			prefixHtml+="<option value='นาย'  >นาย</option>";
+			prefixHtml+="<option value='นาง' selected='selected'>นาง</option>";
+			prefixHtml+="<option value='นางสาว' >นางสาว</option>";
 		prefixHtml+="</select>";
 		
 	}else if(prefixName=="นางสาว"){
 		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
 			prefixHtml+="<option value='0' >เลือกคำนำหน้า</option>";
-			prefixHtml+="<option value='1' >นาย</option>";
-			prefixHtml+="<option value='2' >นาง</option>";
-			prefixHtml+="<option value='3' selected='selected'>นางสาว</option>";
+			prefixHtml+="<option value='นาย' >นาย</option>";
+			prefixHtml+="<option value='นาง' >นาง</option>";
+			prefixHtml+="<option value='นางสาว' selected='selected'>นางสาว</option>";
 		prefixHtml+="</select>";
 		
 	}else{
 		prefixHtml+="<select id=\"prefix\" class=\"form-control\" >";
 			prefixHtml+="<option value='0' selected='selected'>เลือกคำนำหน้า</option>";
-			prefixHtml+="<option value='1' >นาย</option>";
-			prefixHtml+="<option value='2' >นาง</option>";
-			prefixHtml+="<option value='3' >นางสาว</option>";
+			prefixHtml+="<option value='นาย' >นาย</option>";
+			prefixHtml+="<option value='นาง' >นาง</option>";
+			prefixHtml+="<option value='นางสาว' >นางสาว</option>";
 		prefixHtml+="</select>";
 	}
 	$("#prefixArea").html(prefixHtml);
