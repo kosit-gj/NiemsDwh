@@ -372,6 +372,7 @@ var clearUserForm = function(){
 	$("#last_name").val("");
 	$("#email").val("");
 	$("#province").val("");
+	$("#tel").val("");
 	
 	$("#user_name").removeAttr("disabled");
 	listStatusUserFn("Y");
@@ -401,15 +402,11 @@ $(document).ready(function(){
 	
 	//$("#userTable").DataTable();
 	$("#userTable").kendoGrid({
-        height:"",
+		height: "",
         sortable: false,
+        //filterable: true,
         pageable: true,
         scrollable: false,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
         dataSource: {
             pageSize: 10
         }

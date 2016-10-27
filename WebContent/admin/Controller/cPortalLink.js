@@ -251,7 +251,7 @@ $(document).ready(function(){
 	
 	$(".createReport").on("click",function(){
 		
-		saveToLogFn(1);
+		saveToLogFn(172);
 		
 		//setTimeout(function(){
 			var url="http://warehouse.niems.go.th/pentaho/content/saiku-ui/index.html?biplugin5=true&ts=1475808646732&ts=1475823209681";

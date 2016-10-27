@@ -44,7 +44,7 @@ var vaidationLogin = function(){
 	//alert($("#reason6").val());
 	if($("#reason6:checked").val()){
 
-		if($("#textareaReason").val()==""){
+		if($("#textareaReason").val().trim()==""){
 			txtArert+="กรอกเหตุผลการขอใช้บริการด้วยครับ\n";
 		}	
 		
@@ -112,18 +112,19 @@ $(document).ready(function(){
 			&user_items=Y
 			&role_id=1
 		*/
-
+	    
 		var prefix= objectItem['TITLE_NAME'];
 		var first_name= objectItem['FIRST_NAME'];
 		var last_name= objectItem['LAST_NAME'];
 		var email= "";
 		var province= objectItem['CHANGWAT_NAME'];
-		var status= "Y";
+		//var status= "Y";
 		var position= objectItem['POSITIONS'];
 		var organization= objectItem['DEP_NAME'];
+		var tel= objectItem['PHONE'];
 		
-		var user_items= "Y";
-		var role_id="2";
+		//var user_items= "Y";
+		//var role_id="2";
 		
 		$.ajax({
 			url:golbalURL+"/niems/Model/user/update_by_user_items.jsp",
@@ -135,7 +136,8 @@ $(document).ready(function(){
 				"prefix":prefix,"first_name":first_name,
 				"last_name":last_name,"email":email,
 				"province":province,
-				"position":position,"organization":organization
+				"position":position,"organization":organization,
+				"tel":tel
 				//"user_items":"Y","role_id":"2","status":status
 				
 			},
@@ -203,6 +205,8 @@ $(document).ready(function(){
 		var status= "Y";
 		var position= objectItem['POSITIONS'];
 		var organization= objectItem['DEP_NAME'];
+		var tel= objectItem['PHONE'];
+		
 		
 		
 		
@@ -231,7 +235,7 @@ $(document).ready(function(){
 				"last_name":last_name,"email":email,
 				"province":province,"status":status,
 				"position":position,"organization":organization,
-				"user_items":"Y","role_id":"2"
+				"user_items":"Y","role_id":"2","tel":tel
 				
 			},
 			success:function(data){

@@ -15,7 +15,7 @@ var clearUserForm = function(){
 	//var user_items="N";
 	$("#tel").val("");
 
-	//listProvince();
+	listProvince();
 	
 }
 
@@ -48,7 +48,7 @@ $(document).ready(function(){
 			var position=$("#position").val();
 			var organization=$("#organization").val();
 			var user_items="N";
-			var tel=$("#tel").val();;
+			var tel=$("#tel").val();
 			var role_id="3";
 			
 			/*
